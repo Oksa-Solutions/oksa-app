@@ -54,7 +54,6 @@ export const ALLOWED_DOMAINS = [
   'differo.fi',
   'muova.fi',
   'jetico.com',
-  'businesswiz.fi',
 ];
 
 export const RULES = {

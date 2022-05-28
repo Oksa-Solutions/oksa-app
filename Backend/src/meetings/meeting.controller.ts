@@ -94,6 +94,11 @@ export class MeetingController {
     @Req() req: Request,
   ): Promise<any> {
     if (post?.meeting?.uuid && post?.meeting?.id) {
+      if (post?.team?.uuid) {
+        const topicTeam = await this.teamRepository.findOne({uuid: post.team.uuid}, {relations: ['users']})
+        const authUsers = topicTeam.users;
+        Object.assign(post.meeting, {authorizedUsers: authUsers});
+      }
       const lastModifiedBy = this.tokenService.getUuidFromToken(req);
       if (lastModifiedBy === '') {
         throw new HttpException('No UUID in JWT', HttpStatus.NOT_FOUND);

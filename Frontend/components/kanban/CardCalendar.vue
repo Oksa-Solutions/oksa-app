@@ -8,13 +8,12 @@
   >
     <template v-slot:activator="{on, attrs}">
       <v-chip
-        :style="[disabledChip ? {'pointer-events': 'none'} : {}]"
-        :small="regularCard"
+        :x-small="regularCard"
         v-bind="attrs"
         v-on="on"
         :color="setDateChipColor()"
       >
-        {{ formatDate(disabledChip) }}
+        {{ formatDate() }}
       </v-chip>
     </template>
     <v-date-picker
@@ -28,10 +27,10 @@
       :min="new Date().toISOString().substr(0, 10)"
       year-icon="mdi-calendar-blank"
     >
-      <CancelButton @cancel="resetDate" v-bind="{label: 'Reset', text: true}" />
+      <CancelButton @cancel="resetDate" v-bind="{label: 'Reset'}" />
       <v-spacer />
-      <CancelButton @cancel="closeCalendar" v-bind="{label: 'Cancel', text: true}" />
-      <CancelButton @cancel="setDate(endDate)" v-bind="{label: 'done'}" />
+      <CancelButton @cancel="closeCalendar" v-bind="{label: 'Cancel'}" />
+      <CancelButton @cancel="setDate(endDate)" v-bind="{label: 'OK'}" />
     </v-date-picker>
   </v-menu>
 </template>
@@ -46,7 +45,6 @@ const cardCalendarProps = Vue.extend({
   props: {
     card: {type: Object as () => CardInterface, required: true},
     regularCard: {type: Boolean, required: true},
-    disabledChip: {type: Boolean, required: false},
   },
 });
 
@@ -60,13 +58,9 @@ export default class CardCalendar extends mixins(cardCalendarProps) {
     this.currentDateSelection();
   }
 
-  formatDate(disabled: boolean) {
+  formatDate() {
     if (!this.card?.dates?.endDate) {
-      if (disabled) {
-        return 'No date';
-      } else {
-        return 'Set date';
-      }
+      return 'Set date';
     }
     const today = new Date(Date.now());
     const thisYear = new Intl.DateTimeFormat('en', {year: 'numeric'}).format(

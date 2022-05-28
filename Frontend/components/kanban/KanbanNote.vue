@@ -7,8 +7,8 @@
     />
     <v-card
       outlined
-      elevation="1"
-      class="round-8 card mb-4 mx-3"
+      elevation="2"
+      class="round-8 card mb-4 mx-6"
       max-width="360px"
       :draggable="true"
       @dragstart="dragStart"
@@ -17,10 +17,11 @@
       :id="card.uuid"
     >
       <div
-        class="category-container px-6 py-2 round-top-8" style="border-bottom: none;"
+        class="category-container px-6 py-3 round-top-8"
+        id="fab-kanban-card"
       />
 
-      <v-card-subtitle class="mb-n1 mt-2 py-0 px-6 cardSubtitle black--text">
+      <v-card-subtitle class="mb-n1 py-0 px-6 bold" style="font-size: 10px">
         {{ getSubtitle() }}
       </v-card-subtitle>
 
@@ -29,25 +30,24 @@
       </v-card-title>
 
       <v-card-text
-        class="px-6 py-0 mt-4 mb-1 cardText black--text"
+        class="px-6"
+        style="white-space: pre-wrap"
         v-text="showMoreText()"
       >
       </v-card-text>
-
-      <div class="px-6 mb-3 showMore" v-if="card.content.length > maxLength">
+      <span class="px-6" v-if="card.content.length > maxLength">
         <a @click.stop.capture="toggleAllContent(!showAll)">
           {{ showAll ? 'Show less' : 'Show more' }}
         </a>
-      </div>
+      </span>
 
-      <div class="px-6 pt-0 tagWrapper">
+      <div class="px-6 pt-0">
         <v-chip
-          class="ma-1"
           v-for="(categoryTitle, i) in card.categories
             .map((c) => c.name)
             .sort(sortByCategories)"
           :key="i"
-          small
+          x-small
           outlined
         >
           <v-icon class="pr-2">mdi-label</v-icon>
@@ -55,8 +55,8 @@
         </v-chip>
       </div>
 
-      <v-card-actions class="px-6 pt-0 mt-2">
-        <CardCalendar v-bind="{card, regularCard: true, disabledChip: true}" />
+      <v-card-actions class="px-6 pt-0">
+        <CardCalendar v-bind="{card, regularCard: true}" />
 
         <v-spacer />
 
@@ -141,26 +141,4 @@ export default class KanbanNote extends mixins(kanbanNoteProps) {
 }
 </script>
 
-<style scoped>
-.cardSubtitle {
-  text-transform: uppercase;
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  font-weight: 600;
-}
-.cardTitle {
-  line-height: 1.2em;
-}
-.cardText {
-  white-space: pre-wrap;
-}
-.cardText + div:not(.showMore) {
-  margin-top: 12px;
-}
-.tagWrapper .v-chip:first-of-type {
-  margin-left: 0 !important;
-}
-.tagWrapper .v-chip:last-of-type {
-  margin-right: 0 !important;
-}
-</style>
+<style scoped></style>

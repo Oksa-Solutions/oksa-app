@@ -1,7 +1,7 @@
 <template>
   <v-row class="px-6" align="center">
     <v-col sm="1">
-      <SquircleIcon v-bind="{name: team.name, width: '40px', height: '40px'}" />
+      <SquaredIcon v-bind="{name: team.name, width: '40px', height: '40px'}" />
     </v-col>
     <v-col sm="8">
       <v-card-title class="bold">

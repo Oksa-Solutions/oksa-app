@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex overflow-x-auto kanban-wrapper" style="height: 100%">
+  <div class="d-flex overflow-x-auto" style="height: 100%">
     <KanbanColumn
       v-bind="{
         title: 'Backlog',
@@ -66,13 +66,3 @@ export default class KanbanView extends mixins(kanbanViewProps) {
   APPROVED: string = APPROVED;
 }
 </script>
-
-<style scoped>
-/* Aligns the columns with the top bar. */
-.kanban-wrapper div:first-of-type {
-  margin-left: 24px !important;
-}
-.kanban-wrapper div:last-of-type {
-  margin-right: 24px !important;
-}
-</style>

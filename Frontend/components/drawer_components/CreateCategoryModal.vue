@@ -9,19 +9,18 @@
       />
 
       <v-card-subtitle />
-      <v-card-title class="py-0 px-6 text-h5 card-title" style="font-weight: 700;">
+      <v-card-subtitle class="pt-0 px-6 text-h5 card-title">
         {{ newCategory ? 'Create a' : 'Edit the' }} category
-      </v-card-title>
+      </v-card-subtitle>
 
       <v-form ref="form" v-model="formValid">
-        <v-card-text class="pt-1 px-6">
+        <v-card-text>
           <v-text-field
             v-model="category"
-            regular
-            single-line
+            solo
             flat
             dense
-            placeholder="Category name..."
+            placeholder="Your category..."
             background-color="transparent"
             :rules="[rules.categoryName, rules.uniqueCategoryName]"
           />

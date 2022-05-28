@@ -2,6 +2,7 @@ import {ApiProperty} from '@nestjs/swagger';
 import {IsUUID} from 'class-validator';
 import {CategoryInterface} from 'src/cards/interfaces/card.interfaces';
 import {Meeting} from 'src/model/meeting.entity';
+import {Team} from 'src/model/team.entity';
 
 export class updateMeetingDto {
   @ApiProperty({required: true})
@@ -10,6 +11,9 @@ export class updateMeetingDto {
   @ApiProperty({required: true})
   @IsUUID()
   lastModifiedBy: string;
+
+  @ApiProperty({required: false})
+  team?: Team;
 
   private static from(meeting: Meeting): Partial<Meeting> {
     const updatedMeeting = Object.assign(new Meeting(), {
