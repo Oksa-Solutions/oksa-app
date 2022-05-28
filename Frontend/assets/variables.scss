@@ -1,0 +1,138 @@
+// Ref: https://github.com/nuxt-community/vuetify-module#customvariables
+//
+// The variables you want to modify
+// $font-size-root: 20px;
+$body-font-family: 'Open Sans', 'Roboto', sans-serif;
+$heading-font-family: 'Telegraf', 'Roboto', sans-serif;
+$headings: (
+  'h1': (
+    'weight': 700,
+    'size': 5rem,
+  ),
+  'h2': (
+    'weight': 700,
+    'size': 3.75rem,
+  ),
+  'h3': (
+    'weight': 700,
+    'size': 2rem,
+  ),
+  'h4': (
+    'weight': 700,
+    'size': 1.5rem,
+  ),
+  'h5': (
+    'weight': 700,
+    'size': 1.25rem,
+  ),
+);
+
+$btn-font-weight: 600;
+
+.v-card__text,
+.v-card__title {
+  word-break: normal; /* maybe !important  */
+}
+$body-font-family: 'Open Sans';
+$heading-font-family: 'Telegraf';
+
+.semibold {
+  font-weight: 600 !important;
+  padding-top: 5px;
+  padding-bottom:  5px;
+}
+.content-aware-text {
+  display: block;
+  background: inherit;
+  color: rgba(255, 255, 255, 0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  filter: invert(1) saturate(0) contrast(50);
+  -webkit-filter: invert(1) saturate(0) contrast(50);
+}
+
+// ::scrollbar {
+//   width: 8px;
+//   height: 8px;
+// }
+// ::-webkit-scrollbar {
+//   width: 8px;
+//   height: 8px;
+// }
+// ::-webkit-scrollbar-thumb {
+//   background: var(--v-lavender-base);
+//   opacity: 0.3;
+// }
+// ::-webkit-scrollbar-button {
+//   display: block;
+//   width: 4px;
+//   height: 4px;
+// }
+// ::-webkit-scrollbar-track {
+//   background: transparent;
+// }
+.main {
+  background-color: var(--v-background-base);
+}
+.fabDrawer {
+  bottom: 32px !important;
+  right: -28px !important;
+}
+.sticky-title-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #fff;
+}
+.pointer-cursor {
+  cursor: pointer;
+}
+.card {
+  border-color: var(--v-cardBorder-base);
+}
+.bold {
+  font-weight: 700 !important;
+}
+.round-8 {
+  border-radius: 9px !important;
+}
+.round-top-8 {
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+.category-container {
+  background-color: var(--v-secondary-base);
+  border-bottom: solid 1px var(--v-cardBorder-base);
+}
+.author {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.card-title {
+  line-height: 1em;
+}
+.subheader {
+  font-family: 'Telegraf';
+  font-size: 1rem;
+  font-weight: normal;
+}
+.slogan {
+  font-family: 'Telegraf', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 3rem;
+  margin-bottom: 40px;
+}
+.pitch {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2em !important;
+  line-height: 1.2em;
+}
+.signInBtn {
+  width: 92px;
+  height: 38px;
+  position: fixed;
+  top: 24px;
+  right: 16px;
+  font-size: 16px;
+}

@@ -1,0 +1,20 @@
+{
+  "type": "postgres",
+  "host": "psql.docker",
+  "port": 5432,
+  "username": "postgres",
+  "password": "secretpassword",
+  "database": "oksa_local",
+  "entities": [
+    "{src,dist}/**/*.entity.js"
+  ],
+  "migrationsTableName": "migration",
+  "migrations": [
+    "dist/src/migrations/*.js"
+  ],
+  "cli": {
+    "migrationsDir": "src/migrations"
+  },
+  "logging": false,
+  "ssl": false
+}

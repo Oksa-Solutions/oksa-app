@@ -1,0 +1,29 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - cd Backend
+      - npm install
+  pre_build:
+    commands:
+      - echo Run tests
+      # - npm run test
+  build:
+    commands:
+      - echo Build started on `date`
+      - npm run build
+      - cp package.json dist/package.json
+      - chmod +x ./scripts/create_env_file.sh
+      - ./scripts/create_env_file.sh
+      - echo 'unsafe-perm=true' > dist/.npmrc
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Run migrations
+      - npm run typeorm:migration:generate -- oksaMigration
+      - npm run typeorm:migration:run
+artifacts:
+  files:
+    - ./**/*
+  base-directory: Backend/dist

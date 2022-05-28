@@ -1,0 +1,40 @@
+<template>
+  <v-container>
+    <v-text-field
+      outlined
+      single-line
+      hide-details
+      readonly
+      ref="textToCopy"
+      v-model="url"
+      class="elevation-0 link"
+      color="primary"
+    ></v-text-field>
+    <CancelButton @cancel="copyText" v-bind="{label: 'Copy link'}" />
+  </v-container>
+</template>
+<script lang="ts">
+import {mixins} from 'vue-class-component';
+import {Component, Prop, Vue} from 'vue-property-decorator';
+
+const MeetingLinkProps = Vue.extend({});
+
+@Component
+export default class MeetingLink extends mixins(MeetingLinkProps) {
+  $notifier: any;
+  $refs: any;
+  url: string = `${process.env.baseDomain}/m/${this.$store.state.modules.meeting.id}?pw=${this.$store.state.modules.meeting.password}`;
+
+  copyText() {
+    let textToCopy = this.$refs.textToCopy.$el.querySelector('input');
+    textToCopy.select();
+    document.execCommand('copy');
+    this.$notifier.showMessage({
+      content: 'Link copied',
+      color: 'success',
+    });
+  }
+}
+</script>
+
+<style scoped></style>

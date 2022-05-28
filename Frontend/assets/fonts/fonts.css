@@ -1,0 +1,66 @@
+@font-face {
+  font-family: 'Telegraf';
+  font-weight: 100;
+  font-style: normal;
+  src: url(./Telegraf-UltraLight.ttf) format('truetype'),
+    url(./Telegraf-UltraLight.woff) format('woff'),
+    url(./Telegraf-UltraLight.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Telegraf';
+  font-weight: 300;
+  font-style: normal;
+  src: url(./Telegraf-Light.ttf) format('truetype'),
+    url(./Telegraf-Light.woff) format('woff'),
+    url(./Telegraf-Light.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Telegraf';
+  font-weight: 400;
+  font-style: normal;
+  src: url(./Telegraf-Regular.ttf) format('truetype'),
+    url(./Telegraf-Regular.woff) format('woff'),
+    url(./Telegraf-Regular.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Telegraf';
+  font-weight: 500;
+  font-style: normal;
+  src: url(./Telegraf-Medium.ttf) format('truetype'),
+    url(./Telegraf-Medium.woff) format('woff'),
+    url(./Telegraf-Medium.woff2) format('woff2');
+}
+@font-face {
+  /* Not supported by Vuetify? */
+  font-family: 'Telegraf';
+  font-weight: 600;
+  font-style: normal;
+  src: url(./Telegraf-SemiBold.ttf) format('truetype'),
+    url(./Telegraf-SemiBold.woff) format('woff'),
+    url(./Telegraf-SemiBold.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Telegraf';
+  font-weight: 700;
+  font-style: normal;
+  src: url(./Telegraf-Bold.ttf) format('truetype'),
+    url(./Telegraf-Bold.woff) format('woff'),
+    url(./Telegraf-Bold.woff2) format('woff2');
+}
+@font-face {
+  /* Not supported by Vuetify? */
+  font-family: 'Telegraf';
+  font-weight: 800;
+  font-style: normal;
+  src: url(./Telegraf-UltraBold.ttf) format('truetype'),
+    url(./Telegraf-UltraBold.woff) format('woff'),
+    url(./Telegraf-UltraBold.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Telegraf';
+  font-weight: 900;
+  font-style: normal;
+  src: url(./Telegraf-Black.ttf) format('truetype'),
+    url(./Telegraf-Black.woff) format('woff'),
+    url(./Telegraf-Black.woff2) format('woff2');
+}
