@@ -1,4 +1,14 @@
 <template>
+<!-- WIP: Fix v-if
+  <v-menu
+    v-if="disabledChip !== true"
+    ref="showDatePicker"
+    v-model="showDatePicker"
+    :close-on-content-click="false"
+    transition="scale-transition"
+    offset-y
+  >
+-->
   <v-menu
     ref="showDatePicker"
     v-model="showDatePicker"
