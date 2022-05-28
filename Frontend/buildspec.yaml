@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - cd Frontend
+      - npm install
+  pre_build:
+    commands:
+      - echo Pre-build is empty
+  build:
+    commands:
+      - echo Build started on `date`
+      - npm run build
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - ./**/*
+  base-directory: Frontend/dist

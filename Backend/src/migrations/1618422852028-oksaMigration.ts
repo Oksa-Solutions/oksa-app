@@ -1,0 +1,100 @@
+import {MigrationInterface, QueryRunner} from "typeorm";
+
+export class oksaMigration1618422852028 implements MigrationInterface {
+    name = 'oksaMigration1618422852028'
+
+    public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`CREATE TABLE "organisations_admins_profiles" ("organisationsUuid" uuid NOT NULL, "profilesUuid" uuid NOT NULL, CONSTRAINT "PK_8f37dbb178cd5cc4c3eeb802f31" PRIMARY KEY ("organisationsUuid", "profilesUuid"))`);
+        await queryRunner.query(`CREATE INDEX "IDX_f24366216dd88e7a05df85cf34" ON "organisations_admins_profiles" ("organisationsUuid") `);
+        await queryRunner.query(`CREATE INDEX "IDX_986334cc957a25de07392a219e" ON "organisations_admins_profiles" ("profilesUuid") `);
+        await queryRunner.query(`COMMENT ON COLUMN "organisations"."created" IS NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "organisations"."lastModified" IS NULL`);
+        await queryRunner.query(`ALTER TABLE "organisations_users_profiles" DROP CONSTRAINT "FK_2a0c030e77a63054608cef60ef4"`);
+        await queryRunner.query(`COMMENT ON COLUMN "profiles"."uuid" IS NULL`);
+        await queryRunner.query(`ALTER TABLE "profiles" ALTER COLUMN "created" SET NOT NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "profiles"."created" IS NULL`);
+        await queryRunner.query(`ALTER TABLE "profiles" ALTER COLUMN "created" SET DEFAULT CURRENT_TIMESTAMP`);
+        await queryRunner.query(`ALTER TABLE "profiles" ALTER COLUMN "createdBy" SET NOT NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "profiles"."createdBy" IS NULL`);
+        await queryRunner.query(`ALTER TABLE "profiles" ALTER COLUMN "lastModified" SET NOT NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "profiles"."lastModified" IS NULL`);
+        await queryRunner.query(`ALTER TABLE "profiles" ALTER COLUMN "lastModified" SET DEFAULT CURRENT_TIMESTAMP`);
+        await queryRunner.query(`ALTER TABLE "profiles" ALTER COLUMN "lastModifiedBy" SET NOT NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "profiles"."lastModifiedBy" IS NULL`);
+        await queryRunner.query(`ALTER TABLE "profiles" ALTER COLUMN "name" SET NOT NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "profiles"."name" IS NULL`);
+        await queryRunner.query(`ALTER TABLE "profiles" DROP COLUMN "phoneNumber"`);
+        await queryRunner.query(`ALTER TABLE "profiles" ADD "phoneNumber" character varying(36)`);
+        await queryRunner.query(`ALTER TABLE "meetings_authorized_users_users" DROP CONSTRAINT "FK_486f56b0164bb7db47bca1015f8"`);
+        await queryRunner.query(`ALTER TABLE "cards" DROP CONSTRAINT "FK_806da3a699248dec86bd083167c"`);
+        await queryRunner.query(`COMMENT ON COLUMN "meetings"."uuid" IS NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "meetings"."created" IS NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "meetings"."lastModified" IS NULL`);
+        await queryRunner.query(`ALTER TABLE "profiles" DROP CONSTRAINT "FK_ad26f60abdd1f712200831d35f2"`);
+        await queryRunner.query(`ALTER TABLE "meetings_authorized_users_users" DROP CONSTRAINT "FK_27a9a054491732acc0cc3ed38a4"`);
+        await queryRunner.query(`ALTER TABLE "cards" DROP CONSTRAINT "FK_cbb0c0798d4606401fe5ccb0746"`);
+        await queryRunner.query(`COMMENT ON COLUMN "users"."uuid" IS NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "users"."created" IS NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "users"."lastModified" IS NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "cards"."uuid" IS NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "cards"."created" IS NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "cards"."lastModified" IS NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "logins"."createdAt" IS NULL`);
+        await queryRunner.query(`ALTER TABLE "profiles" ADD CONSTRAINT "FK_ad26f60abdd1f712200831d35f2" FOREIGN KEY ("userUuid") REFERENCES "users"("uuid") ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "cards" ADD CONSTRAINT "FK_cbb0c0798d4606401fe5ccb0746" FOREIGN KEY ("authorUuid") REFERENCES "users"("uuid") ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "cards" ADD CONSTRAINT "FK_806da3a699248dec86bd083167c" FOREIGN KEY ("meetingUuid") REFERENCES "meetings"("uuid") ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "organisations_users_profiles" ADD CONSTRAINT "FK_2a0c030e77a63054608cef60ef4" FOREIGN KEY ("profilesUuid") REFERENCES "profiles"("uuid") ON DELETE CASCADE ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "organisations_admins_profiles" ADD CONSTRAINT "FK_f24366216dd88e7a05df85cf346" FOREIGN KEY ("organisationsUuid") REFERENCES "organisations"("uuid") ON DELETE CASCADE ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "organisations_admins_profiles" ADD CONSTRAINT "FK_986334cc957a25de07392a219ea" FOREIGN KEY ("profilesUuid") REFERENCES "profiles"("uuid") ON DELETE CASCADE ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "meetings_authorized_users_users" ADD CONSTRAINT "FK_486f56b0164bb7db47bca1015f8" FOREIGN KEY ("meetingsUuid") REFERENCES "meetings"("uuid") ON DELETE CASCADE ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "meetings_authorized_users_users" ADD CONSTRAINT "FK_27a9a054491732acc0cc3ed38a4" FOREIGN KEY ("usersUuid") REFERENCES "users"("uuid") ON DELETE CASCADE ON UPDATE NO ACTION`);
+    }
+
+    public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`ALTER TABLE "meetings_authorized_users_users" DROP CONSTRAINT "FK_27a9a054491732acc0cc3ed38a4"`);
+        await queryRunner.query(`ALTER TABLE "meetings_authorized_users_users" DROP CONSTRAINT "FK_486f56b0164bb7db47bca1015f8"`);
+        await queryRunner.query(`ALTER TABLE "organisations_admins_profiles" DROP CONSTRAINT "FK_986334cc957a25de07392a219ea"`);
+        await queryRunner.query(`ALTER TABLE "organisations_admins_profiles" DROP CONSTRAINT "FK_f24366216dd88e7a05df85cf346"`);
+        await queryRunner.query(`ALTER TABLE "organisations_users_profiles" DROP CONSTRAINT "FK_2a0c030e77a63054608cef60ef4"`);
+        await queryRunner.query(`ALTER TABLE "cards" DROP CONSTRAINT "FK_806da3a699248dec86bd083167c"`);
+        await queryRunner.query(`ALTER TABLE "cards" DROP CONSTRAINT "FK_cbb0c0798d4606401fe5ccb0746"`);
+        await queryRunner.query(`ALTER TABLE "profiles" DROP CONSTRAINT "FK_ad26f60abdd1f712200831d35f2"`);
+        await queryRunner.query(`COMMENT ON COLUMN "logins"."createdAt" IS NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "cards"."lastModified" IS NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "cards"."created" IS NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "cards"."uuid" IS NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "users"."lastModified" IS NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "users"."created" IS NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "users"."uuid" IS NULL`);
+        await queryRunner.query(`ALTER TABLE "cards" ADD CONSTRAINT "FK_cbb0c0798d4606401fe5ccb0746" FOREIGN KEY ("authorUuid") REFERENCES "users"("uuid") ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "meetings_authorized_users_users" ADD CONSTRAINT "FK_27a9a054491732acc0cc3ed38a4" FOREIGN KEY ("usersUuid") REFERENCES "users"("uuid") ON DELETE CASCADE ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "profiles" ADD CONSTRAINT "FK_ad26f60abdd1f712200831d35f2" FOREIGN KEY ("userUuid") REFERENCES "users"("uuid") ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`COMMENT ON COLUMN "meetings"."lastModified" IS NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "meetings"."created" IS NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "meetings"."uuid" IS NULL`);
+        await queryRunner.query(`ALTER TABLE "cards" ADD CONSTRAINT "FK_806da3a699248dec86bd083167c" FOREIGN KEY ("meetingUuid") REFERENCES "meetings"("uuid") ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "meetings_authorized_users_users" ADD CONSTRAINT "FK_486f56b0164bb7db47bca1015f8" FOREIGN KEY ("meetingsUuid") REFERENCES "meetings"("uuid") ON DELETE CASCADE ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE "profiles" DROP COLUMN "phoneNumber"`);
+        await queryRunner.query(`ALTER TABLE "profiles" ADD "phoneNumber" character varying(20)`);
+        await queryRunner.query(`COMMENT ON COLUMN "profiles"."name" IS NULL`);
+        await queryRunner.query(`ALTER TABLE "profiles" ALTER COLUMN "name" DROP NOT NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "profiles"."lastModifiedBy" IS NULL`);
+        await queryRunner.query(`ALTER TABLE "profiles" ALTER COLUMN "lastModifiedBy" DROP NOT NULL`);
+        await queryRunner.query(`ALTER TABLE "profiles" ALTER COLUMN "lastModified" DROP DEFAULT`);
+        await queryRunner.query(`COMMENT ON COLUMN "profiles"."lastModified" IS NULL`);
+        await queryRunner.query(`ALTER TABLE "profiles" ALTER COLUMN "lastModified" DROP NOT NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "profiles"."createdBy" IS NULL`);
+        await queryRunner.query(`ALTER TABLE "profiles" ALTER COLUMN "createdBy" DROP NOT NULL`);
+        await queryRunner.query(`ALTER TABLE "profiles" ALTER COLUMN "created" DROP DEFAULT`);
+        await queryRunner.query(`COMMENT ON COLUMN "profiles"."created" IS NULL`);
+        await queryRunner.query(`ALTER TABLE "profiles" ALTER COLUMN "created" DROP NOT NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "profiles"."uuid" IS NULL`);
+        await queryRunner.query(`ALTER TABLE "organisations_users_profiles" ADD CONSTRAINT "FK_2a0c030e77a63054608cef60ef4" FOREIGN KEY ("profilesUuid") REFERENCES "profiles"("uuid") ON DELETE CASCADE ON UPDATE NO ACTION`);
+        await queryRunner.query(`COMMENT ON COLUMN "organisations"."lastModified" IS NULL`);
+        await queryRunner.query(`COMMENT ON COLUMN "organisations"."created" IS NULL`);
+        await queryRunner.query(`DROP INDEX "IDX_986334cc957a25de07392a219e"`);
+        await queryRunner.query(`DROP INDEX "IDX_f24366216dd88e7a05df85cf34"`);
+        await queryRunner.query(`DROP TABLE "organisations_admins_profiles"`);
+    }
+
+}
