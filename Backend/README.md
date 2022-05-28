@@ -21,8 +21,6 @@ In development environment the sign in form does not send email nor SMS but the 
 
 ## Run only for the first time
 
-Run either of below sections for the first time to initialize database, but __NOT__ both of them.
-
 ### Fresh database without any data
 
 Then in the other terminal window after `docker-compose` has finished, login to running container and run migrations with following commands:
@@ -33,10 +31,26 @@ npm run build
 npm run typeorm:migration:run
 exit
 ```
+Now login to application via signin page to create a new user and profile.
+Then create `SuperAdmin` organisation and add your profile into that organisation.
 
-### Use seed data in database
+Login to database
+```bash
+docker exec -ti oksa-database sh
+psql -U postgres
+\c oksa_local
+```
 
-Copy database dump into container to seed the database after migrations have run.
+Create `SuperAdmin` organisation and add your profile into it as admin
+```sql
+INSERT INTO organisations (name, "createdBy", "lastModifiedBy") VALUES ('SuperAdmin', (SELECT uuid FROM profiles WHERE email='<your email>'), (SELECT uuid FROM profiles WHERE email='<your email>'));
+INSERT INTO organisations_admins_profiles ("organisationsUuid", "profilesUuid") VALUES ((SELECT uuid FROM organisations WHERE name='SuperAdmin'), (SELECT uuid FROM profiles WHERE email='<your email>'));
+INSERT INTO organisations_users_profiles ("organisationsUuid", "profilesUuid") VALUES ((SELECT uuid FROM organisations WHERE name='SuperAdmin'), (SELECT uuid FROM profiles WHERE email='<your email>'));
+```
+
+### ~~Use seed data in database~~
+
+~~Copy database dump into container to seed the database after migrations have run.~~
 ```
 docker cp ./db-seed/oksa_local_010621.sql oksa-database:/home
 docker exec -ti oksa-database sh

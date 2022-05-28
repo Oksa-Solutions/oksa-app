@@ -11,24 +11,56 @@
       <NotificationIcon />
       <v-menu>
         <template v-slot:activator="{on, attrs}">
-          <div v-bind="attrs" v-on="on" class="px-1 pointer-cursor">
-            <InitialsCircle :name="name" width="40px" height="40px" />
+          <div v-bind="attrs" v-on="on" class="px-1">
+            <InitialsCircle :name="name" width="40px" height="40px" cursor="pointer"/>
           </div>
         </template>
-        <v-list dense flat>
-          <v-list-item
-            v-for="(item, i) in listItems"
-            :key="i"
-            link
-            @click="item.action"
-          >
-            <v-list-item-icon class="semibold">
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title v-text="item.title" class="semibold" />
-            <v-spacer v-if="i % 2 === 0"></v-spacer>
-          </v-list-item>
-        </v-list>
+        <v-card>
+          <v-list dense flat>
+            <v-list-item
+              v-for="(item, i) in listItemsOne"
+              :key="i"
+              link
+              @click="item.action"
+            >
+              <v-list-item-icon class="semibold">
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title v-text="item.title" class="semibold" />
+              <v-spacer v-if="i % 2 === 0"></v-spacer>
+            </v-list-item>
+          </v-list>
+          <v-divider></v-divider>
+          <v-list dense flat>
+            <v-list-item
+              v-for="(item, i) in listItemsTwo"
+              :key="i"
+              link
+              @click="item.action"
+            >
+              <v-list-item-icon class="semibold">
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title v-text="item.title" class="semibold" />
+              <v-spacer v-if="i % 2 === 0"></v-spacer>
+            </v-list-item>
+          </v-list>
+          <v-divider></v-divider>
+          <v-list dense flat>
+            <v-list-item
+              v-for="(item, i) in listItemsThree"
+              :key="i"
+              link
+              @click="item.action"
+            >
+              <v-list-item-icon class="semibold">
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title v-text="item.title" class="semibold" />
+              <v-spacer v-if="i % 2 === 0"></v-spacer>
+            </v-list-item>
+          </v-list>
+        </v-card>
       </v-menu>
     </v-row>
   </span>
@@ -50,9 +82,14 @@ const signInProps = Vue.extend({
 @Component
 export default class SignInComponent extends mixins(signInProps) {
   $router: any;
-  listItems = [
-    {icon: 'mdi-check-circle', title: 'Profile', action: this.openProfile},
-    {icon: 'mdi-clock', title: 'My topics', action: this.openTopics},
+  listItemsOne = [
+    {icon: 'mdi-view-dashboard', title: 'Dashboard', action: this.openDashboard},
+  ];
+  listItemsTwo = [
+    {icon: 'mdi-checkbox-marked-circle-outline', title: 'My tasks', action: this.openTasks},
+    {icon: '$vuetify.icons.oksa-nofill', title: 'My topics', action: this.openTopics},
+  ];
+  listItemsThree = [
     // {icon: 'mdi-cog', title: 'Account settings', action: this.openSettings},
     {icon: 'mdi-logout', title: 'Sign out', action: this.signOut},
   ];
@@ -64,8 +101,12 @@ export default class SignInComponent extends mixins(signInProps) {
     this.$router.push('/signin');
   }
 
-  openProfile() {
+  openDashboard() {
     this.$router.push('/dashboard');
+  }
+
+  openTasks() {
+    this.$router.push('/dashboard/tasks');
   }
 
   openTopics() {
@@ -103,7 +144,7 @@ export default class SignInComponent extends mixins(signInProps) {
   width: 100px;
   height: 40px;
   position: fixed;
-  top: 24px;
+  top: 32px;
   right: 16px;
   font-size: 16px;
   z-index: 10;

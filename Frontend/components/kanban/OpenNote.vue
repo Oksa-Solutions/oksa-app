@@ -2,7 +2,7 @@
   <v-dialog value="true" max-width="600px" persistent>
     <v-card outlined elevation="0" class="round-8 card">
       <div @click="openEditModal">
-        <div class="category-container px-6 py-3 round-top-8" id="fab-new-card">
+        <div class="category-container px-6 py-3 round-top-8">
           <span class="content-aware-text">
             {{
               card.categories
@@ -40,7 +40,7 @@
 
         <v-row class="d-flex align-center">
           <v-card-subtitle style="width: 120px"> Date </v-card-subtitle>
-          <CardCalendar v-bind="{card, regularCard: false}" />
+          <CardCalendar v-bind="{card, regularCard: false, disabledChip: false}" />
         </v-row>
 
         <v-row>

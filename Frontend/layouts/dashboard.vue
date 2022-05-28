@@ -1,14 +1,34 @@
 <template>
   <v-app Dark>
     <CreateTeamModal v-if="showTeamModal" @closed="closeTeamModal" />
-    <v-card class="mx-auto">
+      
+      <!----- DRAWER TOGGLE FOR MOBILE ----->
+      <v-btn
+          v-if="mcols >= 12"
+          fab
+          fixed
+          bottom
+          left
+          elevation="1"
+          color="primary"
+          @click="toggleMenu"
+          class="fabDrawer"
+        >
+          <v-icon large
+            >mdi-menu</v-icon
+          >
+        </v-btn>
+
+      <!----- NAV DRAWER ----->
+      
       <v-navigation-drawer
         v-model="drawer"
         :mini-variant="miniVariant"
+        :temporary="!miniVariant && mcols >= 6"
+        :stateless="mcols < 12"
         mini-variant-width="72"
+        fixed
         app
-        stateless
-        :temporary="!miniVariant"
         class="elevation-3"
         style="overflow: visible"
       >
@@ -27,8 +47,7 @@
           >
         </v-btn>
 
-        <v-row class="fill-height" no-gutters>
-          <v-list nav dense class="grow pa-0">
+        <v-list>
             <v-list-item class="d-flex justify-center align-center py-2">
               <div class="d-flex flex-column justify-center align-center">
                 <div
@@ -76,66 +95,77 @@
                 </div>
               </div>
             </v-list-item>
+        </v-list>
+
             <v-divider />
 
-            <v-list-group
-              no-action
-              v-for="item in generalSettings"
-              :key="item.title"
-              @click="moveToRoute(item.link)"
-              append-icon
-            >
-              <template v-slot:activator>
-                <v-list-item>
-                  <v-icon>{{ item.icon }}</v-icon>
-                  <v-list-item-subtitle class="pl-7 py-1 semibold">{{
-                    item.title
-                  }}</v-list-item-subtitle>
-                </v-list-item>
-              </template>
-            </v-list-group>
+              <v-list nav dense>
 
-            <!-- <div v-if="profile.role === 'Premium'"> -->
-            <div v-if="currentOrg.name !== noOrg">
-              <v-list-group
-                no-action
-                v-for="item in premiumSettings"
-                :key="item.title"
-                @click="moveToRoute(item.link)"
-                append-icon
-              >
-                <template v-slot:activator>
-                  <v-list-item>
+                <!----- GENERAL FEATURES ----->
+
+                <v-list-item
+                  dense
+                  link
+                  v-for="item in generalSettings"
+                  :key="item.title"
+                  :to="item.link"
+                >
+                  <v-list-item-action>
                     <v-icon>{{ item.icon }}</v-icon>
-                    <v-list-item-subtitle
-                      v-if="!miniVariant"
-                      class="pl-7 py-1 semibold"
-                      >{{ item.title }}</v-list-item-subtitle
-                    >
+                  </v-list-item-action>
+                  <v-list-item-content>
+                    <v-list-item-title class="semibold">
+                      {{ item.title }}
+                    </v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+
+                <!----- PAID FEATURES ----->
+
+                <template v-if="currentOrg.name !== noOrg">
+                  <v-list-item
+                    dense
+                    link
+                    v-for="item in premiumSettings"
+                    :key="item.title"
+                    :to="item.link"
+                  >
+                    <v-list-item-action>
+                      <v-icon>{{ item.icon }}</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                      <v-list-item-title class="semibold">
+                        {{ item.title }}
+                      </v-list-item-title>
+                    </v-list-item-content>
                   </v-list-item>
                 </template>
-              </v-list-group>
-            </div>
+              </v-list>
 
             <v-divider />
 
-            <div
+            <!----- TEAMS ----->
+
+            <template
               v-if="!miniVariant && currentOrg.name !== noOrg"
-              class="d-flex justify-space-between align-center mr-2"
             >
-              <v-card-subtitle> TEAMS </v-card-subtitle>
-              <v-list-item-icon>
-                <v-icon
-                  v-if="
-                    currentOrg.admins.map((a) => a.uuid).includes(profile.uuid)
-                  "
-                  color="primary"
-                  @click="createTeam"
-                >
-                  mdi-plus
-                </v-icon>
-              </v-list-item-icon>
-            </div>
+
+            <v-subheader v-if="!miniVariant" class="semibold text-uppercase">
+                TEAMS
+                <v-spacer></v-spacer>
+                <v-btn icon>
+                  <v-icon
+                    v-if="
+                      currentOrg.admins.map((a) => a.uuid).includes(profile.uuid)
+                    "
+                    color="primary"
+                    @click="createTeam"
+                  >
+                    mdi-plus
+                  </v-icon>
+                </v-btn>
+              </v-subheader>
+            </template>
 
               <!-- v-for="team in [...currentOrg.teams].filter(t => t.users.map(u => u.uuid).includes(profile.uuid)).sort(sortByLastModified).slice(0, 3)" -->
             <v-list-group
@@ -146,7 +176,7 @@
             >
               <template v-slot:activator>
                 <v-list-item class="py-1">
-                  <SquaredIcon
+                  <SquircleIcon
                     v-bind="{name: team.name, width: '40px', height: '40px'}"
                   />
                   <v-list-item-subtitle
@@ -170,38 +200,47 @@
               </v-list-item>
             </v-list-group>
 
-            <v-list-item @click="moveToRoute('/dashboard/teams')">
-              <v-icon>mdi-page-next-outline</v-icon>
-              <v-list-item-subtitle
-                v-if="!miniVariant"
-                class="pl-7 py-1 semibold"
+            <v-list nav dense>
+              <v-list-item
+                dense
+                link
+                :to="'/dashboard/teams'"
               >
-                {{ getSeeAllText() }}
-              </v-list-item-subtitle>
-            </v-list-item>
+                <v-list-item-action>
+                  <v-icon>mdi-page-next-outline</v-icon>
+                </v-list-item-action>
+                <v-list-item-content>
+                  <v-list-item-title class="semibold">
+                    {{ getSeeAllText() }}
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
 
             <v-divider />
 
-            <v-list-group
-              v-for="item in accountSettings"
-              :key="item.title"
-              @click="moveToRoute(item.link)"
-              no-action
-              append-icon
-            >
-              <template v-slot:activator>
-                <v-list-item>
+            <!----- SETTINGS AND SIGN OUT ----->
+
+            <v-list nav dense>
+              <v-list-item
+                dense
+                link
+                v-for="item in accountSettings"
+                :key="item.title"
+                @click="moveToRoute(item.link)"
+              >
+                <v-list-item-action>
                   <v-icon>{{ item.icon }}</v-icon>
-                  <v-list-item-subtitle class="pl-7 py-1 semibold">{{
-                    item.title
-                  }}</v-list-item-subtitle>
-                </v-list-item>
-              </template>
-            </v-list-group>
-          </v-list>
-        </v-row>
+                </v-list-item-action>
+                <v-list-item-content>
+                  <v-list-item-title class="semibold">
+                    {{ item.title }}
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+
       </v-navigation-drawer>
-    </v-card>
     <v-main class="main">
       <nuxt />
     </v-main>
@@ -240,6 +279,10 @@ export default class Dashboard extends mixins(dashboardProps) {
   $router: any;
   $store: any;
   miniVariant: boolean = false;
+  window = {
+    width: 0,
+  };
+  mcols: number = 4;
   drawer: boolean = true;
   showTeamModal: boolean = false;
 
@@ -375,8 +418,54 @@ export default class Dashboard extends mixins(dashboardProps) {
       ${ teamsLength > 1 ? 'teams' : 'team' }`
   }
 
+  mounted() {
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+    this.drawer = this.mcols < 6;
+    this.miniVariant = this.mcols < 12;
+  }
+
   toggleMenu() {
-    this.miniVariant = !this.miniVariant;
+    if (this.mcols < 6) {
+      // Large screens show mini drawer or full width drawer
+      this.miniVariant = !this.miniVariant;
+      this.drawer = true;
+    } else if (this.mcols < 12) {
+      // Medium screens show mini drawer or temporary drawer
+      this.miniVariant = !this.miniVariant;
+      this.drawer = true;
+    } else {
+      // Small screens show temporary drawer or no drawer at all
+      this.drawer = !this.drawer;
+      this.miniVariant = false;
+    }
+  }
+
+  handleResize() {
+    // breakpoint = (cardWidth + cardGutter) * amountOfCards + margin
+    // Each card should be at least 300px wide and has 8px gutter on each side.
+    // The margin is 12px wide on each side.
+    // Above 960px, add 256px for the left drawer.
+    this.window.width = window.innerWidth;
+    if (this.window.width < 340) {
+      this.mcols = 12;
+    } else if (this.window.width >= 340 && this.window.width < 656) {
+      this.mcols = 12;
+    } else if (this.window.width >= 656 && this.window.width < 972) {
+      this.mcols = 6;
+    } else if (this.window.width >= 972 && this.window.width < 1544) {
+      this.mcols = 4;
+    } else if (this.window.width >= 1544 && this.window.width < 2176) {
+      this.mcols = 3;
+    } else if (this.window.width >= 2176 && this.window.width < 3816) {
+      this.mcols = 2;
+    } else {
+      this.mcols = 1;
+    }
+  }
+
+  destroyed() {
+    window.removeEventListener('resize', this.handleResize);
   }
 
   signOut() {

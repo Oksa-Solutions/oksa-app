@@ -41,7 +41,7 @@
         <v-row class="flex-column mx-2 mb-4" style="z-index: 1">
           <SubmitButton
             @done="getOTP"
-            v-bind="{label: 'Send me code', disabled: !valid}"
+            v-bind="{label: 'Send me a code', disabled: !valid}"
           />
         </v-row>
         <!-- TODO: Add modal to explain OTP -->

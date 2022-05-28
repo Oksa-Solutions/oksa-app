@@ -1,14 +1,16 @@
 <template>
   <v-dialog value="true" max-width="430px" persistent>
-    <v-card>
-      <v-card-title class="card-title bold">
-        <v-icon class="pl-1 pr-3">mdi-playlist-check</v-icon>
-        Selected topics
+    <v-card class="rounded-lg">
+      <v-card-title class="headline pb-6">
+        <v-icon class="mr-4 realBlack--text">mdi-playlist-check</v-icon>
+        <h4>Selected topics</h4>
       </v-card-title>
 
-      <v-card-subtitle class="card-title py-8">
-        Every approved idea of the selected topics will be added to this topic.
-      </v-card-subtitle>
+      <v-card-text>
+        <p>
+          Every approved idea of the selected topics will be added to this topic.
+        </p> 
+      </v-card-text>
 
       <v-text-field
         hide-details

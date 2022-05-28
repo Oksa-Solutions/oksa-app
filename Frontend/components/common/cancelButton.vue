@@ -1,5 +1,9 @@
 <template>
-  <v-btn text color="primary" @click="cancel" :disabled="disabled">
+  <v-btn
+    :text="text"
+    color="primary"
+    @click="cancel"
+    :disabled="disabled">
     {{ label }}
   </v-btn>
 </template>
@@ -12,6 +16,7 @@ const cancelButtonProps = Vue.extend({
   props: {
     label: {type: String, required: true},
     disabled: {type: Boolean, required: false, default: false},
+    text: {type: Boolean, required: false}
   },
 });
 

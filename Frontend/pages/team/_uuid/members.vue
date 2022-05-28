@@ -4,7 +4,7 @@
       class="d-flex flex-row align-center elevation-3 rounded-lg py-4"
       height="100%"
     >
-      <SquaredIcon
+      <SquircleIcon
         v-bind="{
           name: team.name,
           width: '72px',

@@ -3,31 +3,25 @@
     outlined
     elevation="0"
     class="round-8 card my-4 mx-2 header-background overflow-y-auto"
-    min-width="360px"
+    style="z-index: 1; min-width: 360px;"
     @dragover.prevent
     @drop.prevent="dragDrop"
   >
     <div
       class="
-        category-container
-        elevation-3
-        px-6
-        py-3
-        mb-2
-        round-top-8
-        background
+        pa-3
         sticky-title-bar
       "
       id="fab-new-card"
       @dragend.prevent
     >
-      <span class="d-flex flex-row align-center content-aware-text">
+      <v-card-title class="d-flex flex-row align-center content-aware-text text-h5 pa-0">
         <!-- <v-icon></v-icon> -->
         {{ title }}
-        <p class="ma-0 px-4" style="font-size: 12px; text-align: center">
+        <span class="ma-0 px-4 text-body-1 text-caption text--lighten-2">
           {{ cards.length }}
-        </p>
-      </span>
+        </span>
+      </v-card-title>
     </div>
     <span />
 
@@ -84,8 +78,4 @@ export default class KanbanColumn extends mixins(kanbanColumnProps) {
 </script>
 
 <style scoped>
-.header-background {
-  background: var(--v-background-base);
-  z-index: 1;
-}
 </style>

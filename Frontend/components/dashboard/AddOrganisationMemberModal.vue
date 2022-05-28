@@ -14,7 +14,7 @@
         class="d-flex flex-row align-center elevation-0 rounded-lg py-2 mx-6"
         color="rgba(0,0,0,0.04)"
       >
-        <SquaredIcon
+        <SquircleIcon
           v-bind="{name: currentOrg.name, width: '40px', height: '40px'}"
           class="pl-6 mx-0"
         />

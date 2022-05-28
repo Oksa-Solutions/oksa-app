@@ -43,7 +43,7 @@
             v-for="team in currentOrg.teams.slice(0, 3)"
             :key="team.uuid"
           >
-            <SquaredIcon
+            <SquircleIcon
               v-bind="{
                 name: team.name,
                 width: '24px',
