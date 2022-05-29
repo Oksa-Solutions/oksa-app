@@ -45,15 +45,16 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    {src: '~/plugins/vuex-persist', ssr: false},
-    {src: '~/plugins/notifier', ssr: false},
     {src: '~/plugins/axios', ssr: false},
-    {src: '~/plugins/mask', ssr: false},
+    {src: '~/plugins/entrypoint', ssr: false},
     {src: '~/plugins/FSS', ssr: false},
     {src: '~/plugins/mask', ssr: false},
+    {src: '~/plugins/notifier', ssr: false},
+    {src: '~/plugins/mask', ssr: false},
+    {src: '~/plugins/vueflags', ssr: false},
     {src: '~/plugins/vueMasonry', ssr: false},
     {src: '~/plugins/vueMasonryCss', ssr: false},
-    {src: '~/plugins/entrypoint', ssr: false},
+    {src: '~/plugins/vuex-persist', ssr: false},
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
