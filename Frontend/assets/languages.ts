@@ -1,4 +1,4 @@
-interface LanguagePack{
+interface LanguagePack extends Record<string, string> {
   SIGN_IN: string,
   EMAIL: string,
   SEND_CODE: string,

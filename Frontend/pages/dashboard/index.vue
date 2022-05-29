@@ -39,7 +39,7 @@
             v-if="showRequestModal"
             @closed="closeRequestModal"
           />
-          <v-card-title class="bold"> Request for trial </v-card-title>
+          <v-card-title class="bold"> {{ $setContent('REQUEST_TRIAL') }} </v-card-title>
 
           <v-card-actions>
             <SubmitButton
@@ -82,7 +82,7 @@
       <v-col sm="12">
         <v-card class="elevation-3 rounded-lg">
           <v-row class="px-6" align="center" justify="space-between" dense>
-            <v-card-title class="bold"> Recent topics </v-card-title>
+            <v-card-title class="bold"> {{ $setContent('RECENT_TOPICS') }} </v-card-title>
             <v-card-title>
               <SubmitButton
                 @done="$router.push('/new')"
@@ -114,7 +114,7 @@
               <v-icon class="">mdi-page-next-outline</v-icon>
             </v-col>
             <v-col sm="8" align="center">
-              <v-card-title class="bold">Manage my topics</v-card-title>
+              <v-card-title class="bold">{{ $setContent('MANAGE_TOPICS') }}</v-card-title>
             </v-col>
           </v-row>
         </v-card>
@@ -137,8 +137,8 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {mapState} from 'vuex';
 import {
   ALLOWED_DOMAINS,
@@ -150,13 +150,16 @@ import {
   NO_ORG,
   SUPER_ADMIN,
 } from '~/assets/constants';
-import { OrganisationInterface } from '~/store/modules/organisation';
 import { ProfileInterface } from '~/store/modules/profile';
 import {TeamInterface} from '~/store/modules/team';
 import {CardInterface} from '../../store/modules/cards';
 import {MeetingInterface} from '../../store/modules/meeting';
 
-const profileProps = Vue.extend({
+@Component({
+  head() {
+    return {title: 'Dashboard'};
+  },
+  middleware: ['auth'],
   layout: 'dashboard',
   computed: mapState({
     cards: (state: any) =>
@@ -168,15 +171,8 @@ const profileProps = Vue.extend({
     profile: (state: any) => state.modules.profile,
     currentOrg: (state: any) => state.modules.organisation,
   }),
-});
-
-@Component({
-  head() {
-    return {title: 'Dashboard'};
-  },
-  middleware: ['auth'],
 })
-export default class Profile extends mixins(profileProps) {
+export default class Profile extends Vue {
   $router: any;
   $initialLoad: any;
   loading: boolean = true;
