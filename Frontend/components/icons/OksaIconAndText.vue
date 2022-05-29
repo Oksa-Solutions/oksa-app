@@ -56,14 +56,12 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Component, Prop, Vue} from 'vue-property-decorator';
-
-const OksaIconAndTextProps = Vue.extend({});
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
 // Usage: <OksaIconAndText class="black--text" width="6rem" />
-@Component
-export default class OksaIconAndText extends mixins(OksaIconAndTextProps) {
+@Component({})
+export default class OksaIconAndText extends Vue {
   width: string = '600px';
 }
 </script>

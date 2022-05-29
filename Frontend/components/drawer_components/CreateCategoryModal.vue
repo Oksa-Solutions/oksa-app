@@ -51,26 +51,22 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Component, Vue} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
 import {RULES} from '~/assets/constants';
 import {CardInterface, CategoryInterface} from '../../store/modules/cards';
 
 const BASE_COLOR: string = 'var(--v-yellow-base)';
 
-const createCategoryModalProps = Vue.extend({
+@Component({
   props: {
     newCategory: {type: Boolean, required: false, default: true},
     categoryName: {type: String, required: false},
     categoryColor: {type: String, required: false},
   },
-});
-
-@Component({})
-export default class CreateCategoryModal extends mixins(
-  createCategoryModalProps,
-) {
+})
+export default class CreateCategoryModal extends Vue {
   $notifier: any;
   $route: any;
   $store: any;

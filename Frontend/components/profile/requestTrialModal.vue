@@ -52,14 +52,12 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {RULES} from '~/assets/constants';
 
-const requestTrialModalProps = Vue.extend({});
-
 @Component({})
-export default class RequestTrialModal extends mixins(requestTrialModalProps) {
+export default class RequestTrialModal extends Vue {
   $axios: any;
   $notifier: any;
   name: string = '';

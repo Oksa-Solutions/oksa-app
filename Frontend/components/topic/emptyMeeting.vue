@@ -18,13 +18,11 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
-const emptyMeetingProps = Vue.extend({});
-
-@Component
-export default class EmptyMeeting extends mixins(emptyMeetingProps) {}
+@Component({})
+export default class EmptyMeeting extends Vue {}
 </script>
 
 <style scoped>

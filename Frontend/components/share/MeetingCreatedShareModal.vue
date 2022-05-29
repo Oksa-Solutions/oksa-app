@@ -20,19 +20,15 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Component, Prop, Vue} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
-const MeetingCreatedShareModalProps = Vue.extend({
+@Component({
   props: {
     showModal: {type: Boolean, required: true},
   },
-});
-
-@Component
-export default class MeetingCreatedShareModal extends mixins(
-  MeetingCreatedShareModalProps,
-) {
+})
+export default class MeetingCreatedShareModal extends Vue {
   $router: any;
 
   moveToMeeting() {

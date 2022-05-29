@@ -52,19 +52,17 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Component, Prop, Vue} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {mapState} from 'vuex';
 
-const SettingsModalProps = Vue.extend({
+@Component({
   computed: mapState({
     meetingName: (state: any) => state.modules.meeting.name,
     meetingPassword: (state: any) => state.modules.meeting.password,
   }),
-});
-
-@Component
-export default class SettingsModal extends mixins(SettingsModalProps) {
+})
+export default class SettingsModal extends Vue {
   closeTopic: boolean = false;
 
   toggleDarkMode() {

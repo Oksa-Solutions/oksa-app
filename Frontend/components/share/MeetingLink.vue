@@ -14,13 +14,11 @@
   </v-container>
 </template>
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Component, Prop, Vue} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
-const MeetingLinkProps = Vue.extend({});
-
-@Component
-export default class MeetingLink extends mixins(MeetingLinkProps) {
+@Component({})
+export default class MeetingLink extends Vue {
   $notifier: any;
   $refs: any;
   url: string = `${process.env.baseDomain}/m/${this.$store.state.modules.meeting.id}?pw=${this.$store.state.modules.meeting.password}`;

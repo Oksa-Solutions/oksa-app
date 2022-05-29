@@ -36,14 +36,14 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {mapState} from 'vuex';
 import { ProfileInterface } from '~/store/modules/profile';
 
 import { TeamInterface } from '~/store/modules/team';
 
-const teamItemProps = Vue.extend({
+@Component({
   props: {
     team: {type: Object as () => TeamInterface, required: true},
   },
@@ -52,9 +52,7 @@ const teamItemProps = Vue.extend({
     isOrgAdmin: (state: any) => state.modules.organisation.admins.map((a: ProfileInterface) => a.uuid).includes(state.modules.profile.uuid)
   }),
 })
-
-@Component({})
-export default class TeamItem extends mixins(teamItemProps) {
+export default class TeamItem extends Vue {
   settings = [];
   // settings = [
   //   {icon: '', title: 'Testi', click: () => {console.log('Hello')}},

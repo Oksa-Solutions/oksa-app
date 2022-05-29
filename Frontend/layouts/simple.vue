@@ -12,14 +12,11 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Component, Prop, Vue} from 'vue-property-decorator';
-import {mapState} from 'vuex';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
-const SimpleProps = Vue.extend({});
-
-@Component
-export default class Simple extends mixins(SimpleProps) {}
+@Component({})
+export default class Simple extends Vue {}
 </script>
 
 <style scoped></style>

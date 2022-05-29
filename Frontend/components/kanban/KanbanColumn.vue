@@ -30,21 +30,18 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component} from 'vue-property-decorator';
-import {mixins} from 'vue-class-component';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {CardInterface} from '../../store/modules/cards';
 import {UPDATE_CARD_DATA} from '../../store/mutationTypes';
-import { MeetingInterface } from '~/store/modules/meeting';
 
-const kanbanColumnProps = Vue.extend({
+@Component({
   props: {
     title: {type: String, required: true},
     cards: {type: Array as () => CardInterface[], required: true},
   },
-});
-
-@Component
-export default class KanbanColumn extends mixins(kanbanColumnProps) {
+})
+export default class KanbanColumn extends Vue {
   $store: any;
   $notifier: any;
 

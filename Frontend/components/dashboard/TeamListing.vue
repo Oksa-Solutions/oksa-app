@@ -24,18 +24,16 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
-import { TeamInterface } from '~/store/modules/team';
+import Vue from 'vue';
+import Component from 'vue-class-component';
+import {TeamInterface} from '~/store/modules/team';
 
-const teamListingProps = Vue.extend({
+@Component({
   props: {
     teams: {type: Array as () => TeamInterface[], required: true}
   }
-});
-
-@Component({})
-export default class TeamListing extends mixins(teamListingProps) {
+})
+export default class TeamListing extends Vue {
   $router: any;
   $store: any;
 

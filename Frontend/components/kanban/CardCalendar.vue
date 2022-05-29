@@ -37,21 +37,19 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
-import {DONE, ONE_DAY} from '../../assets/constants';
+import Vue from 'vue';
+import Component from 'vue-class-component';
+import {ONE_DAY} from '../../assets/constants';
 import {CardInterface} from '../../store/modules/cards';
 
-const cardCalendarProps = Vue.extend({
+@Component({
   props: {
     card: {type: Object as () => CardInterface, required: true},
     regularCard: {type: Boolean, required: true},
     disabledChip: {type: Boolean, required: false},
   },
-});
-
-@Component
-export default class CardCalendar extends mixins(cardCalendarProps) {
+})
+export default class CardCalendar extends Vue {
   $notifier: any;
   showDatePicker: boolean = false;
   endDate: string = new Date().toISOString().substr(0, 10);

@@ -5,13 +5,11 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Component, Prop, Vue} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
-const SnackbarProps = Vue.extend({});
-
-@Component
-export default class Snackbar extends mixins(SnackbarProps) {
+@Component({})
+export default class Snackbar extends Vue {
   show: boolean = false;
   message: string = '';
   color: string = '';

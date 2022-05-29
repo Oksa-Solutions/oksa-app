@@ -61,8 +61,8 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {mapState} from 'vuex';
 
 import {updateProfileDto} from '../../dto/profiles';
@@ -73,7 +73,7 @@ import {RULES} from '~/assets/constants';
 
 Vue.component('vue-phone-number-input', VuePhoneNumberInput);
 
-const firstLoginModalProps = Vue.extend({
+@Component({
   props: {
     uuid: {type: String, required: true},
     profileName: {type: String, required: true},
@@ -84,10 +84,8 @@ const firstLoginModalProps = Vue.extend({
     user: (state: any) => state.modules.user,
     profile: (state: any) => state.modules.profile,
   }),
-});
-
-@Component
-export default class FirstLoginModal extends mixins(firstLoginModalProps) {
+})
+export default class FirstLoginModal extends Vue {
   $notifier: any;
   formValid: boolean = false;
   name: string = this.profileName;

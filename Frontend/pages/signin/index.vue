@@ -10,20 +10,16 @@
 </template>
 
 <script lang="ts">
-import {mapState} from 'vuex';
-import {mixins} from 'vue-class-component';
-import {Component, Prop, Vue} from 'vue-property-decorator';
-
-const loginProps = Vue.extend({
-  layout: 'simple',
-});
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
 @Component({
+  layout: 'simple',
   head() {
     return {title: 'Sign in'};
   },
 })
-export default class Login extends mixins(loginProps) {
+export default class Login extends Vue {
   $router: any;
   $initialLoad: any;
   logoClass: string = 'd-flex flex-column justify-left align-left px-13';

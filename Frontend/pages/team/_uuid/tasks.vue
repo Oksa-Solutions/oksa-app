@@ -26,13 +26,18 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {mapState} from 'vuex';
 import {CardInterface} from '~/store/modules/cards';
 import {MeetingInterface} from '~/store/modules/meeting';
 
-const teamTasksProps = Vue.extend({
+@Component({
+  layout: 'dashboard',
+  head() {
+    return {title: 'Tasks'};
+  },
+  middleware: ['auth', 'team'],
   computed: mapState({
     team: (state: any) => state.modules.team,
     meetings: (state: any) => state.modules.team.topics,
@@ -41,16 +46,8 @@ const teamTasksProps = Vue.extend({
         .filter((topic: MeetingInterface) => topic?.team?.uuid === state.modules.team.uuid)
         .map((m: MeetingInterface) => m.cards.map((c: CardInterface) => {return {...c, meeting: {uuid: m.uuid}}}))),
   }),
-  layout: 'dashboard',
-});
-
-@Component({
-  head() {
-    return {title: 'Tasks'};
-  },
-  middleware: ['auth', 'team'],
 })
-export default class TeamTasks extends mixins(teamTasksProps) {
+export default class TeamTasks extends Vue {
   $initialLoad: any;
   $store: any;
   window = {

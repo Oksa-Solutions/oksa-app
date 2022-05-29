@@ -9,7 +9,7 @@
       <v-card-text>
         <p>
           Every approved idea of the selected topics will be added to this topic.
-        </p> 
+        </p>
       </v-card-text>
 
       <v-text-field
@@ -53,21 +53,17 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component} from 'vue-property-decorator';
-import {mixins} from 'vue-class-component';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {MeetingInterface} from '~/store/modules/meeting';
 
-const topicDisplayFilterProps = Vue.extend({
+@Component({
   props: {
     topics: {type: Array as () => MeetingInterface[], required: true},
     selectedTopics: {type: Array as () => string[], required: true},
   },
-});
-
-@Component({})
-export default class TopicDisplayFilterProps extends mixins(
-  topicDisplayFilterProps,
-) {
+})
+export default class TopicDisplayFilterProps extends Vue {
   selected: string[] = [];
   searchText: string = '';
 

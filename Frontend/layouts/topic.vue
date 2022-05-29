@@ -190,21 +190,19 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {mapState} from 'vuex';
-import {Component, Prop, Vue} from 'vue-property-decorator';
 import {EDIT_SEARCH_TEXT} from '../store/mutationTypes';
 
-const DefaultLayoutProps = Vue.extend({
+@Component({
   props: {},
   computed: mapState({
     searchText: (state: any) => state.modules.filters.searchText,
     categories: (state: any) => state.modules.meeting.categories,
   }),
-});
-
-@Component
-export default class DefaultLayout extends mixins(DefaultLayoutProps) {
+})
+export default class DefaultLayout extends Vue {
   editCategories: boolean = false;
   showTrashBin: boolean = false;
   deleteSelected: boolean = false;

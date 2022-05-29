@@ -45,19 +45,17 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {GRADIENT_COLORS} from '../../assets/constants';
 import {MeetingInterface} from '../../store/modules/meeting';
 
-const topicItemProps = Vue.extend({
+@Component({
   props: {
     topic: {type: Object as () => MeetingInterface, required: true},
   },
-});
-
-@Component
-export default class TopicItem extends mixins(topicItemProps) {
+})
+export default class TopicItem extends Vue {
   background = this.getRandomBackground();
   width = '40px';
   height = '40px';

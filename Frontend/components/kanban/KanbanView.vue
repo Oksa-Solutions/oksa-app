@@ -45,23 +45,21 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
 import {APPROVED, DONE, IN_PROGRESS, STUCK} from '~/assets/constants';
 import {CardInterface} from '~/store/modules/cards';
 import {MeetingInterface} from '~/store/modules/meeting';
 
-const kanbanViewProps = Vue.extend({
+@Component({
   props: {
     meetings: {type: Array as () => MeetingInterface[], required: true},
     cards: {type: Array as () => CardInterface[], required: true},
     selectedTopics: {type: Array as () => MeetingInterface[], required: true},
   },
-});
-
-@Component({})
-export default class KanbanView extends mixins(kanbanViewProps) {
+})
+export default class KanbanView extends Vue {
   taskStatusArr: string[] = [STUCK, IN_PROGRESS, DONE];
   APPROVED: string = APPROVED;
 }

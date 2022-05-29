@@ -21,13 +21,12 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Component, Prop, Vue} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {APPROVED, ARCHIVED, WAITING} from '../../assets/constants';
-const StatusListingProps = Vue.extend({});
 
-@Component
-export default class StatusListing extends mixins(StatusListingProps) {
+@Component({})
+export default class StatusListing extends Vue {
   $notifier: any;
   status = [
     {

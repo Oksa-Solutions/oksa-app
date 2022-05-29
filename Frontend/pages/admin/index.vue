@@ -55,9 +55,8 @@
 </template>
 
 <script lang="ts">
-import {NuxtAxiosInstance} from '@nuxtjs/axios';
-import {Vue, Component} from 'vue-property-decorator';
-import {mixins} from 'vue-class-component';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {mapState} from 'vuex';
 import jwt_decode from 'jwt-decode';
 
@@ -77,21 +76,18 @@ export type tabItemType =
   | OrganisationInterface
   | ProfileInterface;
 
-const adminProps = Vue.extend({
-  computed: mapState({
-    auth: (state: any) => state.modules.auth,
-    profile: (state: any) => state.modules.profile,
-  }),
-  layout: 'dashboard',
-});
-
 @Component({
   head() {
     return {title: 'Admin'};
   },
   middleware: ['admin'],
+  computed: mapState({
+    auth: (state: any) => state.modules.auth,
+    profile: (state: any) => state.modules.profile,
+  }),
+  layout: 'dashboard',
 })
-export default class Admin extends mixins(adminProps) {
+export default class Admin extends Vue {
   $axios: any; //NuxtAxiosInstance;
   $router: any;
   $initialLoad: any;

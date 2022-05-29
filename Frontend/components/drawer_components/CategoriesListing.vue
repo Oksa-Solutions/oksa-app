@@ -67,12 +67,12 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {mapState} from 'vuex';
-import {mixins} from 'vue-class-component';
-import {Component, Prop, Vue} from 'vue-property-decorator';
-import {CategoryInterface, CardInterface} from '../../store/modules/cards';
+import {CategoryInterface} from '../../store/modules/cards';
 
-const CategoriesListingProps = Vue.extend({
+@Component({
   computed: mapState({
     categories: (state: any) => state.modules.meeting.categories,
     meeting: (state: any) => state.modules.meeting,
@@ -82,10 +82,8 @@ const CategoriesListingProps = Vue.extend({
     showTrashBin: {type: Boolean, required: true},
     deleteSelected: {type: Boolean, required: true},
   },
-});
-
-@Component
-export default class CategoriesListing extends mixins(CategoriesListingProps) {
+})
+export default class CategoriesListing extends Vue {
   $notifier: any;
   $route: any;
   newCategory: boolean = false;

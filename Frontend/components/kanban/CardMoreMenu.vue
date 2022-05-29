@@ -36,13 +36,11 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
-const cardMoreMenuProps = Vue.extend({});
-
-@Component
-export default class CardMoreMenu extends mixins(cardMoreMenuProps) {
+@Component({})
+export default class CardMoreMenu extends Vue {
   actionItemListing = [
     {
       title: 'Move up',

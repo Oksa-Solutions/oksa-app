@@ -17,11 +17,11 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {mapState} from 'vuex';
 
-const initialsCircleProps = Vue.extend({
+@Component({
   props: {
     fontFamily: {type: String, required: false, default: 'Telegraf'},
     name: {type: String, required: true},
@@ -33,10 +33,8 @@ const initialsCircleProps = Vue.extend({
   computed: mapState({
     background: (state: any) => state.modules.profile.settings.background,
   }),
-});
-
-@Component
-export default class InitialsCircle extends mixins(initialsCircleProps) {
+})
+export default class InitialsCircle extends Vue {
   getInitials(name: string) {
     if (!name || name === 'default') return '';
     if (/@/.test(name)) return '?';

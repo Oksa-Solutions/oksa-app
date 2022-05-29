@@ -11,11 +11,10 @@
 </template>
 
 <!--script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
-
-const circleIconProps = Vue.extend({
+@Component({
   props: {
     icon: {type: Object as () => Component, required: true},
     width: {type: String, required: false, default: '36px'},
@@ -23,7 +22,5 @@ const circleIconProps = Vue.extend({
     // background: {type: String, required: false, default: secondary.base}
   }
 })
-
-@Component({})
-export default class CircleIcon extends mixins(circleIconProps) {}
+export default class CircleIcon extends Vue {}
 </script-->

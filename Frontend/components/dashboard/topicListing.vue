@@ -122,14 +122,14 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {mapState} from 'vuex';
 
 import {MeetingInterface} from '~/store/modules/meeting';
 import {TeamInterface} from '~/store/modules/team';
 
-const topicListingProps = Vue.extend({
+@Component({
   props: {
     isTeamListing: {type: Boolean, required: true},
     topics: {type: Array as () => MeetingInterface[], required: true},
@@ -137,10 +137,8 @@ const topicListingProps = Vue.extend({
   computed: mapState({
     team: (state: any) => state.modules.team,
   }),
-});
-
-@Component({})
-export default class TopicListing extends mixins(topicListingProps) {
+})
+export default class TopicListing extends Vue {
   $notifier: any;
   $router: any;
   $store: any;

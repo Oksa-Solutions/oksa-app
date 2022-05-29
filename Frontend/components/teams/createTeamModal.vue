@@ -86,21 +86,19 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {mapState} from 'vuex';
 
 import {RULES} from '~/assets/constants';
 import {ProfileInterface} from '~/store/modules/profile';
 
-const createTeamModalProps = Vue.extend({
+@Component({
   computed: mapState({
     currentOrg: (state: any) => state.modules.organisation,
   }),
-});
-
-@Component({})
-export default class CreateTeamModal extends mixins(createTeamModalProps) {
+})
+export default class CreateTeamModal extends Vue {
   $axios: any;
   $emit: any;
   $notifier: any;

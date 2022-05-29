@@ -21,13 +21,12 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Component, Prop, Vue} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
-const OksaIconMiniProps = Vue.extend({});
 // Usage: <OksaIcon class="black--text" width="6rem" />
-@Component
-export default class OksaIconMini extends mixins(OksaIconMiniProps) {
+@Component({})
+export default class OksaIconMini extends Vue {
   width: string = '200px';
 }
 </script>

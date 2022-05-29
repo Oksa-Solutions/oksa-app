@@ -92,16 +92,13 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component} from 'vue-property-decorator';
-import {mixins} from 'vue-class-component';
-import {mapState} from 'vuex';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {ProfileInterface} from '../../store/modules/profile';
 import {RULES} from '~/assets/constants';
 
-const addOrganisationProps = Vue.extend({});
-
-@Component
-export default class AddOrganisation extends mixins(addOrganisationProps) {
+@Component({})
+export default class AddOrganisation extends Vue {
   $notifier: any;
   $store: any;
   $axios: any;

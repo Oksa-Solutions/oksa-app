@@ -38,13 +38,11 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Component, Prop, Vue} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
-const FssHomeProps = Vue.extend({});
-
-@Component
-export default class FssHome extends mixins(FssHomeProps) {
+@Component({})
+export default class FssHome extends Vue {
   window = {
     width: 0,
     height: 0,
