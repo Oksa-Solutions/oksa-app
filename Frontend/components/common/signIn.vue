@@ -83,8 +83,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 
 import {
   SET_AUTH_TOKEN,
@@ -106,6 +107,7 @@ Vue.component('vue-phone-number-input', VuePhoneNumberInput);
   },
 })
 export default class SignIn extends Vue {
+  @Prop({default: false}) signIn!: Boolean
   $router: any;
   $notifier: any;
   valid: boolean = false;

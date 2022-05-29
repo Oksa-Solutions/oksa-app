@@ -43,10 +43,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 import {mapState} from 'vuex';
+import { OrganisationInterface } from '~/store/modules/organisation';
 import {ProfileInterface} from '~/store/modules/profile';
+import { TeamInterface } from '~/store/modules/team';
 
 @Component({
   layout: 'dashboard',
@@ -58,6 +61,9 @@ import {ProfileInterface} from '~/store/modules/profile';
   }),
 })
 export default class TeamMembers extends Vue {
+  @Prop() team!: TeamInterface
+  @Prop() profile!: ProfileInterface
+  @Prop() currentOrg!: OrganisationInterface
   $initialLoad: any;
   $notifier: any;
   $store: any;
@@ -74,9 +80,14 @@ export default class TeamMembers extends Vue {
     await this.$store.dispatch('modules/team/readTeam', {
       uuid: this.team.uuid,
     });
-    this.userIsAdmin = this.team.admins
-      .map((a: ProfileInterface) => a.uuid)
-      .includes(this.profile.uuid) || this.currentOrg.admins.map((a: ProfileInterface) => a.uuid).includes(this.profile.uuid);
+    this.userIsAdmin =
+      this.team.admins
+        .map((a: ProfileInterface) => a.uuid)
+        .includes(this.profile.uuid) ||
+      this.currentOrg.admins
+        // @ts-ignore
+        .map((a: ProfileInterface) => a.uuid)
+        .includes(this.profile.uuid);
     this.loading = false;
     window.addEventListener('resize', this.handleResize);
     this.handleResize();

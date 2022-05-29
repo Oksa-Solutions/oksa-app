@@ -118,8 +118,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 import {CardInterface, CategoryInterface} from '../../store/modules/cards';
 
 @Component({
@@ -129,6 +130,8 @@ import {CardInterface, CategoryInterface} from '../../store/modules/cards';
   },
 })
 export default class NoteEdit extends Vue {
+  @Prop({default: false}) editCard!: Boolean
+  @Prop() card!: CardInterface
   $notifier: any;
   newCategory: boolean = false;
   formValid: boolean = false;

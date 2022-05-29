@@ -249,14 +249,15 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 import {mapState} from 'vuex';
 import {ALLOWED_DOMAINS, NO_ORG} from '~/assets/constants';
-import { ProfileInterface } from '~/store/modules/profile';
+import {ProfileInterface} from '~/store/modules/profile';
 import {TeamInterface} from '~/store/modules/team';
-import {OrganisationInterface} from '../store/modules/organisation';
-import {
+import {OrganisationInterface} from '~/store/modules/organisation';
+import {SET_ORGANISATION_DATA, SIGN_OUT} from '../store/mutationTypes';
   SET_ORGANISATION_DATA,
   SIGN_OUT,
 } from '../store/mutationTypes';
@@ -271,6 +272,10 @@ import {
   }),
 })
 export default class Dashboard extends Vue {
+  @Prop() organisations!: OrganisationInterface[]
+  @Prop() profile!: ProfileInterface
+  @Prop() teams!: TeamInterface[]
+  @Prop() currentOrg!: OrganisationInterface
   $notifier: any;
   $route: any;
   $router: any;
@@ -406,7 +411,12 @@ export default class Dashboard extends Vue {
 
   getSeeAllText() {
     let teamsLength: number = 0;
-    if (this.currentOrg.admins.map((a: ProfileInterface) => a.uuid).includes(this.profile.uuid)) {
+    if (
+      this.currentOrg.admins
+        // @ts-ignore
+        .map((a: ProfileInterface) => a.uuid)
+        .includes(this.profile.uuid)
+    ) {
       teamsLength = this.currentOrg.teams.length;
     } else {
       teamsLength = this.teams.filter((t: TeamInterface) => t.organisation.uuid === this.currentOrg.uuid).length;

@@ -12,7 +12,11 @@
     />
     <DeleteConfirmationModal
       v-if="showDeleteModal"
-      v-bind="{content: `You are about to delete ${deletableMembers.length} member${deletableMembers.length > 1 ? 's' : ''} from team.`}"
+      v-bind="{
+        content: `You are about to delete ${deletableMembers.length} member${
+          deletableMembers.length > 1 ? 's' : ''
+        } from team.`,
+      }"
       @delete="confirmDelete"
     />
 
@@ -32,7 +36,9 @@
           clearable
           class="mb-0 shrink"
         />
-        <v-icon v-if="userIsAdmin" class="px-2" @click="addTeamMember">mdi-account-plus</v-icon>
+        <v-icon v-if="userIsAdmin" class="px-2" @click="addTeamMember"
+          >mdi-account-plus</v-icon
+        >
         <v-icon class="px-2" @click="toggleView">{{
           showList ? 'mdi-format-list-bulleted-square' : 'mdi-view-grid'
         }}</v-icon>
@@ -141,8 +147,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 
 import {OrganisationInterface} from '~/store/modules/organisation';
 import {ProfileInterface} from '~/store/modules/profile';
@@ -162,6 +169,15 @@ import {TeamInterface} from '~/store/modules/team';
   },
 })
 export default class TeamMemberListing extends Vue {
+  @Prop() team!: TeamInterface
+  @Prop() admins!: ProfileInterface[]
+  @Prop() users!: ProfileInterface[]
+  @Prop() profile!: ProfileInterface
+  @Prop() currentOrg!: OrganisationInterface
+  @Prop() userIsAdmin!: Boolean
+  @Prop() mcols!: number
+  @Prop() loading!: Boolean
+  @Prop() showAll!: Boolean
   $initialLoad: any;
   $notifier: any;
   $store: any;
@@ -205,7 +221,8 @@ export default class TeamMemberListing extends Vue {
           : 'Removing members failed. Try again',
         color: success ? 'success' : 'error',
       });
-      this.deletableMembers = [];    }
+      this.deletableMembers = [];
+    }
     this.showDeleteModal = false;
   }
 

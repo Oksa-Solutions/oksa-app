@@ -8,7 +8,8 @@
 
       <v-card-text>
         <p>
-          Every approved idea of the selected topics will be added to this topic.
+          Every approved idea of the selected topics will be added to this
+          topic.
         </p>
       </v-card-text>
 
@@ -53,8 +54,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 import {MeetingInterface} from '~/store/modules/meeting';
 
 @Component({
@@ -64,6 +66,8 @@ import {MeetingInterface} from '~/store/modules/meeting';
   },
 })
 export default class TopicDisplayFilterProps extends Vue {
+  @Prop() topics!: MeetingInterface
+  @Prop() selectedTopics!: string[]
   selected: string[] = [];
   searchText: string = '';
 

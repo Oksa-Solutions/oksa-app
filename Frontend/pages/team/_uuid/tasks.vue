@@ -1,10 +1,5 @@
 <template>
-  <v-container
-    fluid
-    class="d-flex flex-column pa-0"
-    style="height: 100vh"
-  >
-
+  <v-container fluid class="d-flex flex-column pa-0" style="height: 100vh">
     <span>
       <v-card-title class="pt-4 px-8 elevation-3 bold"> Tasks </v-card-title>
     </span>
@@ -26,11 +21,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 import {mapState} from 'vuex';
 import {CardInterface} from '~/store/modules/cards';
 import {MeetingInterface} from '~/store/modules/meeting';
+import { TeamInterface } from '~/store/modules/team';
 
 @Component({
   layout: 'dashboard',
@@ -42,12 +39,25 @@ import {MeetingInterface} from '~/store/modules/meeting';
     team: (state: any) => state.modules.team,
     meetings: (state: any) => state.modules.team.topics,
     cards: (state: any) =>
-      [].concat.apply([], state.modules.user.meetings
-        .filter((topic: MeetingInterface) => topic?.team?.uuid === state.modules.team.uuid)
-        .map((m: MeetingInterface) => m.cards.map((c: CardInterface) => {return {...c, meeting: {uuid: m.uuid}}}))),
+      [].concat.apply(
+        [],
+        state.modules.user.meetings
+          .filter(
+            (topic: MeetingInterface) =>
+              topic?.team?.uuid === state.modules.team.uuid,
+          )
+          .map((m: MeetingInterface) =>
+            m.cards.map((c: CardInterface) => {
+              return {...c, meeting: {uuid: m.uuid}};
+            }),
+          ),
+      ),
   }),
 })
 export default class TeamTasks extends Vue {
+  @Prop() team!: TeamInterface
+  @Prop() meetings!: MeetingInterface[]
+  @Prop() cards!: CardInterface[]
   $initialLoad: any;
   $store: any;
   window = {

@@ -40,7 +40,9 @@
 
         <v-row class="d-flex align-center">
           <v-card-subtitle style="width: 120px"> Date </v-card-subtitle>
-          <CardCalendar v-bind="{card, regularCard: false, disabledChip: false}" />
+          <CardCalendar
+            v-bind="{card, regularCard: false, disabledChip: false}"
+          />
         </v-row>
 
         <v-row>
@@ -67,9 +69,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 import {mapState} from 'vuex';
+import { MeetingInterface } from '~/store/modules/meeting';
 import {
   APPROVED,
   ARCHIVED,
@@ -88,6 +92,8 @@ import {CardInterface} from '../../store/modules/cards';
   },
 })
 export default class OpenNote extends Vue {
+  @Prop() card!: CardInterface
+  @Prop() topics!: MeetingInterface[]
   $notifier: any;
   statusColor: string = '';
   statusIcon: string = '';

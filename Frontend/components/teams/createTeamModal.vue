@@ -86,11 +86,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 import {mapState} from 'vuex';
 
 import {RULES} from '~/assets/constants';
+import { OrganisationInterface } from '~/store/modules/organisation';
 import {ProfileInterface} from '~/store/modules/profile';
 
 @Component({
@@ -99,6 +101,7 @@ import {ProfileInterface} from '~/store/modules/profile';
   }),
 })
 export default class CreateTeamModal extends Vue {
+  @Prop() currentOrg!: OrganisationInterface
   $axios: any;
   $emit: any;
   $notifier: any;

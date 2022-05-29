@@ -10,9 +10,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 import {mapState} from 'vuex';
+import { MeetingInterface } from '~/store/modules/meeting';
+import { TeamInterface } from '~/store/modules/team';
 
 @Component({
   layout: 'dashboard',
@@ -23,6 +26,8 @@ import {mapState} from 'vuex';
   }),
 })
 export default class TeamTopics extends Vue {
+  @Prop() topics!: MeetingInterface[]
+  @Prop() team!: TeamInterface
   $initialLoad: any;
   $store: any;
   window = {

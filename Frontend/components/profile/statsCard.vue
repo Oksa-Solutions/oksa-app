@@ -17,8 +17,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 import {
   CONTRIBUTORS,
   DECISIONS_MADE,
@@ -34,6 +35,9 @@ import {
   },
 })
 export default class StatsCard extends Vue {
+  @Prop() icon!: string
+  @Prop() title!: string
+  @Prop() content!: string
   circleColor: string = '';
   iconColor: string = '';
 

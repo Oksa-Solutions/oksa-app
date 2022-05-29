@@ -131,8 +131,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 import {CONTENT_MAX_LENGTH} from '../../assets/constants';
 import {createCardDto} from '../../dto/cards';
 import {CardInterface} from '../../store/modules/cards';
@@ -144,6 +145,7 @@ import {APPROVED, ARCHIVED, WAITING} from '../../assets/constants';
   },
 })
 export default class NoteBase extends Vue {
+  @Prop() card!: CardInterface
   $notifier: any;
   $refs: any;
   statusColor: string = '';

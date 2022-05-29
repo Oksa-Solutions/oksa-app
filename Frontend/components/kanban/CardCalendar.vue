@@ -30,15 +30,19 @@
     >
       <CancelButton @cancel="resetDate" v-bind="{label: 'Reset', text: true}" />
       <v-spacer />
-      <CancelButton @cancel="closeCalendar" v-bind="{label: 'Cancel', text: true}" />
+      <CancelButton
+        @cancel="closeCalendar"
+        v-bind="{label: 'Cancel', text: true}"
+      />
       <CancelButton @cancel="setDate(endDate)" v-bind="{label: 'done'}" />
     </v-date-picker>
   </v-menu>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 import {ONE_DAY} from '../../assets/constants';
 import {CardInterface} from '../../store/modules/cards';
 
@@ -50,6 +54,9 @@ import {CardInterface} from '../../store/modules/cards';
   },
 })
 export default class CardCalendar extends Vue {
+  @Prop() card!: CardInterface
+  @Prop() regularCard!: Boolean
+  @Prop() disabledChip!: Boolean
   $notifier: any;
   showDatePicker: boolean = false;
   endDate: string = new Date().toISOString().substr(0, 10);
