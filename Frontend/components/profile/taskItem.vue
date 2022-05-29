@@ -41,8 +41,8 @@ import {UPDATE_CARD_DATA} from '../../store/mutationTypes';
   },
 })
 export default class TaskItem extends Vue {
-  @Prop() card!: CardInterface
-  @Prop({default: false}) initialized!: Boolean
+  @Prop() card!: CardInterface;
+  @Prop({default: false}) initialized!: Boolean;
   $notifier: any;
   showCard: boolean = false;
   taskStatusArr: string[] = [STUCK, IN_PROGRESS, DONE];

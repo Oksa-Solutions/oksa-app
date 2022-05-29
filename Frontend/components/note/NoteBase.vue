@@ -145,7 +145,7 @@ import {APPROVED, ARCHIVED, WAITING} from '../../assets/constants';
   },
 })
 export default class NoteBase extends Vue {
-  @Prop() card!: CardInterface
+  @Prop() card!: CardInterface;
   $notifier: any;
   $refs: any;
   statusColor: string = '';

@@ -1,71 +1,71 @@
 interface LanguagePack extends Record<string, string> {
-  SIGN_IN: string,
-  EMAIL: string,
-  SEND_CODE: string,
-  WELCOME_BACK: string,
-  ORGANISATION: string,
-  OVERVIEW: string,
-  TOPICS: string,
-  TASKS: string,
-  TEAM_MEMBERS: string,
-  TEAMS: string,
-  SEE_ALL_TEAMS: string,
-  SIGN_OUT: string,
-  DASHBOARD_INTRO: string,
-  RECENT_TOPICS: string,
-  REQUEST_TRIAL: string,
-  IDEAS_GATHERED: string,
-  DECISIONS_MADE: string,
-  IDEAS_READY: string,
-  ADD_TOPIC: string,
-  MANAGE_TOPICS: string,
-  NAME: string,
-  ADMIN: string,
-  ADD_ORG_MEMBER: string,
-  INVITE_COLLAB: string,
-  BY_EMAIL_OR_NAME: string,
-  ACTIVE: string,
-  ROWS_PER_PAGE: string,
-  DISPLAYED_TOPICS: string,
-  SELECTED_TOPICS: string,
-  EVERY_APPROVED_IDEA: string,
-  CANCEL: string,
-  DONE: string,
-  BACKLOG: string,
-  STUCK: string,
-  IN_PROGRESS: string,
-  SHOW_MORE: string,
-  IN_TOPIC: string,
-  DATE: string,
-  SET_DATE: string,
-  VOTES: string,
-  ADD_IDEA: string,
-  SET_CATEGORY: string,
-  IDEA_TITLE: string,
-  WRITE_YOUR_IDEA: string,
-  SEARCH_TOPIC: string,
-  SHARE_TOPIC: string,
-  BY_CODE: string,
-  TOPIC_ID: string,
-  PASSWORD: string,
-  BY_LINK: string,
-  JOIN_TOPIC_ALERT: string,
-  STATUS: string,
-  APPROVED: string,
-  WAITING: string,
-  ARCHIVED: string,
-  CATEGORIES: string,
-  EDIT: string,
-  CREATE_CATEGORY: string,
-  CREDITS: string,
-  TOPIC_SETTINGS: string,
-  TOPIC: string,
-  TOPIC_PASSWORD: string,
-  DARK_MODE_TOGGLE: string,
-  CLOSE_TOPIC: string,
-  DELETE_TOPIC: string,
-  PROFILE: string,
-  MY_TOPICS: string,
+  SIGN_IN: string;
+  EMAIL: string;
+  SEND_CODE: string;
+  WELCOME_BACK: string;
+  ORGANISATION: string;
+  OVERVIEW: string;
+  TOPICS: string;
+  TASKS: string;
+  TEAM_MEMBERS: string;
+  TEAMS: string;
+  SEE_ALL_TEAMS: string;
+  SIGN_OUT: string;
+  DASHBOARD_INTRO: string;
+  RECENT_TOPICS: string;
+  REQUEST_TRIAL: string;
+  IDEAS_GATHERED: string;
+  DECISIONS_MADE: string;
+  IDEAS_READY: string;
+  ADD_TOPIC: string;
+  MANAGE_TOPICS: string;
+  NAME: string;
+  ADMIN: string;
+  ADD_ORG_MEMBER: string;
+  INVITE_COLLAB: string;
+  BY_EMAIL_OR_NAME: string;
+  ACTIVE: string;
+  ROWS_PER_PAGE: string;
+  DISPLAYED_TOPICS: string;
+  SELECTED_TOPICS: string;
+  EVERY_APPROVED_IDEA: string;
+  CANCEL: string;
+  DONE: string;
+  BACKLOG: string;
+  STUCK: string;
+  IN_PROGRESS: string;
+  SHOW_MORE: string;
+  IN_TOPIC: string;
+  DATE: string;
+  SET_DATE: string;
+  VOTES: string;
+  ADD_IDEA: string;
+  SET_CATEGORY: string;
+  IDEA_TITLE: string;
+  WRITE_YOUR_IDEA: string;
+  SEARCH_TOPIC: string;
+  SHARE_TOPIC: string;
+  BY_CODE: string;
+  TOPIC_ID: string;
+  PASSWORD: string;
+  BY_LINK: string;
+  JOIN_TOPIC_ALERT: string;
+  STATUS: string;
+  APPROVED: string;
+  WAITING: string;
+  ARCHIVED: string;
+  CATEGORIES: string;
+  EDIT: string;
+  CREATE_CATEGORY: string;
+  CREDITS: string;
+  TOPIC_SETTINGS: string;
+  TOPIC: string;
+  TOPIC_PASSWORD: string;
+  DARK_MODE_TOGGLE: string;
+  CLOSE_TOPIC: string;
+  DELETE_TOPIC: string;
+  PROFILE: string;
+  MY_TOPICS: string;
 }
 
 export const LANGUAGES: Record<string, LanguagePack> = {
@@ -99,7 +99,8 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     ROWS_PER_PAGE: 'Rows per page',
     DISPLAYED_TOPICS: 'Displayed topics',
     SELECTED_TOPICS: 'Selected topics',
-    EVERY_APPROVED_IDEA: 'Every approved idea of selected topic will be added to this kanban',
+    EVERY_APPROVED_IDEA:
+      'Every approved idea of selected topic will be added to this kanban',
     CANCEL: 'Cancel',
     DONE: 'Done',
     BACKLOG: 'Backlog',
@@ -138,7 +139,7 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     PROFILE: 'Profile',
     MY_TOPICS: 'My topics',
   },
-  'FI': {
+  FI: {
     SIGN_IN: 'Kirjaudu sisään',
     EMAIL: 'Sähköposti',
     SEND_CODE: 'Lähetä koodi',
@@ -168,7 +169,8 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     ROWS_PER_PAGE: 'Rivejä per sivu',
     DISPLAYED_TOPICS: 'Näkyvien seinien valinta',
     SELECTED_TOPICS: 'Valitse näkyvät ideaseinät',
-    EVERY_APPROVED_IDEA: 'Alta valitsemasi ideaseinien kortit näkyvät kanbanissa',
+    EVERY_APPROVED_IDEA:
+      'Alta valitsemasi ideaseinien kortit näkyvät kanbanissa',
     CANCEL: 'Peruuta',
     DONE: 'Valmis',
     BACKLOG: 'Aloitteet',
@@ -206,5 +208,5 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     DELETE_TOPIC: 'Poista ideaseinä',
     PROFILE: 'Yhteenveto',
     MY_TOPICS: 'Ideaseinät',
-  }
-}
+  },
+};

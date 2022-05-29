@@ -2,245 +2,231 @@
   <v-app Dark>
     <CreateTeamModal v-if="showTeamModal" @closed="closeTeamModal" />
 
-      <!----- DRAWER TOGGLE FOR MOBILE ----->
+    <!----- DRAWER TOGGLE FOR MOBILE ----->
+    <v-btn
+      v-if="mcols >= 12"
+      fab
+      fixed
+      bottom
+      left
+      elevation="1"
+      color="primary"
+      @click="toggleMenu"
+      class="fabDrawer"
+    >
+      <v-icon large>mdi-menu</v-icon>
+    </v-btn>
+
+    <!----- NAV DRAWER ----->
+
+    <v-navigation-drawer
+      v-model="drawer"
+      :mini-variant="miniVariant"
+      :temporary="!miniVariant && mcols >= 6"
+      :stateless="mcols < 12"
+      mini-variant-width="72"
+      fixed
+      app
+      class="elevation-3"
+      style="overflow: visible"
+    >
       <v-btn
-          v-if="mcols >= 12"
-          fab
-          fixed
-          bottom
-          left
-          elevation="1"
-          color="primary"
-          @click="toggleMenu"
-          class="fabDrawer"
-        >
-          <v-icon large
-            >mdi-menu</v-icon
-          >
-        </v-btn>
-
-      <!----- NAV DRAWER ----->
-
-      <v-navigation-drawer
-        v-model="drawer"
-        :mini-variant="miniVariant"
-        :temporary="!miniVariant && mcols >= 6"
-        :stateless="mcols < 12"
-        mini-variant-width="72"
-        fixed
-        app
-        class="elevation-3"
-        style="overflow: visible"
+        fab
+        absolute
+        bottom
+        right
+        elevation="1"
+        color="primary"
+        @click="toggleMenu"
+        class="fabDrawer"
       >
-        <v-btn
-          fab
-          absolute
-          bottom
-          right
-          elevation="1"
-          color="primary"
-          @click="toggleMenu"
-          class="fabDrawer"
+        <v-icon large
+          >mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon
         >
-          <v-icon large
-            >mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon
-          >
-        </v-btn>
+      </v-btn>
 
-        <v-list>
-            <v-list-item class="d-flex justify-center align-center py-2">
-              <div class="d-flex flex-column justify-center align-center">
-                <div
-                  v-if="!miniVariant"
-                  style="position: absolute; top: 10px; right: 20px"
-                >
-                  <NotificationIcon />
-                </div>
-                <InitialsCircle
-                  :name="profile.name"
-                  :width="!miniVariant ? '96px' : '40px'"
-                  :height="!miniVariant ? '96px' : '40px'"
-                  :fontSize="!miniVariant ? '38px' : '15px'"
-                />
+      <v-list>
+        <v-list-item class="d-flex justify-center align-center py-2">
+          <div class="d-flex flex-column justify-center align-center">
+            <div
+              v-if="!miniVariant"
+              style="position: absolute; top: 10px; right: 20px"
+            >
+              <NotificationIcon />
+            </div>
+            <InitialsCircle
+              :name="profile.name"
+              :width="!miniVariant ? '96px' : '40px'"
+              :height="!miniVariant ? '96px' : '40px'"
+              :fontSize="!miniVariant ? '38px' : '15px'"
+            />
 
-                <div
-                  v-if="!miniVariant"
-                  class="d-flex justify-center flex-column"
-                >
-                  <v-card-subtitle class="mb-n8 d-flex justify-center">
-                    Welcome back,
-                  </v-card-subtitle>
-                  <v-card-title class="d-flex justify-center text-h6 bold">
-                    {{ makeTitleName(profile.name) }}
-                  </v-card-title>
-                  <v-menu :disabled="organisations.length < 1">
-                    <template v-slot:activator="{on, attrs}">
-                      <v-chip v-bind="attrs" v-on="on" class="justify-center">
-                        {{ currentOrg.name }}
-                        <v-icon>
-                          {{ 'mdi-chevron-down' }}
-                        </v-icon>
-                      </v-chip>
-                    </template>
-                    <v-list>
-                      <v-list-item
-                        v-for="organisation in organisations"
-                        :key="organisation.uuid"
-                        @click="selectOrganisation(organisation)"
-                      >
-                        {{ organisation.name || noOrg }}
-                      </v-list-item>
-                    </v-list>
-                  </v-menu>
-                </div>
-              </div>
-            </v-list-item>
-        </v-list>
-
-            <v-divider />
-
-              <v-list nav dense>
-
-                <!----- GENERAL FEATURES ----->
-
-                <v-list-item
-                  dense
-                  link
-                  v-for="item in generalSettings"
-                  :key="item.title"
-                  :to="item.link"
-                >
-                  <v-list-item-action>
-                    <v-icon>{{ item.icon }}</v-icon>
-                  </v-list-item-action>
-                  <v-list-item-content>
-                    <v-list-item-title class="semibold">
-                      {{ item.title }}
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-
-                <!----- PAID FEATURES ----->
-
-                <template v-if="currentOrg.name !== noOrg">
-                  <v-list-item
-                    dense
-                    link
-                    v-for="item in premiumSettings"
-                    :key="item.title"
-                    :to="item.link"
-                  >
-                    <v-list-item-action>
-                      <v-icon>{{ item.icon }}</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                      <v-list-item-title class="semibold">
-                        {{ item.title }}
-                      </v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
+            <div v-if="!miniVariant" class="d-flex justify-center flex-column">
+              <v-card-subtitle class="mb-n8 d-flex justify-center">
+                Welcome back,
+              </v-card-subtitle>
+              <v-card-title class="d-flex justify-center text-h6 bold">
+                {{ makeTitleName(profile.name) }}
+              </v-card-title>
+              <v-menu :disabled="organisations.length < 1">
+                <template v-slot:activator="{on, attrs}">
+                  <v-chip v-bind="attrs" v-on="on" class="justify-center">
+                    {{ currentOrg.name }}
+                    <v-icon>
+                      {{ 'mdi-chevron-down' }}
+                    </v-icon>
+                  </v-chip>
                 </template>
-              </v-list>
-
-            <v-divider />
-
-            <!----- TEAMS ----->
-
-            <template
-              v-if="!miniVariant && currentOrg.name !== noOrg"
-            >
-
-            <v-subheader v-if="!miniVariant" class="semibold text-uppercase">
-                TEAMS
-                <v-spacer></v-spacer>
-                <v-btn icon>
-                  <v-icon
-                    v-if="
-                      currentOrg.admins.map((a) => a.uuid).includes(profile.uuid)
-                    "
-                    color="primary"
-                    @click="createTeam"
+                <v-list>
+                  <v-list-item
+                    v-for="organisation in organisations"
+                    :key="organisation.uuid"
+                    @click="selectOrganisation(organisation)"
                   >
-                    mdi-plus
-                  </v-icon>
-                </v-btn>
-              </v-subheader>
-            </template>
+                    {{ organisation.name || noOrg }}
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+            </div>
+          </div>
+        </v-list-item>
+      </v-list>
 
-              <!-- v-for="team in [...currentOrg.teams].filter(t => t.users.map(u => u.uuid).includes(profile.uuid)).sort(sortByLastModified).slice(0, 3)" -->
-            <v-list-group
-              no-action
-              v-for="team in [...teams].filter(t => t.organisation.uuid === currentOrg.uuid).slice(0,3)"
-              :key="team.uuid"
-              @click="selectTeam(team)"
+      <v-divider />
+
+      <v-list nav dense>
+        <!----- GENERAL FEATURES ----->
+
+        <v-list-item
+          dense
+          link
+          v-for="item in generalSettings"
+          :key="item.title"
+          :to="item.link"
+        >
+          <v-list-item-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title class="semibold">
+              {{ item.title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <!----- PAID FEATURES ----->
+
+        <template v-if="currentOrg.name !== noOrg">
+          <v-list-item
+            dense
+            link
+            v-for="item in premiumSettings"
+            :key="item.title"
+            :to="item.link"
+          >
+            <v-list-item-action>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title class="semibold">
+                {{ item.title }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
+      </v-list>
+
+      <v-divider />
+
+      <!----- TEAMS ----->
+
+      <template v-if="!miniVariant && currentOrg.name !== noOrg">
+        <v-subheader v-if="!miniVariant" class="semibold text-uppercase">
+          TEAMS
+          <v-spacer></v-spacer>
+          <v-btn icon>
+            <v-icon
+              v-if="currentOrg.admins.map((a) => a.uuid).includes(profile.uuid)"
+              color="primary"
+              @click="createTeam"
             >
-              <template v-slot:activator>
-                <v-list-item class="py-1">
-                  <SquircleIcon
-                    v-bind="{name: team.name, width: '40px', height: '40px'}"
-                  />
-                  <v-list-item-subtitle
-                    v-if="!miniVariant"
-                    class="pl-2 py-1 semibold subtitle-break"
-                  >
-                    {{ team.name }}
-                  </v-list-item-subtitle>
-                </v-list-item>
-              </template>
+              mdi-plus
+            </v-icon>
+          </v-btn>
+        </v-subheader>
+      </template>
 
-              <v-list-item
-                v-for="item in teamSettings"
-                :key="item.title"
-                @click="selectTeamMenuItem(team.uuid, item.link)"
-              >
-                <v-icon>{{ item.icon }}</v-icon>
-                <v-list-item-subtitle class="pl-7 py-1 semibold">{{
-                  item.title
-                }}</v-list-item-subtitle>
-              </v-list-item>
-            </v-list-group>
+      <!-- v-for="team in [...currentOrg.teams].filter(t => t.users.map(u => u.uuid).includes(profile.uuid)).sort(sortByLastModified).slice(0, 3)" -->
+      <v-list-group
+        no-action
+        v-for="team in [...teams]
+          .filter((t) => t.organisation.uuid === currentOrg.uuid)
+          .slice(0, 3)"
+        :key="team.uuid"
+        @click="selectTeam(team)"
+      >
+        <template v-slot:activator>
+          <v-list-item class="py-1">
+            <SquircleIcon
+              v-bind="{name: team.name, width: '40px', height: '40px'}"
+            />
+            <v-list-item-subtitle
+              v-if="!miniVariant"
+              class="pl-2 py-1 semibold subtitle-break"
+            >
+              {{ team.name }}
+            </v-list-item-subtitle>
+          </v-list-item>
+        </template>
 
-            <v-list nav dense>
-              <v-list-item
-                dense
-                link
-                :to="'/dashboard/teams'"
-              >
-                <v-list-item-action>
-                  <v-icon>mdi-page-next-outline</v-icon>
-                </v-list-item-action>
-                <v-list-item-content>
-                  <v-list-item-title class="semibold">
-                    {{ getSeeAllText() }}
-                  </v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
+        <v-list-item
+          v-for="item in teamSettings"
+          :key="item.title"
+          @click="selectTeamMenuItem(team.uuid, item.link)"
+        >
+          <v-icon>{{ item.icon }}</v-icon>
+          <v-list-item-subtitle class="pl-7 py-1 semibold">{{
+            item.title
+          }}</v-list-item-subtitle>
+        </v-list-item>
+      </v-list-group>
 
-            <v-divider />
+      <v-list nav dense>
+        <v-list-item dense link :to="'/dashboard/teams'">
+          <v-list-item-action>
+            <v-icon>mdi-page-next-outline</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title class="semibold">
+              {{ getSeeAllText() }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
 
-            <!----- SETTINGS AND SIGN OUT ----->
+      <v-divider />
 
-            <v-list nav dense>
-              <v-list-item
-                dense
-                link
-                v-for="item in accountSettings"
-                :key="item.title"
-                @click="moveToRoute(item.link)"
-              >
-                <v-list-item-action>
-                  <v-icon>{{ item.icon }}</v-icon>
-                </v-list-item-action>
-                <v-list-item-content>
-                  <v-list-item-title class="semibold">
-                    {{ item.title }}
-                  </v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
+      <!----- SETTINGS AND SIGN OUT ----->
 
-      </v-navigation-drawer>
+      <v-list nav dense>
+        <v-list-item
+          dense
+          link
+          v-for="item in accountSettings"
+          :key="item.title"
+          @click="moveToRoute(item.link)"
+        >
+          <v-list-item-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title class="semibold">
+              {{ item.title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
     <v-main class="main">
       <nuxt />
     </v-main>
@@ -258,9 +244,6 @@ import {ProfileInterface} from '~/store/modules/profile';
 import {TeamInterface} from '~/store/modules/team';
 import {OrganisationInterface} from '~/store/modules/organisation';
 import {SET_ORGANISATION_DATA, SIGN_OUT} from '../store/mutationTypes';
-  SET_ORGANISATION_DATA,
-  SIGN_OUT,
-} from '../store/mutationTypes';
 
 @Component({
   middleware: ['auth'],
@@ -272,10 +255,10 @@ import {SET_ORGANISATION_DATA, SIGN_OUT} from '../store/mutationTypes';
   }),
 })
 export default class Dashboard extends Vue {
-  @Prop() organisations!: OrganisationInterface[]
-  @Prop() profile!: ProfileInterface
-  @Prop() teams!: TeamInterface[]
-  @Prop() currentOrg!: OrganisationInterface
+  @Prop() organisations!: OrganisationInterface[];
+  @Prop() profile!: ProfileInterface;
+  @Prop() teams!: TeamInterface[];
+  @Prop() currentOrg!: OrganisationInterface;
   $notifier: any;
   $route: any;
   $router: any;
@@ -419,10 +402,12 @@ export default class Dashboard extends Vue {
     ) {
       teamsLength = this.currentOrg.teams.length;
     } else {
-      teamsLength = this.teams.filter((t: TeamInterface) => t.organisation.uuid === this.currentOrg.uuid).length;
+      teamsLength = this.teams.filter(
+        (t: TeamInterface) => t.organisation.uuid === this.currentOrg.uuid,
+      ).length;
     }
-    return `See all ${ teamsLength }
-      ${ teamsLength > 1 ? 'teams' : 'team' }`
+    return `See all ${teamsLength}
+      ${teamsLength > 1 ? 'teams' : 'team'}`;
   }
 
   mounted() {

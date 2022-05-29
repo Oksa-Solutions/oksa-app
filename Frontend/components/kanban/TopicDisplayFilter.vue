@@ -66,8 +66,8 @@ import {MeetingInterface} from '~/store/modules/meeting';
   },
 })
 export default class TopicDisplayFilterProps extends Vue {
-  @Prop() topics!: MeetingInterface
-  @Prop() selectedTopics!: string[]
+  @Prop() topics!: MeetingInterface;
+  @Prop() selectedTopics!: string[];
   selected: string[] = [];
   searchText: string = '';
 

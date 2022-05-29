@@ -71,9 +71,9 @@ const BASE_COLOR: string = 'var(--v-yellow-base)';
   },
 })
 export default class CreateCategoryModal extends Vue {
-  @Prop() newCategory!: Boolean
-  @Prop() categoryName!: string
-  @Prop() categoryColor!: string
+  @Prop() newCategory!: Boolean;
+  @Prop() categoryName!: string;
+  @Prop() categoryColor!: string;
   $notifier: any;
   $route: any;
   $store: any;

@@ -17,7 +17,8 @@
       :id="card.uuid"
     >
       <div
-        class="category-container px-6 py-2 round-top-8" style="border-bottom: none;"
+        class="category-container px-6 py-2 round-top-8"
+        style="border-bottom: none"
       />
 
       <v-card-subtitle class="mb-n1 mt-2 py-0 px-6 cardSubtitle black--text">
@@ -82,9 +83,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
-import { MeetingInterface } from '~/store/modules/meeting';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
+import {MeetingInterface} from '~/store/modules/meeting';
 
 import {CardInterface} from '../../store/modules/cards';
 
@@ -94,6 +96,7 @@ import {CardInterface} from '../../store/modules/cards';
   },
 })
 export default class KanbanNote extends Vue {
+  @Prop() card!: CardInterface;
   showDetailedCard: boolean = false;
   maxLength: number = 50;
   showAll: boolean = false;
@@ -109,11 +112,13 @@ export default class KanbanNote extends Vue {
   }
 
   getSubtitle() {
-    const topic = this.$store.state.modules.user.meetings.find((m: MeetingInterface) => m.uuid === this.card.meeting.uuid)
+    const topic = this.$store.state.modules.user.meetings.find(
+      (m: MeetingInterface) => m.uuid === this.card.meeting.uuid,
+    );
     if (topic.team) {
-      return `${topic.team.name.toUpperCase()} / ${this.card.meeting.name.toUpperCase()}`
+      return `${topic.team.name.toUpperCase()} / ${this.card.meeting.name.toUpperCase()}`;
     }
-    return this.card.meeting.name.toUpperCase()
+    return this.card.meeting.name.toUpperCase();
   }
 
   showMoreText() {

@@ -70,7 +70,11 @@ const OrganisationModule: Module<OrganisationModuleState, RootState> = {
       try {
         const res = await this.$axios.post('/organisation', payload);
         if (res.status === 201) {
-          if (payload.admins.map((a: ProfileInterface) => a.uuid).includes(context.rootState.modules.profile.uuid)) {
+          if (
+            payload.admins
+              .map((a: ProfileInterface) => a.uuid)
+              .includes(context.rootState.modules.profile.uuid)
+          ) {
             const profile = JSON.parse(
               JSON.stringify(context.rootState.modules.profile),
             );

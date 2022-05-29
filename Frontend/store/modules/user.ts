@@ -52,9 +52,15 @@ const UserModule: Module<UserModuleState, RootState> = {
       state.meetings = data?.meetings || state.meetings;
     },
     [UPDATE_USER_MEETING](state: UserModuleState, data: MeetingInterface) {
-      const idx = state.meetings.findIndex((m: MeetingInterface) => m.uuid === data.uuid);
+      const idx = state.meetings.findIndex(
+        (m: MeetingInterface) => m.uuid === data.uuid,
+      );
       const updatedMeeting = Object.assign(state.meetings[idx], {...data});
-      state.meetings = [...state.meetings.slice(0, idx), updatedMeeting, ...state.meetings.slice(idx + 1,)];
+      state.meetings = [
+        ...state.meetings.slice(0, idx),
+        updatedMeeting,
+        ...state.meetings.slice(idx + 1),
+      ];
     },
     [SIGN_OUT](state: UserModuleState) {
       Object.assign(state, initialUserModuleState());
@@ -68,9 +74,18 @@ const UserModule: Module<UserModuleState, RootState> = {
       return state.meetings.find((m: MeetingInterface) => m.uuid === uuid);
     },
     getCard: (state: UserModuleState, getters: any) => (uuid: string) => {
-      const meeting = state.meetings.find((m: MeetingInterface) => m.cards.map((c: CardInterface) => c.uuid).includes(uuid));
-      return {meeting: {uuid: meeting?.uuid}, ...state.meetings.map((m: MeetingInterface) => m.cards.find((c: CardInterface) => c.uuid === uuid)).find((c: CardInterface | undefined) => c?.uuid === uuid)};
-    }
+      const meeting = state.meetings.find((m: MeetingInterface) =>
+        m.cards.map((c: CardInterface) => c.uuid).includes(uuid),
+      );
+      return {
+        meeting: {uuid: meeting?.uuid},
+        ...state.meetings
+          .map((m: MeetingInterface) =>
+            m.cards.find((c: CardInterface) => c.uuid === uuid),
+          )
+          .find((c: CardInterface | undefined) => c?.uuid === uuid),
+      };
+    },
   },
   actions: {
     async create(context: Context, data: createUserDto): Promise<boolean> {
@@ -123,7 +138,12 @@ const UserModule: Module<UserModuleState, RootState> = {
           );
           context.commit(
             `modules/profile/${SET_PROFILE}`,
-            {...res.data.profile, user: {uuid: res.data.uuid}, organisations: res.data.organisations, teams: res.data.teams},
+            {
+              ...res.data.profile,
+              user: {uuid: res.data.uuid},
+              organisations: res.data.organisations,
+              teams: res.data.teams,
+            },
             {root: true},
           );
           if (res?.data?.organisations?.length > 0) {

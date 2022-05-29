@@ -169,15 +169,15 @@ import {TeamInterface} from '~/store/modules/team';
   },
 })
 export default class TeamMemberListing extends Vue {
-  @Prop() team!: TeamInterface
-  @Prop() admins!: ProfileInterface[]
-  @Prop() users!: ProfileInterface[]
-  @Prop() profile!: ProfileInterface
-  @Prop() currentOrg!: OrganisationInterface
-  @Prop() userIsAdmin!: Boolean
-  @Prop() mcols!: number
-  @Prop() loading!: Boolean
-  @Prop() showAll!: Boolean
+  @Prop() team!: TeamInterface;
+  @Prop() admins!: ProfileInterface[];
+  @Prop() users!: ProfileInterface[];
+  @Prop() profile!: ProfileInterface;
+  @Prop() currentOrg!: OrganisationInterface;
+  @Prop() userIsAdmin!: Boolean;
+  @Prop() mcols!: number;
+  @Prop() loading!: Boolean;
+  @Prop() showAll!: Boolean;
   $initialLoad: any;
   $notifier: any;
   $store: any;

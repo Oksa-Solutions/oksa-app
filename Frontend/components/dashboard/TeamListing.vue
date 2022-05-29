@@ -2,9 +2,7 @@
   <v-container fluid>
     <v-card class="elevation-3 rounded-lg">
       <v-row dense>
-        <v-card-title class="px-6 bold">
-          Your teams
-        </v-card-title>
+        <v-card-title class="px-6 bold"> Your teams </v-card-title>
       </v-row>
       <v-divider />
       <v-row
@@ -24,14 +22,15 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component} from 'vue-property-decorator';
 import {TeamInterface} from '~/store/modules/team';
 
 @Component({
   props: {
-    teams: {type: Array as () => TeamInterface[], required: true}
-  }
+    teams: {type: Array as () => TeamInterface[], required: true},
+  },
 })
 export default class TeamListing extends Vue {
   $router: any;
@@ -51,6 +50,5 @@ export default class TeamListing extends Vue {
       return 0;
     }
   }
-
 }
 </script>

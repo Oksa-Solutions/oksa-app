@@ -107,7 +107,7 @@ Vue.component('vue-phone-number-input', VuePhoneNumberInput);
   },
 })
 export default class SignIn extends Vue {
-  @Prop({default: false}) signIn!: Boolean
+  @Prop({default: false}) signIn!: Boolean;
   $router: any;
   $notifier: any;
   valid: boolean = false;

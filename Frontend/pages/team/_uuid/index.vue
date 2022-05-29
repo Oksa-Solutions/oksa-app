@@ -143,9 +143,9 @@ import {
 
 import {CardInterface} from '~/store/modules/cards';
 import {MeetingInterface} from '~/store/modules/meeting';
-import { OrganisationInterface } from '~/store/modules/organisation';
+import {OrganisationInterface} from '~/store/modules/organisation';
 import {ProfileInterface} from '~/store/modules/profile';
-import { TeamInterface } from '~/store/modules/team';
+import {TeamInterface} from '~/store/modules/team';
 
 @Component({
   layout: 'dashboard',
@@ -162,11 +162,11 @@ import { TeamInterface } from '~/store/modules/team';
   }),
 })
 export default class Team extends Vue {
-  @Prop() team!: TeamInterface
-  @Prop() meetings!: MeetingInterface[]
-  @Prop() cards!: CardInterface[]
-  @Prop() profile!: ProfileInterface
-  @Prop() currentOrg!: OrganisationInterface
+  @Prop() team!: TeamInterface;
+  @Prop() meetings!: MeetingInterface[];
+  @Prop() cards!: CardInterface[];
+  @Prop() profile!: ProfileInterface;
+  @Prop() currentOrg!: OrganisationInterface;
   $initialLoad: any;
   $router: any;
   $store: any;

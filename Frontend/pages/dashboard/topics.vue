@@ -5,8 +5,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component} from 'vue-property-decorator';
 import {mapState} from 'vuex';
 import {MeetingInterface} from '~/store/modules/meeting';
 import {TeamInterface} from '~/store/modules/team';
@@ -14,7 +15,13 @@ import {TeamInterface} from '~/store/modules/team';
 @Component({
   layout: 'dashboard',
   computed: mapState({
-    topics: (state: any) => state.modules.user.meetings.filter((m: MeetingInterface) => state.modules.organisation.teams.map((t: TeamInterface) => t.uuid).includes(m.team?.uuid) || m.team === null),
+    topics: (state: any) =>
+      state.modules.user.meetings.filter(
+        (m: MeetingInterface) =>
+          state.modules.organisation.teams
+            .map((t: TeamInterface) => t.uuid)
+            .includes(m.team?.uuid) || m.team === null,
+      ),
   }),
 })
 export default class Topics extends Vue {

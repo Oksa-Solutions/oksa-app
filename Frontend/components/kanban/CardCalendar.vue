@@ -54,9 +54,9 @@ import {CardInterface} from '../../store/modules/cards';
   },
 })
 export default class CardCalendar extends Vue {
-  @Prop() card!: CardInterface
-  @Prop() regularCard!: Boolean
-  @Prop() disabledChip!: Boolean
+  @Prop() card!: CardInterface;
+  @Prop() regularCard!: Boolean;
+  @Prop() disabledChip!: Boolean;
   $notifier: any;
   showDatePicker: boolean = false;
   endDate: string = new Date().toISOString().substr(0, 10);

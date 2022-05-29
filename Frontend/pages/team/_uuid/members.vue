@@ -47,9 +47,9 @@
 //import Component from 'vue-class-component';
 import {Vue, Component, Prop} from 'vue-property-decorator';
 import {mapState} from 'vuex';
-import { OrganisationInterface } from '~/store/modules/organisation';
+import {OrganisationInterface} from '~/store/modules/organisation';
 import {ProfileInterface} from '~/store/modules/profile';
-import { TeamInterface } from '~/store/modules/team';
+import {TeamInterface} from '~/store/modules/team';
 
 @Component({
   layout: 'dashboard',
@@ -61,9 +61,9 @@ import { TeamInterface } from '~/store/modules/team';
   }),
 })
 export default class TeamMembers extends Vue {
-  @Prop() team!: TeamInterface
-  @Prop() profile!: ProfileInterface
-  @Prop() currentOrg!: OrganisationInterface
+  @Prop() team!: TeamInterface;
+  @Prop() profile!: ProfileInterface;
+  @Prop() currentOrg!: OrganisationInterface;
   $initialLoad: any;
   $notifier: any;
   $store: any;

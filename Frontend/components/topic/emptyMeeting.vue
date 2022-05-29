@@ -6,7 +6,7 @@
     <v-row class="mt-8">
       <p class="mb-1 text-h5 welcomeTopic">
         <span class="welcomeTo">Welcome to your</span>
-        <br>
+        <br />
         <span class="brandNewTopic">Brand new topic!</span>
       </p>
     </v-row>
@@ -18,8 +18,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component} from 'vue-property-decorator';
 
 @Component({})
 export default class EmptyMeeting extends Vue {}
@@ -34,7 +35,11 @@ export default class EmptyMeeting extends Vue {}
   font-weight: 600;
 }
 .welcomeTopic span:last-child {
-  background: linear-gradient(135deg, var(--v-carrot-base) 0%, var(--v-rose-base) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--v-carrot-base) 0%,
+    var(--v-rose-base) 100%
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -86,8 +86,8 @@ import {TeamInterface} from '~/store/modules/team';
   }),
 })
 export default class Tasks extends Vue {
-  @Prop() meetings!: MeetingInterface[]
-  @Prop() cards!: CardInterface[]
+  @Prop() meetings!: MeetingInterface[];
+  @Prop() cards!: CardInterface[];
   $initialLoad: any;
   window = {
     width: 0,

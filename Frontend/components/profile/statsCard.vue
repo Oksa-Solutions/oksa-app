@@ -35,9 +35,9 @@ import {
   },
 })
 export default class StatsCard extends Vue {
-  @Prop() icon!: string
-  @Prop() title!: string
-  @Prop() content!: string
+  @Prop() icon!: string;
+  @Prop() title!: string;
+  @Prop() content!: string;
   circleColor: string = '';
   iconColor: string = '';
 

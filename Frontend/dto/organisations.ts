@@ -19,7 +19,7 @@ export interface updateOrganisationDto {
   admins?: ProfileInterface[];
 }
 
-export interface deleteOrganisationDto { }
+export interface deleteOrganisationDto {}
 
 export interface addOrganisationMembersDto {
   uuid: string;
