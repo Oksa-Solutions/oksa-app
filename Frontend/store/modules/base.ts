@@ -3,6 +3,7 @@ import {
   SET_CURRENT_PAGE,
   SET_DARKMODE,
   SET_ERROR,
+  SET_LANG,
   SIGN_OUT,
   TOGGLE_LOADING,
 } from '../mutationTypes';
@@ -19,6 +20,7 @@ const initialBaseModuleState = () => ({
   loading: false,
   currentPage: '/',
   darkMode: false,
+  language: 'fi',
 });
 
 type Context = ActionContext<BaseModuleState, RootState>;
@@ -40,6 +42,9 @@ const BaseModule: Module<BaseModuleState, RootState> = {
     [SET_CURRENT_PAGE](state: BaseModuleState, page: string) {
       state.currentPage = page;
     },
+    [SET_LANG](state: BaseModuleState, lang: string) {
+      state.language = lang;
+    },
     [SIGN_OUT](state: BaseModuleState) {
       Object.assign(state, initialBaseModuleState());
     },
@@ -57,6 +62,9 @@ const BaseModule: Module<BaseModuleState, RootState> = {
     setPage(context: Context, page: string) {
       context.commit(SET_CURRENT_PAGE, page);
     },
+    setLanguage(context: Context, lang: string) {
+      context.commit(SET_LANG, lang);
+    }
   },
 };
 

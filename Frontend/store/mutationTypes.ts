@@ -5,6 +5,7 @@ export const REFRESH_TOKENS = 'refreshTokens';
 export const SET_USER_AUTHENTICATED = 'setUserAuthenticated';
 export const SET_USER_LOGGED_IN = 'setUserLoggedIn';
 export const SET_DARKMODE = 'setDarkMode';
+export const SET_LANG = 'setLanguage';
 export const SET_CURRENT_PAGE = 'setCurrentPage';
 export const SIGN_OUT = 'signOut';
 

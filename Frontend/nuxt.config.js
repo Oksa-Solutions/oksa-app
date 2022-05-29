@@ -48,6 +48,7 @@ export default {
     {src: '~/plugins/axios', ssr: false},
     {src: '~/plugins/entrypoint', ssr: false},
     {src: '~/plugins/FSS', ssr: false},
+    {src: '~/plugins/getLanguageVersions', ssr: false},
     {src: '~/plugins/mask', ssr: false},
     {src: '~/plugins/notifier', ssr: false},
     {src: '~/plugins/mask', ssr: false},
