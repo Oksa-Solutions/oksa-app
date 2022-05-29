@@ -20,7 +20,7 @@ const initialBaseModuleState = () => ({
   loading: false,
   currentPage: '/',
   darkMode: false,
-  language: 'GB-ENG',
+  language: 'GB-UKM',
 });
 
 type Context = ActionContext<BaseModuleState, RootState>;
