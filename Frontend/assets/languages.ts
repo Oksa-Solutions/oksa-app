@@ -69,7 +69,7 @@ interface LanguagePack extends Record<string, string> {
 }
 
 export const LANGUAGES: Record<string, LanguagePack> = {
-  'en': {
+  'GB-ENG': {
     SIGN_IN: 'Sign in',
     EMAIL: 'email',
     SEND_CODE: 'Send me the code',
@@ -138,7 +138,7 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     PROFILE: 'Profile',
     MY_TOPICS: 'My topics',
   },
-  'fi': {
+  'FI': {
     SIGN_IN: 'Kirjaudu sisään',
     EMAIL: 'Sähköposti',
     SEND_CODE: 'Lähetä koodi',

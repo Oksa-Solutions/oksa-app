@@ -1,4 +1,4 @@
 import Vue from 'vue';
-import VueFlags from '@growthbunker/vueflags';
+import Flag from 'vue-flagpack';
 
-Vue.use(VueFlags);
+Vue.use(Flag, {name: 'Flag'});
