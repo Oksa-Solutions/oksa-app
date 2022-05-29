@@ -24,8 +24,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component} from 'vue-property-decorator';
 import {FLAT_COLORS, GRADIENT_COLORS} from '../../assets/constants';
 import {UPDATE_PROFILE_SETTINGS} from '../../store/mutationTypes';
 

@@ -27,8 +27,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 import {DONE, IN_PROGRESS, STUCK} from '../../assets/constants';
 import {CardInterface} from '../../store/modules/cards';
 import {UPDATE_CARD_DATA} from '../../store/mutationTypes';
@@ -40,6 +41,8 @@ import {UPDATE_CARD_DATA} from '../../store/mutationTypes';
   },
 })
 export default class TaskItem extends Vue {
+  @Prop() card!: CardInterface
+  @Prop({default: false}) initialized!: Boolean
   $notifier: any;
   showCard: boolean = false;
   taskStatusArr: string[] = [STUCK, IN_PROGRESS, DONE];

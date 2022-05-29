@@ -9,8 +9,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 
 @Component({
   props: {
@@ -22,6 +23,7 @@ import Component from 'vue-class-component';
   layout: 'simple',
 })
 export default class Error extends Vue {
+  @Prop({default: null}) error!: {statusCode: number}
   meetingID: string = this.$store.state.modules.meeting.meetingID;
   pageNotFound: string = '404 Not Found';
   badRequest: string = 'Bad request, missing key(s) in body';

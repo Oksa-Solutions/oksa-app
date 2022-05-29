@@ -39,7 +39,9 @@
             v-if="showRequestModal"
             @closed="closeRequestModal"
           />
-          <v-card-title class="bold"> {{ $setContent('REQUEST_TRIAL') }} </v-card-title>
+          <v-card-title class="bold">
+            {{ $setContent('REQUEST_TRIAL') }}
+          </v-card-title>
 
           <v-card-actions>
             <SubmitButton
@@ -67,7 +69,6 @@
               v-bind="{label: 'Add'}"
               class="px-6 mx-2"
             />
-            <LanguageSelection />
           </v-card-actions>
         </v-card>
       </v-col>
@@ -83,7 +84,9 @@
       <v-col sm="12">
         <v-card class="elevation-3 rounded-lg">
           <v-row class="px-6" align="center" justify="space-between" dense>
-            <v-card-title class="bold"> {{ $setContent('RECENT_TOPICS') }} </v-card-title>
+            <v-card-title class="bold">
+              {{ $setContent('RECENT_TOPICS') }}
+            </v-card-title>
             <v-card-title>
               <SubmitButton
                 @done="$router.push('/new')"
@@ -110,12 +113,19 @@
 
           <v-divider />
 
-          <v-row class="pointer-cursor px-6" align="center" dense @click="showAllTopics">
+          <v-row
+            class="pointer-cursor px-6"
+            align="center"
+            dense
+            @click="showAllTopics"
+          >
             <v-col sm="1" justify="center" align="center">
               <v-icon class="">mdi-page-next-outline</v-icon>
             </v-col>
             <v-col sm="8" align="center">
-              <v-card-title class="bold">{{ $setContent('MANAGE_TOPICS') }}</v-card-title>
+              <v-card-title class="bold">{{
+                $setContent('MANAGE_TOPICS')
+              }}</v-card-title>
             </v-col>
           </v-row>
         </v-card>
@@ -123,23 +133,26 @@
     </v-row>
     <v-row>
       <v-col sm="12">
-        <OrganisationMemberListing v-bind="{
-          profile,
-          currentOrg,
-          userIsAdmin,
-          admins: currentOrg.admins,
-          users: currentOrg.users,
-          mcols,
-          loading,
-        }"/>
+        <OrganisationMemberListing
+          v-bind="{
+            profile,
+            currentOrg,
+            userIsAdmin,
+            admins: currentOrg.admins,
+            users: currentOrg.users,
+            mcols,
+            loading,
+          }"
+        />
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 import {mapState} from 'vuex';
 import {
   ALLOWED_DOMAINS,
@@ -151,10 +164,11 @@ import {
   NO_ORG,
   SUPER_ADMIN,
 } from '~/assets/constants';
-import { ProfileInterface } from '~/store/modules/profile';
+import { OrganisationInterface } from '~/store/modules/organisation';
+import {ProfileInterface} from '~/store/modules/profile';
 import {TeamInterface} from '~/store/modules/team';
-import {CardInterface} from '../../store/modules/cards';
-import {MeetingInterface} from '../../store/modules/meeting';
+import {CardInterface} from '~/store/modules/cards';
+import {MeetingInterface} from '~/store/modules/meeting';
 
 @Component({
   head() {
@@ -165,15 +179,26 @@ import {MeetingInterface} from '../../store/modules/meeting';
   computed: mapState({
     cards: (state: any) =>
       [].concat.apply(
-          [],
-          state.modules.user.meetings.map((topic: MeetingInterface) => topic.cards),
+        [],
+        state.modules.user.meetings.map(
+          (topic: MeetingInterface) => topic.cards,
+        ),
       ),
-    meetings: (state: any) => state.modules.user.meetings.filter((t: MeetingInterface) => state.modules.organisation.teams.map((team: TeamInterface) => team.uuid).includes(t.team?.uuid)),
+    meetings: (state: any) =>
+      state.modules.user.meetings.filter((t: MeetingInterface) =>
+        state.modules.organisation.teams
+          .map((team: TeamInterface) => team.uuid)
+          .includes(t.team?.uuid),
+      ),
     profile: (state: any) => state.modules.profile,
     currentOrg: (state: any) => state.modules.organisation,
   }),
 })
 export default class Profile extends Vue {
+  @Prop() cards!: CardInterface[]
+  @Prop() meetings!: MeetingInterface[]
+  @Prop() profile!: ProfileInterface
+  @Prop() currentOrg!: OrganisationInterface
   $router: any;
   $initialLoad: any;
   loading: boolean = true;
@@ -243,7 +268,10 @@ export default class Profile extends Vue {
     // Check if user is logged in
     if (this.$store.state?.modules?.auth?.loggedIn) {
       this.loading = false;
-      this.userIsAdmin = this.currentOrg.admins.map((a: ProfileInterface) => a.uuid).includes(this.profile.uuid);
+      this.userIsAdmin = this.currentOrg.admins
+        // @ts-ignore
+        .map((a: ProfileInterface) => a.uuid)
+        .includes(this.profile.uuid);
     } else {
       this.$router.push({path: '/'});
     }

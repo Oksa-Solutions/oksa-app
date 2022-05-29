@@ -21,8 +21,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component} from 'vue-property-decorator';
 
 // Usage: <OksaIcon class="black--text" width="6rem" />
 @Component({})

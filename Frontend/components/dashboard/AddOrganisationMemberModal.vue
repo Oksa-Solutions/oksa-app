@@ -49,7 +49,7 @@
         return-object
         multiple
       >
-        <template v-slot:item="{ item }">
+        <template v-slot:item="{item}">
           {{ item.name === 'default' ? item.email : item.name }}
         </template>
         <template v-slot:selection=""></template>
@@ -102,9 +102,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 import {mapState} from 'vuex';
+import { OrganisationInterface } from '~/store/modules/organisation';
 
 import {ProfileInterface} from '~/store/modules/profile';
 
@@ -114,6 +116,7 @@ import {ProfileInterface} from '~/store/modules/profile';
   }),
 })
 export default class AddTeamMemberModal extends Vue {
+  @Prop() currentOrg!: OrganisationInterface
   $notifier: any;
   profiles: ProfileInterface[] = new Array<ProfileInterface>();
   existingUsers: string[] = new Array<string>();
@@ -127,7 +130,10 @@ export default class AddTeamMemberModal extends Vue {
           params: {uuid: this.currentOrg.uuid},
         })
       ).data;
-      this.existingUsers = this.currentOrg.users.map((u: ProfileInterface) => u.uuid);
+      this.existingUsers = this.currentOrg.users.map(
+        // @ts-ignore
+        (u: ProfileInterface) => u.uuid,
+      );
     } catch (err) {
       this.$notifier.showMessage({
         content:
@@ -171,6 +177,7 @@ export default class AddTeamMemberModal extends Vue {
   }
 
   async submit() {
+    // @ts-ignore
     const newUsers: Partial<ProfileInterface>[] = [...this.currentOrg.users];
     for (const i in this.selectedProfiles) {
       if (
@@ -183,14 +190,15 @@ export default class AddTeamMemberModal extends Vue {
       }
     }
     // TODO: Update users in an organisation
-    const success = await this.$store.dispatch('modules/organisation/addOrganisationMembers', {
-      uuid: this.currentOrg.uuid,
-      users: newUsers,
-    });
+    const success = await this.$store.dispatch(
+      'modules/organisation/addOrganisationMembers',
+      {
+        uuid: this.currentOrg.uuid,
+        users: newUsers,
+      },
+    );
     this.$notifier.showMessage({
-      content: success
-        ? 'Users added'
-        : 'Adding users failed. Try again',
+      content: success ? 'Users added' : 'Adding users failed. Try again',
       color: success ? 'success' : 'error',
     });
     if (success) {

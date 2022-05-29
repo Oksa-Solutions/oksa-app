@@ -128,8 +128,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 import {mapState} from 'vuex';
 import {
   APPROVED,
@@ -142,7 +143,9 @@ import {
 
 import {CardInterface} from '~/store/modules/cards';
 import {MeetingInterface} from '~/store/modules/meeting';
+import { OrganisationInterface } from '~/store/modules/organisation';
 import {ProfileInterface} from '~/store/modules/profile';
+import { TeamInterface } from '~/store/modules/team';
 
 @Component({
   layout: 'dashboard',
@@ -152,14 +155,18 @@ import {ProfileInterface} from '~/store/modules/profile';
   middleware: ['auth', 'team'],
   computed: mapState({
     team: (state: any) => state.modules.team,
-    meetings: (state: any) =>
-      state.modules?.team?.topics || [],
+    meetings: (state: any) => state.modules?.team?.topics || [],
     cards: (state: any) => state.modules?.team?.cards || [],
     profile: (state: any) => state.modules.profile,
     currentOrg: (state: any) => state.modules.organisation,
   }),
 })
 export default class Team extends Vue {
+  @Prop() team!: TeamInterface
+  @Prop() meetings!: MeetingInterface[]
+  @Prop() cards!: CardInterface[]
+  @Prop() profile!: ProfileInterface
+  @Prop() currentOrg!: OrganisationInterface
   $initialLoad: any;
   $router: any;
   $store: any;
@@ -206,9 +213,14 @@ export default class Team extends Vue {
       this.$initialLoad(),
       this.$store.dispatch('modules/team/readTeam', {uuid: this.team.uuid}),
     ]);
-    this.userIsAdmin = this.team.admins
-      .map((a: ProfileInterface) => a.uuid)
-      .includes(this.profile.uuid) || this.currentOrg.admins.map((a: ProfileInterface) => a.uuid).includes(this.profile.uuid);
+    this.userIsAdmin =
+      this.team.admins
+        .map((a: ProfileInterface) => a.uuid)
+        .includes(this.profile.uuid) ||
+      this.currentOrg.admins
+        // @ts-ignore
+        .map((a: ProfileInterface) => a.uuid)
+        .includes(this.profile.uuid);
 
     this.loading = false;
     this.statsItems = [

@@ -9,7 +9,10 @@
       />
 
       <v-card-subtitle />
-      <v-card-title class="py-0 px-6 text-h5 card-title" style="font-weight: 700;">
+      <v-card-title
+        class="py-0 px-6 text-h5 card-title"
+        style="font-weight: 700"
+      >
         {{ newCategory ? 'Create a' : 'Edit the' }} category
       </v-card-title>
 
@@ -51,8 +54,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 
 import {RULES} from '~/assets/constants';
 import {CardInterface, CategoryInterface} from '../../store/modules/cards';
@@ -67,6 +71,9 @@ const BASE_COLOR: string = 'var(--v-yellow-base)';
   },
 })
 export default class CreateCategoryModal extends Vue {
+  @Prop() newCategory!: Boolean
+  @Prop() categoryName!: string
+  @Prop() categoryColor!: string
   $notifier: any;
   $route: any;
   $store: any;

@@ -3,19 +3,14 @@
     outlined
     elevation="0"
     class="round-8 card my-4 mx-2 header-background overflow-y-auto"
-    style="z-index: 1; min-width: 360px;"
+    style="z-index: 1; min-width: 360px"
     @dragover.prevent
     @drop.prevent="dragDrop"
   >
-    <div
-      class="
-        pa-3
-        sticky-title-bar
-      "
-      id="fab-new-card"
-      @dragend.prevent
-    >
-      <v-card-title class="d-flex flex-row align-center content-aware-text text-h5 pa-0">
+    <div class="pa-3 sticky-title-bar" id="fab-new-card" @dragend.prevent>
+      <v-card-title
+        class="d-flex flex-row align-center content-aware-text text-h5 pa-0"
+      >
         <!-- <v-icon></v-icon> -->
         {{ title }}
         <span class="ma-0 px-4 text-body-1 text-caption text--lighten-2">
@@ -30,8 +25,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 import {CardInterface} from '../../store/modules/cards';
 import {UPDATE_CARD_DATA} from '../../store/mutationTypes';
 
@@ -42,6 +38,8 @@ import {UPDATE_CARD_DATA} from '../../store/mutationTypes';
   },
 })
 export default class KanbanColumn extends Vue {
+  @Prop() title!: string
+  @Prop() cards!: CardInterface[]
   $store: any;
   $notifier: any;
 
@@ -49,10 +47,14 @@ export default class KanbanColumn extends Vue {
     const card_id = e.dataTransfer.getData('card_id');
     const card: any = document.getElementById(card_id);
     card.style.display = 'block';
-    const updateCard: CardInterface | undefined = this.$store.getters['modules/user/getCard'](card_id);
+    const updateCard: CardInterface | undefined =
+      this.$store.getters['modules/user/getCard'](card_id);
     if (updateCard) {
       if ((<CardInterface>updateCard).taskStatus !== this.title) {
-        this.updateTaskStatus({...(<CardInterface>updateCard), taskStatus: this.title});
+        this.updateTaskStatus({
+          ...(<CardInterface>updateCard),
+          taskStatus: this.title,
+        });
       }
     }
   }
@@ -74,5 +76,4 @@ export default class KanbanColumn extends Vue {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

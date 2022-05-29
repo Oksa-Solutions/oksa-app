@@ -11,7 +11,11 @@
     />
     <DeleteConfirmationModal
       v-if="showDeleteModal"
-      v-bind="{content: `You are about to delete ${deletableMembers.length} member${deletableMembers.length > 1 ? 's' : ''} from organisation.`}"
+      v-bind="{
+        content: `You are about to delete ${deletableMembers.length} member${
+          deletableMembers.length > 1 ? 's' : ''
+        } from organisation.`,
+      }"
       @delete="confirmDelete"
     />
 
@@ -31,7 +35,9 @@
           clearable
           class="mb-0 shrink"
         />
-        <v-icon v-if="userIsAdmin" class="px-2" @click="addOrganisationMember">mdi-account-plus</v-icon>
+        <v-icon v-if="userIsAdmin" class="px-2" @click="addOrganisationMember"
+          >mdi-account-plus</v-icon
+        >
         <v-icon class="px-2" @click="toggleView">{{
           showList ? 'mdi-format-list-bulleted-square' : 'mdi-view-grid'
         }}</v-icon>
@@ -140,8 +146,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 
 import {OrganisationInterface} from '~/store/modules/organisation';
 import {ProfileInterface} from '~/store/modules/profile';
@@ -159,6 +166,14 @@ import {ProfileInterface} from '~/store/modules/profile';
   },
 })
 export default class OrganisationMemberListing extends Vue {
+  @Prop() admins!: ProfileInterface[]
+  @Prop() users!: ProfileInterface[]
+  @Prop() profile!: ProfileInterface
+  @Prop() currentOrg!: OrganisationInterface
+  @Prop() userIsAdmin!: Boolean
+  @Prop() mcols!: number
+  @Prop() loading!: Boolean
+  @Prop() showAll!: Boolean
   $initialLoad: any;
   $notifier: any;
   $store: any;
@@ -201,7 +216,8 @@ export default class OrganisationMemberListing extends Vue {
           : 'Removing members failed. Try again',
         color: success ? 'success' : 'error',
       });
-      this.deletableMembers = [];    }
+      this.deletableMembers = [];
+    }
     this.showDeleteModal = false;
   }
 
@@ -237,10 +253,13 @@ export default class OrganisationMemberListing extends Vue {
     } else {
       admins = admins.filter((a: ProfileInterface) => a.uuid !== profile.uuid);
     }
-    const success = await this.$store.dispatch('modules/organisation/updateOrganisation', {
-      uuid: this.currentOrg.uuid,
-      admins,
-    });
+    const success = await this.$store.dispatch(
+      'modules/organisation/updateOrganisation',
+      {
+        uuid: this.currentOrg.uuid,
+        admins,
+      },
+    );
     this.$notifier.showMessage({
       content: success
         ? 'Updating admins succeeded'

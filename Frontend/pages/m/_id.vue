@@ -33,8 +33,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 import {mapState} from 'vuex';
 
 import {
@@ -52,10 +53,12 @@ import {
 } from '../../store/mutationTypes';
 import {tokenIsExpired} from '../../plugins/axios';
 import {CardInterface} from '../../store/modules/cards';
-import { MeetingInterface } from '~/store/modules/meeting';
+import {MeetingInterface} from '~/store/modules/meeting';
+import { UserInterface } from '~/store/modules/user';
 
 @Component({
   head() {
+    // @ts-ignore
     return {title: this.meeting.name};
   },
   layout: 'topic',
@@ -83,6 +86,10 @@ import { MeetingInterface } from '~/store/modules/meeting';
   }),
 })
 export default class ID extends Vue {
+  @Prop() cards!: CardInterface[]
+  @Prop() user!: UserInterface
+  @Prop() meeting!: MeetingInterface
+  @Prop() sortedCards!: CardInterface[]
   $initialLoad: any;
   $notifier: any;
   $route: any;
@@ -144,7 +151,12 @@ export default class ID extends Vue {
     if (id !== '') {
       this.$store.commit(`modules/auth/${SET_USER_AUTHENTICATED}`, false);
       await this.$store.dispatch(`modules/auth/${AUTH_MEETING}`, payload);
-      this.$store.commit(`modules/meeting/${SET_MEETING_DATA}`, this.$store.state.modules.user.meetings.find((m: MeetingInterface) => m.id === id));
+      this.$store.commit(
+        `modules/meeting/${SET_MEETING_DATA}`,
+        this.$store.state.modules.user.meetings.find(
+          (m: MeetingInterface) => m.id === id,
+        ),
+      );
     } else {
       this.$router.push({path: '/'});
     }
@@ -220,20 +232,28 @@ export default class ID extends Vue {
           if (data.actionType === 'Create') {
             delete data.actionType;
             this.$store.commit(`modules/cards/${CREATE_CARD_DATA}`, data);
-            this.$store.commit(`modules/meeting/${UPDATE_MEETING_DATA}`, {card: data});
+            this.$store.commit(`modules/meeting/${UPDATE_MEETING_DATA}`, {
+              card: data,
+            });
           } else if (data.actionType === 'Update') {
             delete data.actionType;
             this.$store.commit(`modules/cards/${UPDATE_CARD_DATA}`, data);
-            this.$store.commit(`modules/meeting/${UPDATE_MEETING_DATA}`, {card: data});
+            this.$store.commit(`modules/meeting/${UPDATE_MEETING_DATA}`, {
+              card: data,
+            });
           } else if (data.actionType === 'Delete') {
             // not working
             delete data.actionType;
             this.$store.commit(`modules/cards/${DELETE_CARD_DATA}`, data.uuid);
-            this.$store.commit(`modules/meeting/${UPDATE_MEETING_DATA}`, {card: data});
+            this.$store.commit(`modules/meeting/${UPDATE_MEETING_DATA}`, {
+              card: data,
+            });
           } else if (data.actionType === 'Vote') {
             delete data.actionType;
             this.$store.commit(`modules/cards/${UPDATE_VOTING_DATA}`, data);
-            this.$store.commit(`modules/meeting/${UPDATE_MEETING_DATA}`, {card: data});
+            this.$store.commit(`modules/meeting/${UPDATE_MEETING_DATA}`, {
+              card: data,
+            });
           } else {
             console.log(data.actionType);
           }

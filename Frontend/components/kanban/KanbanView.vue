@@ -45,8 +45,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component} from 'vue-property-decorator';
 
 import {APPROVED, DONE, IN_PROGRESS, STUCK} from '~/assets/constants';
 import {CardInterface} from '~/store/modules/cards';

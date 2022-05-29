@@ -1,41 +1,37 @@
 <template>
-  <v-container
-    fluid
-    class="d-flex flex-column pa-0"
-    style="height: 100vh"
-  >
+  <v-container fluid class="d-flex flex-column pa-0" style="height: 100vh">
+    <v-container fluid class="px-6 pt-6 pb-0">
+      <v-toolbar class="elevation-3 rounded-lg">
+        <v-toolbar-title class="pl-2 text-h5">My tasks</v-toolbar-title>
 
-  <v-container fluid class="px-6 pt-6 pb-0">
-    <v-toolbar class="elevation-3 rounded-lg">
-      <v-toolbar-title class="pl-2 text-h5">My tasks</v-toolbar-title>
+        <v-spacer></v-spacer>
 
-      <v-spacer></v-spacer>
+        <v-btn icon disabled>
+          <v-icon>mdi-magnify</v-icon>
+        </v-btn>
+      </v-toolbar>
 
-      <v-btn icon disabled>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-    </v-toolbar>
-
-    <div class="px-2">
-      <TopicDisplayFilter
-        v-if="selectFilters"
-        v-bind="{topics: meetings, selectedTopics}"
-        @closed="closeTopicFilter"
-      />
-      <v-btn text @click="openTopicFilter" class="topic-selection">
-        <v-icon color="primary">mdi-playlist-check</v-icon>
-        {{ selectedTopics.length }}/{{ meetings.length }} displayed topics
-      </v-btn>
-    </div>
-  </v-container>
+      <div class="px-2">
+        <TopicDisplayFilter
+          v-if="selectFilters"
+          v-bind="{topics: meetings, selectedTopics}"
+          @closed="closeTopicFilter"
+        />
+        <v-btn text @click="openTopicFilter" class="topic-selection">
+          <v-icon color="primary">mdi-playlist-check</v-icon>
+          {{ selectedTopics.length }}/{{ meetings.length }} displayed topics
+        </v-btn>
+      </div>
+    </v-container>
 
     <KanbanView v-bind="{meetings, cards, selectedTopics}" />
   </v-container>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 import {mapState} from 'vuex';
 import {CardInterface} from '~/store/modules/cards';
 import {MeetingInterface} from '~/store/modules/meeting';
@@ -50,23 +46,48 @@ import {TeamInterface} from '~/store/modules/team';
   computed: mapState({
     meetings: (state: any) =>
       [].concat.apply(
-        state.modules.user.meetings.filter((topic: MeetingInterface) => topic.team === null ),
-        state.modules.profile.teams.filter((team: TeamInterface) => team.organisation.uuid === state.modules.organisation.uuid).map(
-          (team: TeamInterface) => team.topics,
+        state.modules.user.meetings.filter(
+          (topic: MeetingInterface) => topic.team === null,
         ),
+        state.modules.profile.teams
+          .filter(
+            (team: TeamInterface) =>
+              team.organisation.uuid === state.modules.organisation.uuid,
+          )
+          .map((team: TeamInterface) => team.topics),
       ),
-    cards: (state: any) => [].concat.apply([],
+    cards: (state: any) =>
+      [].concat.apply(
+        [],
         state.modules.user.meetings
-          .filter((topic: MeetingInterface) => topic.team === null ||
-          [].concat.apply([], state.modules.profile.teams
-            .filter((team: TeamInterface) => team.organisation.uuid === state.modules.organisation.uuid)
-            .map((team: TeamInterface) => team.topics))
-            .map((m: MeetingInterface) => m.uuid)
-            .includes(topic.uuid))
-          .map((m: MeetingInterface) => m.cards.map((c: CardInterface) => {return {...c, meeting: {uuid: m.uuid}}}))),
+          .filter(
+            (topic: MeetingInterface) =>
+              topic.team === null ||
+              [].concat
+                .apply(
+                  [],
+                  state.modules.profile.teams
+                    .filter(
+                      (team: TeamInterface) =>
+                        team.organisation.uuid ===
+                        state.modules.organisation.uuid,
+                    )
+                    .map((team: TeamInterface) => team.topics),
+                )
+                .map((m: MeetingInterface) => m.uuid)
+                .includes(topic.uuid),
+          )
+          .map((m: MeetingInterface) =>
+            m.cards.map((c: CardInterface) => {
+              return {...c, meeting: {uuid: m.uuid}};
+            }),
+          ),
+      ),
   }),
 })
 export default class Tasks extends Vue {
+  @Prop() meetings!: MeetingInterface[]
+  @Prop() cards!: CardInterface[]
   $initialLoad: any;
   window = {
     width: 0,

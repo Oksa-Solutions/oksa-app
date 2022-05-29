@@ -145,10 +145,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component, Prop} from 'vue-property-decorator';
 import {mapState} from 'vuex';
 import {RULES} from '~/assets/constants';
+import { TeamInterface } from '~/store/modules/team';
 
 @Component({
   layout: 'simpleWithFooter',
@@ -160,6 +162,7 @@ import {RULES} from '~/assets/constants';
   }),
 })
 export default class NewIndex extends Vue {
+  @Prop() team!: TeamInterface
   $notifier: any;
   $refs: any;
   $route: any;
