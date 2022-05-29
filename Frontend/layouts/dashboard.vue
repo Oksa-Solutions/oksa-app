@@ -1,7 +1,7 @@
 <template>
   <v-app Dark>
     <CreateTeamModal v-if="showTeamModal" @closed="closeTeamModal" />
-      
+
       <!----- DRAWER TOGGLE FOR MOBILE ----->
       <v-btn
           v-if="mcols >= 12"
@@ -20,7 +20,7 @@
         </v-btn>
 
       <!----- NAV DRAWER ----->
-      
+
       <v-navigation-drawer
         v-model="drawer"
         :mini-variant="miniVariant"
@@ -249,8 +249,8 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {mapState} from 'vuex';
 import {ALLOWED_DOMAINS, NO_ORG} from '~/assets/constants';
 import { ProfileInterface } from '~/store/modules/profile';
@@ -261,19 +261,16 @@ import {
   SIGN_OUT,
 } from '../store/mutationTypes';
 
-const dashboardProps = Vue.extend({
+@Component({
+  middleware: ['auth'],
   computed: mapState({
     organisations: (state: any) => state.modules.profile.organisations,
     profile: (state: any) => state.modules.profile,
     teams: (state: any) => state.modules.profile.teams,
     currentOrg: (state: any) => state.modules.organisation,
   }),
-});
-
-@Component({
-  middleware: ['auth'],
 })
-export default class Dashboard extends mixins(dashboardProps) {
+export default class Dashboard extends Vue {
   $notifier: any;
   $route: any;
   $router: any;

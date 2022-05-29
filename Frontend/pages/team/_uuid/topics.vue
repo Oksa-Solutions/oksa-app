@@ -10,21 +10,19 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {mapState} from 'vuex';
 
-const teamTopicsProps = Vue.extend({
+@Component({
+  layout: 'dashboard',
+  middleware: ['team'],
   computed: mapState({
     team: (state: any) => state.modules.team,
     topics: (state: any) => state.modules.team.topics,
   }),
-  middleware: ['team'],
-  layout: 'dashboard',
-});
-
-@Component({})
-export default class TeamTopics extends mixins(teamTopicsProps) {
+})
+export default class TeamTopics extends Vue {
   $initialLoad: any;
   $store: any;
   window = {

@@ -56,27 +56,18 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
-interface Topic {
-  uuid: string;
-  name: string;
-  id: string;
-  status: string;
-}
-
-const meetingItemProps = Vue.extend({
+@Component({
   props: {
     uuid: {type: String, required: true},
     name: {type: String, required: true},
     id: {type: String, required: true},
     status: {type: String, required: true},
   },
-});
-
-@Component
-export default class MeetingItem extends mixins(meetingItemProps) {
+})
+export default class MeetingItem extends Vue {
   getTitleCasing(str: string) {
     return str[0].toUpperCase() + str.slice(1).toLowerCase();
   }

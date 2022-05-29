@@ -23,20 +23,16 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Component, Vue} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
-const DeleteConfirmationModalProps = Vue.extend({
+@Component({
   props: {
     // categoryName: {type: String, required: true},
     content: {type: String, required: true},
   },
-});
-
-@Component
-export default class DeleteConfirmationModal extends mixins(
-  DeleteConfirmationModalProps,
-) {
+})
+export default class DeleteConfirmationModal extends Vue {
   cancel() {
     this.$emit('delete', false);
   }

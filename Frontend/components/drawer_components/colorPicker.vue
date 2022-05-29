@@ -24,12 +24,12 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {FLAT_COLORS, GRADIENT_COLORS} from '../../assets/constants';
 import {UPDATE_PROFILE_SETTINGS} from '../../store/mutationTypes';
 
-const colorPickerProps = Vue.extend({
+@Component({
   props: {
     gradient: {type: Boolean, required: false, default: false},
     selectedColor: {
@@ -37,10 +37,8 @@ const colorPickerProps = Vue.extend({
       required: true,
     },
   },
-});
-
-@Component
-export default class ColorPicker extends mixins(colorPickerProps) {
+})
+export default class ColorPicker extends Vue {
   colors = FLAT_COLORS;
   gradientColors = GRADIENT_COLORS;
 

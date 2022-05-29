@@ -62,24 +62,20 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component} from 'vue-property-decorator';
-import {mixins} from 'vue-class-component';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
-import {tabItemType} from '../../pages/admin/index.vue';
 import {PROFILES, ORGANISATIONS, USERS, RULES} from '../../assets/constants';
 import {ProfileInterface} from '../../store/modules/profile';
-import {UPDATE_ORGANISATION} from '~/store/mutationTypes';
 
-const AdminEditModalProps = Vue.extend({
+@Component({
   props: {
     tabType: {type: String, required: true},
     tabItem: {type: Object as () => any, required: true},
     profiles: {type: Object as () => ProfileInterface[], required: true},
   },
-});
-
-@Component
-export default class AdminEditModal extends mixins(AdminEditModalProps) {
+})
+export default class AdminEditModal extends Vue {
   isUsersTab: boolean = false;
   isProfilesTab: boolean = false;
   isOrganisationsTab: boolean = false;

@@ -118,19 +118,17 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Component, Vue} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {CardInterface, CategoryInterface} from '../../store/modules/cards';
 
-const NoteEditProps = Vue.extend({
+@Component({
   props: {
     editCard: {type: Boolean, default: false},
     card: {type: Object as () => CardInterface, required: false},
   },
-});
-
-@Component
-export default class NoteEdit extends mixins(NoteEditProps) {
+})
+export default class NoteEdit extends Vue {
   $notifier: any;
   newCategory: boolean = false;
   formValid: boolean = false;

@@ -68,21 +68,18 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Component, Prop, Vue} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {RULES} from '~/assets/constants';
 import {AUTH_MEETING, SET_USER_AUTHENTICATED} from '../store/mutationTypes';
 
-const PagesIndexProps = Vue.extend({
-  layout: 'simple',
-});
-
 @Component({
+  layout: 'simple',
   head() {
     return {title: 'Home'};
   },
 })
-export default class PagesIndex extends mixins(PagesIndexProps) {
+export default class PagesIndex extends Vue {
   $router: any;
   $notifier: any;
   $initialLoad: any;

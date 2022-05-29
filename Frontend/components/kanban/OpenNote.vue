@@ -67,9 +67,9 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {mapState} from 'vuex';
-import {mixins} from 'vue-class-component';
-import {Component, Vue} from 'vue-property-decorator';
 import {
   APPROVED,
   ARCHIVED,
@@ -79,17 +79,15 @@ import {
 import {createCardDto} from '../../dto/cards';
 import {CardInterface} from '../../store/modules/cards';
 
-const openNoteProps = Vue.extend({
+@Component({
   computed: mapState({
     topics: (state: any) => state.modules.user.meetings,
   }),
   props: {
     card: {type: Object as () => CardInterface, required: true},
   },
-});
-
-@Component
-export default class OpenNote extends mixins(openNoteProps) {
+})
+export default class OpenNote extends Vue {
   $notifier: any;
   statusColor: string = '';
   statusIcon: string = '';

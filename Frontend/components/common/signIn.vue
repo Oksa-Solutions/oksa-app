@@ -83,8 +83,8 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
 import {
   SET_AUTH_TOKEN,
@@ -100,14 +100,12 @@ import 'vue-phone-number-input/dist/vue-phone-number-input.css';
 import {RULES} from '~/assets/constants';
 Vue.component('vue-phone-number-input', VuePhoneNumberInput);
 
-const signInProps = Vue.extend({
+@Component({
   props: {
     signIn: {type: Boolean, required: false, default: false},
   },
-});
-
-@Component
-export default class SignIn extends mixins(signInProps) {
+})
+export default class SignIn extends Vue {
   $router: any;
   $notifier: any;
   valid: boolean = false;

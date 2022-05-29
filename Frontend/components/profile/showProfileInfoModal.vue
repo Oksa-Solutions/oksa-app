@@ -76,32 +76,25 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {mapState} from 'vuex';
-
-import {updateProfileDto} from '../../dto/profiles';
 
 import VuePhoneNumberInput from 'vue-phone-number-input';
 import 'vue-phone-number-input/dist/vue-phone-number-input.css';
-import {RULES} from '~/assets/constants';
 import {ProfileInterface} from '~/store/modules/profile';
 
 Vue.component('vue-phone-number-input', VuePhoneNumberInput);
 
-const showProfileInfoModalProps = Vue.extend({
+@Component({
   props: {
     profile: {type: Object as () => ProfileInterface, required: true},
   },
   computed: mapState({
     currentOrg: (state: any) => state.modules.organisation,
   }),
-});
-
-@Component
-export default class ShowProfileInfoModal extends mixins(
-  showProfileInfoModalProps,
-) {
+})
+export default class ShowProfileInfoModal extends Vue {
   $notifier: any;
   $router: any;
 

@@ -82,21 +82,18 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
-import {mapState} from 'vuex';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import { MeetingInterface } from '~/store/modules/meeting';
 
 import {CardInterface} from '../../store/modules/cards';
 
-const kanbanNoteProps = Vue.extend({
+@Component({
   props: {
     card: {type: Object as () => CardInterface, required: true},
   },
-});
-
-@Component({})
-export default class KanbanNote extends mixins(kanbanNoteProps) {
+})
+export default class KanbanNote extends Vue {
   showDetailedCard: boolean = false;
   maxLength: number = 50;
   showAll: boolean = false;

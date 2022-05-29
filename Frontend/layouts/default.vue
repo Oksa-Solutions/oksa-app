@@ -9,10 +9,10 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Component, Prop, Vue} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
-const ErrorProps = Vue.extend({
+@Component({
   props: {
     error: {
       type: Object,
@@ -20,10 +20,8 @@ const ErrorProps = Vue.extend({
     },
   },
   layout: 'simple',
-});
-
-@Component({})
-export default class Error extends mixins(ErrorProps) {
+})
+export default class Error extends Vue {
   meetingID: string = this.$store.state.modules.meeting.meetingID;
   pageNotFound: string = '404 Not Found';
   badRequest: string = 'Bad request, missing key(s) in body';

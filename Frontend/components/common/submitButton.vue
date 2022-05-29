@@ -5,18 +5,16 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
-const submitButtonProps = Vue.extend({
+@Component({
   props: {
     label: {type: String, required: true},
     disabled: {type: Boolean, required: false, default: false},
   },
-});
-
-@Component({})
-export default class SubmitButton extends mixins(submitButtonProps) {
+})
+export default class SubmitButton extends Vue {
   $emit: any;
 
   submit() {

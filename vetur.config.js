@@ -3,10 +3,11 @@ module.exports = {
     "vetur.useWorkspaceDependencies": true,
   },
   projects: [
-    {
-      root: "./Frontend",
-      package: "package.json",
-      tsconfig: "tsconfig.json",
-    }
+    './Frontend',
+    // {
+    //   root: "./Frontend",
+    //   package: "./package.json",
+    //   tsconfig: "./tsconfig.json",
+    // }
   ]
 }

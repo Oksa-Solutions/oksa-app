@@ -102,23 +102,18 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {mapState} from 'vuex';
 
-import { OrganisationInterface } from '~/store/modules/organisation';
 import {ProfileInterface} from '~/store/modules/profile';
 
-const addTeamMemberModalProps = Vue.extend({
+@Component({
   computed: mapState({
     currentOrg: (state: any) => state.modules.organisation,
   }),
-});
-
-@Component({})
-export default class AddTeamMemberModal extends mixins(
-  addTeamMemberModalProps,
-) {
+})
+export default class AddTeamMemberModal extends Vue {
   $notifier: any;
   profiles: ProfileInterface[] = new Array<ProfileInterface>();
   existingUsers: string[] = new Array<string>();

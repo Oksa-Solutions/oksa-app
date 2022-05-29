@@ -14,17 +14,15 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
-const addIdeaButtonProps = Vue.extend({
+@Component({
   props: {
     emptyMeeting: {type: Boolean, required: false, default: false},
   },
-});
-
-@Component
-export default class AddIdeaButton extends mixins(addIdeaButtonProps) {
+})
+export default class AddIdeaButton extends Vue {
   newCard: boolean = false;
   showEditModal: boolean = false;
 

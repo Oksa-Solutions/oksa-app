@@ -67,20 +67,18 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {mapState} from 'vuex';
 import {SIGN_OUT} from '../../store/mutationTypes';
 
-const signInProps = Vue.extend({
+@Component({
   computed: mapState({
     loggedIn: (state: any) => state.modules.auth.loggedIn,
     name: (state: any) => state.modules.profile.name,
   }),
-});
-
-@Component
-export default class SignInComponent extends mixins(signInProps) {
+})
+export default class SignInComponent extends Vue {
   $router: any;
   listItemsOne = [
     {icon: 'mdi-view-dashboard', title: 'Dashboard', action: this.openDashboard},

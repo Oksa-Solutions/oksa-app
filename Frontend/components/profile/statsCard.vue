@@ -17,8 +17,8 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component} from 'vue-property-decorator';
-import {mixins} from 'vue-class-component';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {
   CONTRIBUTORS,
   DECISIONS_MADE,
@@ -26,16 +26,14 @@ import {
   IDEAS_READY,
 } from '~/assets/constants';
 
-const statsCardProps = Vue.extend({
+@Component({
   props: {
     icon: {type: String, required: true},
     title: {type: String, required: true},
     content: {type: String, required: true},
   },
-});
-
-@Component
-export default class StatsCard extends mixins(statsCardProps) {
+})
+export default class StatsCard extends Vue {
   circleColor: string = '';
   iconColor: string = '';
 

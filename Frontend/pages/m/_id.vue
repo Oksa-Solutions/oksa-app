@@ -33,8 +33,8 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Component, Prop, Vue} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {mapState} from 'vuex';
 
 import {
@@ -49,13 +49,16 @@ import {
   SET_USER_AUTHENTICATED,
   RESET_FILTERS,
   SET_MEETING_DATA,
-  UPDATE_USER_MEETING,
 } from '../../store/mutationTypes';
 import {tokenIsExpired} from '../../plugins/axios';
 import {CardInterface} from '../../store/modules/cards';
 import { MeetingInterface } from '~/store/modules/meeting';
 
-const IDprops = Vue.extend({
+@Component({
+  head() {
+    return {title: this.meeting.name};
+  },
+  layout: 'topic',
   computed: mapState({
     cards: (state: any) => state.modules.meeting.cards,
     user: (state: any) => state.modules.user,
@@ -78,14 +81,8 @@ const IDprops = Vue.extend({
         .filter(this.filterBySearchText);
     },
   }),
-  head() {
-    return {title: this.meeting.name};
-  },
-  layout: 'topic',
-});
-
-@Component({})
-export default class ID extends mixins(IDprops) {
+})
+export default class ID extends Vue {
   $initialLoad: any;
   $notifier: any;
   $route: any;

@@ -141,15 +141,14 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
-import {MeetingInterface} from '~/store/modules/meeting';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
 import {OrganisationInterface} from '~/store/modules/organisation';
 import {ProfileInterface} from '~/store/modules/profile';
 import {TeamInterface} from '~/store/modules/team';
 
-const teamMemberListingProps = Vue.extend({
+@Component({
   props: {
     team: {type: Object as () => TeamInterface, required: true},
     admins: {type: Array as () => ProfileInterface[], required: true},
@@ -161,10 +160,8 @@ const teamMemberListingProps = Vue.extend({
     loading: {type: Boolean, required: true},
     showAll: {type: Boolean, default: false},
   },
-});
-
-@Component({})
-export default class TeamMemberListing extends mixins(teamMemberListingProps) {
+})
+export default class TeamMemberListing extends Vue {
   $initialLoad: any;
   $notifier: any;
   $store: any;

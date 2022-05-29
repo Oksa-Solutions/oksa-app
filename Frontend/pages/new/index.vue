@@ -145,24 +145,21 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Component, Prop, Vue} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {mapState} from 'vuex';
 import {RULES} from '~/assets/constants';
 
-const NewIndexProps = Vue.extend({
-  computed: mapState({
-    team: (state: any) => state?.modules?.team,
-  }),
-  layout: 'simpleWithFooter',
-});
-
 @Component({
+  layout: 'simpleWithFooter',
   head() {
     return {title: 'New meeting'};
   },
+  computed: mapState({
+    team: (state: any) => state?.modules?.team,
+  }),
 })
-export default class NewIndex extends mixins(NewIndexProps) {
+export default class NewIndex extends Vue {
   $notifier: any;
   $refs: any;
   $route: any;

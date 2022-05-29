@@ -131,21 +131,19 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Component, Vue} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {CONTENT_MAX_LENGTH} from '../../assets/constants';
 import {createCardDto} from '../../dto/cards';
 import {CardInterface} from '../../store/modules/cards';
 import {APPROVED, ARCHIVED, WAITING} from '../../assets/constants';
 
-const NoteBaseProps = Vue.extend({
+@Component({
   props: {
     card: {type: Object as () => CardInterface, required: true},
   },
-});
-
-@Component
-export default class NoteBase extends mixins(NoteBaseProps) {
+})
+export default class NoteBase extends Vue {
   $notifier: any;
   $refs: any;
   statusColor: string = '';

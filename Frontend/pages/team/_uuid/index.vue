@@ -128,8 +128,8 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {mapState} from 'vuex';
 import {
   APPROVED,
@@ -144,7 +144,12 @@ import {CardInterface} from '~/store/modules/cards';
 import {MeetingInterface} from '~/store/modules/meeting';
 import {ProfileInterface} from '~/store/modules/profile';
 
-const teamIndexProps = Vue.extend({
+@Component({
+  layout: 'dashboard',
+  head() {
+    return {title: 'Overview'};
+  },
+  middleware: ['auth', 'team'],
   computed: mapState({
     team: (state: any) => state.modules.team,
     meetings: (state: any) =>
@@ -153,16 +158,8 @@ const teamIndexProps = Vue.extend({
     profile: (state: any) => state.modules.profile,
     currentOrg: (state: any) => state.modules.organisation,
   }),
-  layout: 'dashboard',
-});
-
-@Component({
-  head() {
-    return {title: 'Overview'};
-  },
-  middleware: ['auth', 'team'],
 })
-export default class Team extends mixins(teamIndexProps) {
+export default class Team extends Vue {
   $initialLoad: any;
   $router: any;
   $store: any;

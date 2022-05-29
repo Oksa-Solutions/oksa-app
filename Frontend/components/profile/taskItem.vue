@@ -27,21 +27,19 @@
 </template>
 
 <script lang="ts">
-import {mixins} from 'vue-class-component';
-import {Vue, Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import {DONE, IN_PROGRESS, STUCK} from '../../assets/constants';
 import {CardInterface} from '../../store/modules/cards';
 import {UPDATE_CARD_DATA} from '../../store/mutationTypes';
 
-const taskItemProps = Vue.extend({
+@Component({
   props: {
     card: {type: Object as () => CardInterface, required: true},
     initialized: {type: Boolean, required: true, default: false},
   },
-});
-
-@Component
-export default class TaskItem extends mixins(taskItemProps) {
+})
+export default class TaskItem extends Vue {
   $notifier: any;
   showCard: boolean = false;
   taskStatusArr: string[] = [STUCK, IN_PROGRESS, DONE];
