@@ -1,13 +1,10 @@
-import Vue from 'vue';
-// import {Store} from 'vuex';
-// import {RootState} from '../store'
-
 declare module '*.vue' {
+  import Vue from 'vue';
   export default Vue;
 }
 
 declare module 'vue/types/options' {
-  interface ComponentOptions<V extends Vue> {
+  interface ComponentOptions {
     middleware?: string | string[];
   }
 }

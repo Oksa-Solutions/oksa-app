@@ -67,6 +67,7 @@
               v-bind="{label: 'Add'}"
               class="px-6 mx-2"
             />
+            <LanguageSelection />
           </v-card-actions>
         </v-card>
       </v-col>

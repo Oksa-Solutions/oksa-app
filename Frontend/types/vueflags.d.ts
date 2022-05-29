@@ -1,1 +1,1 @@
-declare module '@growthbunker/vueflags';
+declare module 'vue-flagpack';
