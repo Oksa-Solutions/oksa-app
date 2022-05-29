@@ -150,7 +150,7 @@
 import {Vue, Component, Prop} from 'vue-property-decorator';
 import {mapState} from 'vuex';
 import {RULES} from '~/assets/constants';
-import { TeamInterface } from '~/store/modules/team';
+import {TeamInterface} from '~/store/modules/team';
 
 @Component({
   layout: 'simpleWithFooter',
@@ -162,7 +162,7 @@ import { TeamInterface } from '~/store/modules/team';
   }),
 })
 export default class NewIndex extends Vue {
-  @Prop() team!: TeamInterface
+  @Prop() team!: TeamInterface;
   $notifier: any;
   $refs: any;
   $route: any;

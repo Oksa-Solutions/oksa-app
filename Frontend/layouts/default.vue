@@ -23,7 +23,7 @@ import {Vue, Component, Prop} from 'vue-property-decorator';
   layout: 'simple',
 })
 export default class Error extends Vue {
-  @Prop({default: null}) error!: {statusCode: number}
+  @Prop({default: null}) error!: {statusCode: number};
   meetingID: string = this.$store.state.modules.meeting.meetingID;
   pageNotFound: string = '404 Not Found';
   badRequest: string = 'Bad request, missing key(s) in body';

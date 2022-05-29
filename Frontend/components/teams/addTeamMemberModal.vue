@@ -109,7 +109,7 @@
 //import Component from 'vue-class-component';
 import {Vue, Component, Prop} from 'vue-property-decorator';
 import {mapState} from 'vuex';
-import { OrganisationInterface } from '~/store/modules/organisation';
+import {OrganisationInterface} from '~/store/modules/organisation';
 import {ProfileInterface} from '~/store/modules/profile';
 
 import {TeamInterface} from '~/store/modules/team';
@@ -123,8 +123,8 @@ import {TeamInterface} from '~/store/modules/team';
   }),
 })
 export default class AddTeamMemberModal extends Vue {
-  @Prop() team!: TeamInterface
-  @Prop() currentOrg!: OrganisationInterface
+  @Prop() team!: TeamInterface;
+  @Prop() currentOrg!: OrganisationInterface;
   $notifier: any;
   profiles: ProfileInterface[] = new Array<ProfileInterface>();
   existingUsers: string[] = new Array<string>();

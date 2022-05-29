@@ -54,7 +54,7 @@ import {
 import {tokenIsExpired} from '../../plugins/axios';
 import {CardInterface} from '../../store/modules/cards';
 import {MeetingInterface} from '~/store/modules/meeting';
-import { UserInterface } from '~/store/modules/user';
+import {UserInterface} from '~/store/modules/user';
 
 @Component({
   head() {
@@ -86,10 +86,10 @@ import { UserInterface } from '~/store/modules/user';
   }),
 })
 export default class ID extends Vue {
-  @Prop() cards!: CardInterface[]
-  @Prop() user!: UserInterface
-  @Prop() meeting!: MeetingInterface
-  @Prop() sortedCards!: CardInterface[]
+  @Prop() cards!: CardInterface[];
+  @Prop() user!: UserInterface;
+  @Prop() meeting!: MeetingInterface;
+  @Prop() sortedCards!: CardInterface[];
   $initialLoad: any;
   $notifier: any;
   $route: any;

@@ -38,8 +38,8 @@ import {UPDATE_CARD_DATA} from '../../store/mutationTypes';
   },
 })
 export default class KanbanColumn extends Vue {
-  @Prop() title!: string
-  @Prop() cards!: CardInterface[]
+  @Prop() title!: string;
+  @Prop() cards!: CardInterface[];
   $store: any;
   $notifier: any;
 

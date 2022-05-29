@@ -164,7 +164,7 @@ import {
   NO_ORG,
   SUPER_ADMIN,
 } from '~/assets/constants';
-import { OrganisationInterface } from '~/store/modules/organisation';
+import {OrganisationInterface} from '~/store/modules/organisation';
 import {ProfileInterface} from '~/store/modules/profile';
 import {TeamInterface} from '~/store/modules/team';
 import {CardInterface} from '~/store/modules/cards';
@@ -195,10 +195,10 @@ import {MeetingInterface} from '~/store/modules/meeting';
   }),
 })
 export default class Profile extends Vue {
-  @Prop() cards!: CardInterface[]
-  @Prop() meetings!: MeetingInterface[]
-  @Prop() profile!: ProfileInterface
-  @Prop() currentOrg!: OrganisationInterface
+  @Prop() cards!: CardInterface[];
+  @Prop() meetings!: MeetingInterface[];
+  @Prop() profile!: ProfileInterface;
+  @Prop() currentOrg!: OrganisationInterface;
   $router: any;
   $initialLoad: any;
   loading: boolean = true;

@@ -27,7 +27,7 @@ import {Vue, Component, Prop} from 'vue-property-decorator';
 import {mapState} from 'vuex';
 import {CardInterface} from '~/store/modules/cards';
 import {MeetingInterface} from '~/store/modules/meeting';
-import { TeamInterface } from '~/store/modules/team';
+import {TeamInterface} from '~/store/modules/team';
 
 @Component({
   layout: 'dashboard',
@@ -55,9 +55,9 @@ import { TeamInterface } from '~/store/modules/team';
   }),
 })
 export default class TeamTasks extends Vue {
-  @Prop() team!: TeamInterface
-  @Prop() meetings!: MeetingInterface[]
-  @Prop() cards!: CardInterface[]
+  @Prop() team!: TeamInterface;
+  @Prop() meetings!: MeetingInterface[];
+  @Prop() cards!: CardInterface[];
   $initialLoad: any;
   $store: any;
   window = {

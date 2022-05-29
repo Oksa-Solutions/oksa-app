@@ -107,13 +107,22 @@ const MeetingModule: Module<MeetingModuleState, RootState> = {
         }
       });
       if (payload.card) {
-        const i = state.cards.findIndex((c: CardInterface) => payload.card?.uuid === c.uuid);
+        const i = state.cards.findIndex(
+          (c: CardInterface) => payload.card?.uuid === c.uuid,
+        );
         if (i > -1) {
           if (payload.card.deleted) {
-            state.cards = [...state.cards.slice(0, i), ...state.cards.slice(i + 1)];
+            state.cards = [
+              ...state.cards.slice(0, i),
+              ...state.cards.slice(i + 1),
+            ];
           } else {
             const newCard = Object.assign(state.cards[i], {...payload.card});
-            state.cards = [...state.cards.slice(0, i), newCard, ...state.cards.slice(i + 1,)];
+            state.cards = [
+              ...state.cards.slice(0, i),
+              newCard,
+              ...state.cards.slice(i + 1),
+            ];
           }
         } else {
           state.cards.push(payload.card);

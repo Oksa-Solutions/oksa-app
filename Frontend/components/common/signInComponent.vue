@@ -12,7 +12,12 @@
       <v-menu>
         <template v-slot:activator="{on, attrs}">
           <div v-bind="attrs" v-on="on" class="px-1">
-            <InitialsCircle :name="name" width="40px" height="40px" cursor="pointer"/>
+            <InitialsCircle
+              :name="name"
+              width="40px"
+              height="40px"
+              cursor="pointer"
+            />
           </div>
         </template>
         <v-card>
@@ -67,8 +72,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+//import Vue from 'vue';
+//import Component from 'vue-class-component';
+import {Vue, Component} from 'vue-property-decorator';
 import {mapState} from 'vuex';
 import {SIGN_OUT} from '../../store/mutationTypes';
 
@@ -81,11 +87,23 @@ import {SIGN_OUT} from '../../store/mutationTypes';
 export default class SignInComponent extends Vue {
   $router: any;
   listItemsOne = [
-    {icon: 'mdi-view-dashboard', title: 'Dashboard', action: this.openDashboard},
+    {
+      icon: 'mdi-view-dashboard',
+      title: 'Dashboard',
+      action: this.openDashboard,
+    },
   ];
   listItemsTwo = [
-    {icon: 'mdi-checkbox-marked-circle-outline', title: 'My tasks', action: this.openTasks},
-    {icon: '$vuetify.icons.oksa-nofill', title: 'My topics', action: this.openTopics},
+    {
+      icon: 'mdi-checkbox-marked-circle-outline',
+      title: 'My tasks',
+      action: this.openTasks,
+    },
+    {
+      icon: '$vuetify.icons.oksa-nofill',
+      title: 'My topics',
+      action: this.openTopics,
+    },
   ];
   listItemsThree = [
     // {icon: 'mdi-cog', title: 'Account settings', action: this.openSettings},

@@ -71,8 +71,8 @@ import {updateProfileDto} from '../../dto/profiles';
 import VuePhoneNumberInput from 'vue-phone-number-input';
 import 'vue-phone-number-input/dist/vue-phone-number-input.css';
 import {RULES} from '~/assets/constants';
-import { UserInterface } from '~/store/modules/user';
-import { ProfileInterface } from '~/store/modules/profile';
+import {UserInterface} from '~/store/modules/user';
+import {ProfileInterface} from '~/store/modules/profile';
 
 Vue.component('vue-phone-number-input', VuePhoneNumberInput);
 
@@ -89,12 +89,12 @@ Vue.component('vue-phone-number-input', VuePhoneNumberInput);
   }),
 })
 export default class FirstLoginModal extends Vue {
-  @Prop() uuid!: string
-  @Prop() profileName!: string
-  @Prop() profileEmail!: string
-  @Prop() profilePhone!: string
-  @Prop() user!: UserInterface
-  @Prop() profile!: ProfileInterface
+  @Prop() uuid!: string;
+  @Prop() profileName!: string;
+  @Prop() profileEmail!: string;
+  @Prop() profilePhone!: string;
+  @Prop() user!: UserInterface;
+  @Prop() profile!: ProfileInterface;
   $notifier: any;
   formValid: boolean = false;
   name: string = this.profileName;

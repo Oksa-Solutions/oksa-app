@@ -64,7 +64,7 @@ const BaseModule: Module<BaseModuleState, RootState> = {
     },
     setLanguage(context: Context, lang: string) {
       context.commit(SET_LANG, lang);
-    }
+    },
   },
 };
 

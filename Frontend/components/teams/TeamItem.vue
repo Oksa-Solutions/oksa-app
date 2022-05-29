@@ -57,9 +57,9 @@ import {TeamInterface} from '~/store/modules/team';
   }),
 })
 export default class TeamItem extends Vue {
-  @Prop() team!: TeamInterface
-  @Prop() profile!: ProfileInterface
-  @Prop() isOrgAdmin!: Boolean
+  @Prop() team!: TeamInterface;
+  @Prop() profile!: ProfileInterface;
+  @Prop() isOrgAdmin!: Boolean;
   settings = [];
   // settings = [
   //   {icon: '', title: 'Testi', click: () => {console.log('Hello')}},

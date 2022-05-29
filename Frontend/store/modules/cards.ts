@@ -286,23 +286,36 @@ const CardsModule: Module<CardsModuleState, RootState> = {
         if (res.status === 200) {
           context.commit(UPDATE_CARD_DATA, payload);
           // Update card in meetings which is under users
-          const meeting = context.rootGetters['modules/user/getMeeting'](payload.meeting.uuid)
-          const idx = meeting.cards.findIndex((c: CardInterface) => c.uuid === payload.uuid);
-          const newCard = Object.assign({...meeting.cards[idx]}, {
-            uuid: payload.uuid,
-            title: payload?.title,
-            content: payload?.content,
-            categories: payload?.categories,
-            dates: payload?.dates,
-            status: payload?.status,
-            taskStatus: payload?.taskStatus,
-          });
-          context.commit(`modules/user/${UPDATE_USER_MEETING}`, {
-            ...meeting,
-            cards: [...meeting.cards.slice(0, idx),
-            newCard,
-            ...meeting.cards.slice(idx+1,)]
-          }, {root: true});
+          const meeting = context.rootGetters['modules/user/getMeeting'](
+            payload.meeting.uuid,
+          );
+          const idx = meeting.cards.findIndex(
+            (c: CardInterface) => c.uuid === payload.uuid,
+          );
+          const newCard = Object.assign(
+            {...meeting.cards[idx]},
+            {
+              uuid: payload.uuid,
+              title: payload?.title,
+              content: payload?.content,
+              categories: payload?.categories,
+              dates: payload?.dates,
+              status: payload?.status,
+              taskStatus: payload?.taskStatus,
+            },
+          );
+          context.commit(
+            `modules/user/${UPDATE_USER_MEETING}`,
+            {
+              ...meeting,
+              cards: [
+                ...meeting.cards.slice(0, idx),
+                newCard,
+                ...meeting.cards.slice(idx + 1),
+              ],
+            },
+            {root: true},
+          );
           return true;
         } else {
           console.warn('Something went wrong');

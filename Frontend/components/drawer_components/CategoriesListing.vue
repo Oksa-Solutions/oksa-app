@@ -73,7 +73,7 @@
 //import Component from 'vue-class-component';
 import {Vue, Component, Prop} from 'vue-property-decorator';
 import {mapState} from 'vuex';
-import { MeetingInterface } from '~/store/modules/meeting';
+import {MeetingInterface} from '~/store/modules/meeting';
 import {CategoryInterface} from '../../store/modules/cards';
 
 @Component({
@@ -88,11 +88,11 @@ import {CategoryInterface} from '../../store/modules/cards';
   },
 })
 export default class CategoriesListing extends Vue {
-  @Prop() categories!: CategoryInterface[]
-  @Prop() meeting!: MeetingInterface
-  @Prop() editCategories!: Boolean
-  @Prop() showTrashBin!: Boolean
-  @Prop() deleteSelected!: Boolean
+  @Prop() categories!: CategoryInterface[];
+  @Prop() meeting!: MeetingInterface;
+  @Prop() editCategories!: Boolean;
+  @Prop() showTrashBin!: Boolean;
+  @Prop() deleteSelected!: Boolean;
   $notifier: any;
   $route: any;
   newCategory: boolean = false;

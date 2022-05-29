@@ -130,8 +130,8 @@ import {CardInterface, CategoryInterface} from '../../store/modules/cards';
   },
 })
 export default class NoteEdit extends Vue {
-  @Prop({default: false}) editCard!: Boolean
-  @Prop() card!: CardInterface
+  @Prop({default: false}) editCard!: Boolean;
+  @Prop() card!: CardInterface;
   $notifier: any;
   newCategory: boolean = false;
   formValid: boolean = false;
