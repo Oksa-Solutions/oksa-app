@@ -19,11 +19,11 @@
             </v-col>
             <v-col sm="10" align="start" justify="center">
               <v-card-subtitle class="mb-n6 semibold">
-                This is your
+                {{ $setContent('DASHBOARD_INTRO') }}
               </v-card-subtitle>
-              <v-card-title class="bold"> Dashboard </v-card-title>
+              <v-card-title class="bold"> {{ $setContent('DASHBOARD') }} </v-card-title>
               <v-card-subtitle class="">
-                control everything here!
+                {{ $setContent('CONTROL_EVERYTHING') }}
               </v-card-subtitle>
             </v-col>
           </v-row>
@@ -46,10 +46,10 @@
           <v-card-actions>
             <SubmitButton
               @done="openRequestModal"
-              v-bind="{label: 'Request'}"
+              v-bind="{label: $setContent('REQUEST')}"
               class="px-6 mx-2"
             />
-            <!-- <SubmitButton @done="" v-bind="{label: 'Manage', disabled: true}" class="px-6 mx-2" /> -->
+            <LanguageSelection />
           </v-card-actions>
         </v-card>
         <v-card
@@ -61,12 +61,12 @@
             v-if="showAddOrganisationModal"
             @closed="closeAddOrganisationModal"
           />
-          <v-card-title class="bold"> Add new organisation </v-card-title>
+          <v-card-title class="bold"> {{ $setContent('ADD_ORG') }} </v-card-title>
 
           <v-card-actions>
             <SubmitButton
               @done="openAddOrganisationModal"
-              v-bind="{label: 'Add'}"
+              v-bind="{label: $setContent('ADD')}"
               class="px-6 mx-2"
             />
           </v-card-actions>
@@ -90,7 +90,7 @@
             <v-card-title>
               <SubmitButton
                 @done="$router.push('/new')"
-                v-bind="{label: 'Add topic'}"
+                v-bind="{label: $setContent('ADD_TOPIC')}"
               />
             </v-card-title>
           </v-row>
@@ -169,6 +169,7 @@ import {ProfileInterface} from '~/store/modules/profile';
 import {TeamInterface} from '~/store/modules/team';
 import {CardInterface} from '~/store/modules/cards';
 import {MeetingInterface} from '~/store/modules/meeting';
+import LanguageSelection from '../../components/common/languageSelection.vue';
 
 @Component({
   head() {
@@ -219,7 +220,8 @@ export default class Profile extends Vue {
     {
       icon: 'mdi-plus',
       title: this?.cards?.length?.toString() || '-',
-      content: IDEAS_GATHERED,
+      content: 'IDEAS_GATHERED',
+      type: IDEAS_GATHERED,
     },
     {
       icon: 'mdi-check-circle',
@@ -227,7 +229,8 @@ export default class Profile extends Vue {
         this?.cards
           ?.filter((c: CardInterface) => c.status === APPROVED)
           ?.length?.toString() || '-',
-      content: DECISIONS_MADE,
+      content: 'DECISIONS_MADE',
+      type: DECISIONS_MADE,
     },
     {
       icon: '$vuetify.icons.oksa-mini',
@@ -235,7 +238,8 @@ export default class Profile extends Vue {
         this?.cards
           ?.filter((c: CardInterface) => c.taskStatus === DONE)
           ?.length?.toString() || '-',
-      content: IDEAS_READY,
+      content: 'IDEAS_READY',
+      type: IDEAS_READY,
     },
   ];
 
@@ -245,21 +249,24 @@ export default class Profile extends Vue {
       {
         icon: 'mdi-plus',
         title: this.cards?.length?.toString(),
-        content: IDEAS_GATHERED,
+        content: 'IDEAS_GATHERED',
+        type: IDEAS_GATHERED,
       },
       {
         icon: 'mdi-check-circle',
         title: this.cards
           ?.filter((c: CardInterface) => c.status === APPROVED)
           ?.length.toString(),
-        content: DECISIONS_MADE,
+        content: 'DECISIONS_MADE',
+        type: DECISIONS_MADE,
       },
       {
         icon: '$vuetify.icons.oksa-mini',
         title: this.cards
           ?.filter((c: CardInterface) => c.taskStatus === DONE)
           ?.length.toString(),
-        content: IDEAS_READY,
+        content: 'IDEAS_READY',
+        type: IDEAS_READY,
       },
     ];
 

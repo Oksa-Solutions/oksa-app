@@ -21,7 +21,7 @@
     />
 
     <v-row class="px-6 my-0 py-0" align="center" justify="space-between">
-      <v-card-title class="bold"> Team members </v-card-title>
+      <v-card-title class="bold"> {{ $setContent('TEAM_MEMBERS') }} </v-card-title>
       <v-row class="px-6 justify-end">
         <v-text-field
           append-icon="mdi-magnify"
@@ -61,13 +61,17 @@
         })
       "
       :items-per-page="showAll ? -1 : 5"
-      no-data-text="No team members found"
-      no-results-text="No team members found with your search query"
+      :footer-props="{itemsPerPageText:$setContent('ROWS_PER_PAGE')}"
+      :no-data-text="$setContent('NO_TEAM_MEMBERS_FOUND')"
+      :no-results-text="$setContent('NO_TEAM_RESULTS')"
       :show-select="userIsAdmin"
       :loading="loading"
       :search="searchText"
       @click:row="(item) => showProfile(item)"
     >
+      <template v-slot:footer.page-text="items">
+        {{items.pageStart}} - {{ items.pageStop }} / {{ items.itemsLength }}
+      </template>
       <template v-slot:item.name="{item}">
         <i v-if="item.name === 'default'">{{
           item.email + ' (Invitation pending)'
@@ -141,7 +145,7 @@
       @click="addTeamMember"
     >
       <v-icon class="">mdi-account-plus</v-icon>
-      <v-card-title class="bold">Add team member</v-card-title>
+      <v-card-title class="bold">{{ $setContent('ADD_TEAM_MEMBER') }}</v-card-title>
     </div>
   </v-card>
 </template>
@@ -191,8 +195,8 @@ export default class TeamMemberListing extends Vue {
   showProfileInfo: ProfileInterface | null = null;
 
   tableHeaders = [
-    {text: 'Name', sortable: true, value: 'name'},
-    {text: 'Admin', sortable: true, value: 'isAdmin', width: '150px'},
+    {text: this.$setContent('NAME'), sortable: true, value: 'name'},
+    {text: this.$setContent('ADMIN'), sortable: true, value: 'isAdmin', width: '150px'},
     // {text: 'Edit', sortable: false, value: 'editIcon', width: '100px'},
   ];
 

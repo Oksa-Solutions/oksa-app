@@ -3,7 +3,7 @@
     <SubmitButton
       v-if="!loggedIn"
       @done="signIn"
-      v-bind="{label: 'Sign in'}"
+      v-bind="{label: $setContent('SIGN_IN')}"
       class="signInBtn elevation-3 py-2 px4"
       style="z-index: 10"
     />

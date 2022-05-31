@@ -1,13 +1,13 @@
 <template>
   <v-col class="flex-column" style="align-self: center">
     <v-row class="d-flex flex-column" style="z-index: 1">
-      <h3 class="slogan" style="text-align: center">Sign in</h3>
+      <h3 class="slogan" style="text-align: center">{{ $setContent('SIGN_IN')}}</h3>
     </v-row>
     <v-form ref="loginForm" v-model="valid" @submit.prevent="() => false">
       <v-col v-if="!loginCodeSent">
         <v-row class="flex-column pb-8" style="z-index: 1">
           <v-tabs centered @change="(value) => chooseInput(value)">
-            <v-tab>By email</v-tab>
+            <v-tab>{{ $setContent('EMAIL') }}</v-tab>
             <!-- <v-tab>By phone</v-tab> -->
           </v-tabs>
         </v-row>
@@ -32,7 +32,7 @@
             single-line
             class="shrink"
             prepend-inner-icon="mdi-email"
-            label="Email"
+            :label="$setContent('EMAIL')"
             style=""
             :rules="[rules.email]"
             @keyup.enter="getOTP"
@@ -41,7 +41,7 @@
         <v-row class="flex-column mx-2 mb-4" style="z-index: 1">
           <SubmitButton
             @done="getOTP"
-            v-bind="{label: 'Send me a code', disabled: !valid}"
+            v-bind="{label: $setContent('SEND_CODE'), disabled: !valid}"
           />
         </v-row>
         <!-- TODO: Add modal to explain OTP -->
@@ -57,24 +57,20 @@
             v-model="otp"
             outlined
             single-line
-            label="One-time password"
+            :label="$setContent('OTP')"
             :rules="[rules.otp]"
             @keyup.enter="submitOTP"
           />
         </v-row>
         <v-row class="flex-column px-5 mt-n2 pb-2" style="z-index: 1">
           <p style="font-size: 14px">
-            {{
-              `We have sent OTP to your ${
-                showPhoneNumber ? 'phone number' : 'email address'
-              }`
-            }}
+            {{ $setContent('OTP_CONFIRM') }}
           </p>
         </v-row>
         <v-row class="flex-column mx-2 mb-4">
           <SubmitButton
             @done="submitOTP"
-            v-bind="{label: 'Done', disabled: !valid}"
+            v-bind="{label: $setContent('DONE'), disabled: !valid}"
           />
         </v-row>
       </v-col>
