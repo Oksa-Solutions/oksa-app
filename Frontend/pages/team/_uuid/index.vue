@@ -19,7 +19,7 @@
               />
               <v-col sm="12" class="pa-0">
                 <v-card-subtitle class="bold py-2 mb-n6">
-                  Team
+                  {{ $setContent('TEAM') }}
                 </v-card-subtitle>
                 <v-card-title class="bold py-2">
                   {{ team.name }}
@@ -39,14 +39,14 @@
               <v-row
                 class="d-flex align-center justify-space-between px-6 my-0 py-0"
               >
-                <v-card-title class="bold"> Team topics </v-card-title>
+                <v-card-title class="bold"> {{ $setContent('TEAM_TOPICS') }} </v-card-title>
                 <div
                   class="d-flex flex-row pointer-cursor"
                   @click="$router.push({path: '/new', query: {relTeam: 1}})"
                 >
                   <v-icon>mdi-plus</v-icon>
                   <v-card-subtitle class="px-1 pr-6">
-                    Create a new topic
+                    {{ $setContent('CREATE_TOPIC') }}
                   </v-card-subtitle>
                 </div>
               </v-row>
@@ -59,7 +59,7 @@
                 class="d-flex align-center justify-center py-6"
               >
                 <v-card-subtitle class="semibold">
-                  You have no topics yet
+                  {{ $setContent('NO_TOPICS') }}
                 </v-card-subtitle>
               </div>
 
@@ -81,7 +81,7 @@
               >
                 <v-icon class="">mdi-page-next-outline</v-icon>
                 <v-card-title class="bold"
-                  >See all {{ meetings.length }} topics</v-card-title
+                  >{{ $setContent('SEE_ALL_TOPICS') }} ({{ meetings.length }})</v-card-title
                 >
               </div>
             </v-card>
@@ -112,7 +112,7 @@
             <v-card justify="center" align="center" class="rounded-lg py-4">
               <SubmitButton
                 @done="moveToRoute('tasks')"
-                v-bind="{label: 'Move to kanban'}"
+                v-bind="{label: $setContent('TO_KANBAN')}"
               />
             </v-card>
           </v-col>
@@ -183,7 +183,8 @@ export default class Team extends Vue {
     {
       icon: 'mdi-plus',
       title: this?.cards?.length?.toString() || '-',
-      content: IDEAS_GATHERED,
+      content: 'IDEAS_GATHERED',
+      type: IDEAS_GATHERED
     },
     {
       icon: 'mdi-check-circle',
@@ -191,7 +192,8 @@ export default class Team extends Vue {
         this?.cards
           ?.filter((c: CardInterface) => c.status === APPROVED)
           ?.length?.toString() || '-',
-      content: DECISIONS_MADE,
+      content: 'DECISIONS_MADE',
+      type: DECISIONS_MADE,
     },
     {
       icon: '$vuetify.icons.oksa-mini',
@@ -199,12 +201,14 @@ export default class Team extends Vue {
         this?.cards
           ?.filter((c: CardInterface) => c.taskStatus === DONE)
           ?.length?.toString() || '-',
-      content: IDEAS_READY,
+      content: 'IDEAS_READY',
+      type:IDEAS_READY,
     },
     {
       icon: 'mdi-account-multiple',
       title: this?.team?.users?.length?.toString() || '-',
-      content: CONTRIBUTORS,
+      content: 'CONTRIBUTORS',
+      type: CONTRIBUTORS
     },
   ];
 
@@ -227,26 +231,30 @@ export default class Team extends Vue {
       {
         icon: 'mdi-plus',
         title: this.cards.length.toString(),
-        content: IDEAS_GATHERED,
+        content: 'IDEAS_GATHERED',
+        type: IDEAS_GATHERED,
       },
       {
         icon: 'mdi-check-circle',
         title: this.cards
           .filter((c: CardInterface) => c.status === APPROVED)
           .length.toString(),
-        content: DECISIONS_MADE,
+        content: 'DECISIONS_MADE',
+        type: DECISIONS_MADE
       },
       {
         icon: '$vuetify.icons.oksa-mini',
         title: this.cards
           .filter((c: CardInterface) => c.taskStatus === DONE)
           .length.toString(),
-        content: IDEAS_READY,
+        content: 'IDEAS_READY',
+        type: IDEAS_READY
       },
       {
         icon: 'mdi-account-multiple',
         title: this?.team?.users?.length?.toString() || '-',
-        content: CONTRIBUTORS,
+        content: 'CONTRIBUTORS',
+        type: CONTRIBUTORS
       },
     ];
 

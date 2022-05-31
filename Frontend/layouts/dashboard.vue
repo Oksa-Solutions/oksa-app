@@ -277,19 +277,19 @@ export default class Dashboard extends Vue {
   generalSettings = [
     {
       icon: 'mdi-view-dashboard',
-      title: 'Overview',
+      title: this.$setContent('OVERVIEW'),
       link: '/dashboard',
     },
     {
       icon: '$vuetify.icons.oksa-nofill',
-      title: 'Topics',
+      title: this.$setContent('TOPICS'),
       link: '/dashboard/topics',
     },
   ];
   premiumSettings = [
     {
       icon: 'mdi-checkbox-marked-circle-outline',
-      title: 'Tasks',
+      title: this.$setContent('TASKS'),
       link: '/dashboard/tasks',
     },
   ];
@@ -306,7 +306,7 @@ export default class Dashboard extends Vue {
     // },
     {
       icon: 'mdi-logout',
-      title: 'Sign out',
+      title: this.$setContent('SIGN_OUT'),
       link: '/signOut',
     },
   ];
@@ -314,22 +314,22 @@ export default class Dashboard extends Vue {
   teamSettings = [
     {
       icon: 'mdi-view-dashboard',
-      title: 'Overview',
+      title: this.$setContent('OVERVIEW'),
       link: '/',
     },
     {
       icon: '$vuetify.icons.oksa-nofill',
-      title: 'Topics',
+      title: this.$setContent('TOPICS'),
       link: '/topics',
     },
     {
       icon: 'mdi-checkbox-marked-circle-outline',
-      title: 'Tasks',
+      title: this.$setContent('TASKS'),
       link: '/tasks',
     },
     {
       icon: 'mdi-account-multiple',
-      title: 'Team members',
+      title: this.$setContent('TEAM_MEMBERS'),
       link: '/members',
     },
   ];
@@ -406,8 +406,7 @@ export default class Dashboard extends Vue {
         (t: TeamInterface) => t.organisation.uuid === this.currentOrg.uuid,
       ).length;
     }
-    return `See all ${teamsLength}
-      ${teamsLength > 1 ? 'teams' : 'team'}`;
+    return `${this.$setContent('SEE_ALL_TEAMS')} (${teamsLength})`;
   }
 
   mounted() {

@@ -9,7 +9,7 @@
         </v-col>
         <v-col sm="10">
           <v-card-title class="bold">{{ title }}</v-card-title>
-          <v-card-subtitle>{{ content }}</v-card-subtitle>
+          <v-card-subtitle>{{ $setContent(content) }}</v-card-subtitle>
         </v-col>
       </v-row>
     </v-container>
@@ -32,18 +32,20 @@ import {
     icon: {type: String, required: true},
     title: {type: String, required: true},
     content: {type: String, required: true},
+    type: {type: String, required: true}
   },
 })
 export default class StatsCard extends Vue {
   @Prop() icon!: string;
   @Prop() title!: string;
   @Prop() content!: string;
+  @Prop() type!: string;
   circleColor: string = '';
   iconColor: string = '';
 
   mounted() {
     // TODO select correct theme version according to dark/light theme
-    switch (this.content) {
+    switch (this.type) {
       case IDEAS_READY:
         // this.circleColor = this.hexToRGB(this.$vuetify?.theme?.themes?.light?.jorisViolet?.base, '0.2');
         this.circleColor = this.hexToRGB('#6A00FF', '0.2');

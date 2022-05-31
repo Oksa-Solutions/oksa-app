@@ -122,7 +122,7 @@ export default class CreateTeamModal extends Vue {
     } catch (err) {
       this.$notifier.showMessage({
         content:
-          'Failed to get organisation members, check your Internet connection and try again.',
+          this.$setContent('FAILED_TO_GET_ORG_MEMBERS'),
         color: 'error',
       });
     }
