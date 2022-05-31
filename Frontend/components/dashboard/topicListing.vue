@@ -1,7 +1,7 @@
 <template>
   <v-card class="elevation-3 rounded-lg">
     <v-row class="px-6 my-0 py-0" align="center" justify="space-between">
-      <v-card-title class="bold"> Topics </v-card-title>
+      <v-card-title class="bold"> {{ $setContent('TOPICS') }} </v-card-title>
       <v-row class="px-6 justify-end">
         <v-text-field
           append-icon="mdi-magnify"
@@ -33,11 +33,16 @@
         })
       "
       :items-per-page="15"
-      no-data-text="No topics found"
+      :footer-props="{itemsPerPageText:$setContent('ROWS_PER_PAGE')}"
+      :no-data-text="$setContent('NO_TOPICS_FOUND')"
+      :no-results-text="$setContent('NO_TOPICS_RESULTS')"
       :loading="loading"
       :search="searchText"
       @click:row="(item) => moveToTopic(item)"
     >
+      <template v-slot:footer.page-text="items">
+        {{items.pageStart}} - {{ items.pageStop }} / {{ items.itemsLength }}
+      </template>
       <template v-slot:item.name="{item}">
         <MeetingItem
           v-bind="{
@@ -68,12 +73,17 @@
         })
       "
       :items-per-page="15"
-      no-data-text="No topics found"
+      :footer-props="{itemsPerPageText:$setContent('ROWS_PER_PAGE')}"
+      :no-data-text="$setContent('NO_TOPICS_FOUND')"
+      :no-results-text="$setContent('NO_TOPICS_RESULTS')"
       :loading="loading"
       :search="searchText"
       group-by="team.name"
       @click:row="(item) => moveToTopic(item)"
     >
+      <template v-slot:footer.page-text="items">
+        {{items.pageStart}} - {{ items.pageStop }} / {{ items.itemsLength }}
+      </template>
       <template v-slot:item.name="{item}">
         <MeetingItem
           v-if="item.team"
@@ -149,8 +159,8 @@ export default class TopicListing extends Vue {
   searchText: string = '';
 
   tableHeaders = [
-    {text: 'Name', sortable: true, value: 'name'},
-    {text: 'Active', sortable: true, value: 'status', width: '150px'},
+    {text: this.$setContent('NAME'), sortable: true, value: 'name'},
+    {text: this.$setContent('ACTIVE'), sortable: true, value: 'status', width: '150px'},
     // {text: 'Edit', sortable: false, value: 'editIcon', width: '100px'},
   ];
 
@@ -186,8 +196,8 @@ export default class TopicListing extends Vue {
     });
     this.$notifier.showMessage({
       content: success
-        ? 'Updating topic succeeded'
-        : 'Updating topic failed. Try again',
+        ? this.$setContent('TOPIC_UPDATE_SUCCESS')
+        : this.$setContent('TOPIC_UPDATE_FAILED'),
       color: success ? 'success' : 'error',
     });
     if (!success) {
