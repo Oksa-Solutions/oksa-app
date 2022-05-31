@@ -18,7 +18,7 @@
     </v-col>
     <v-col sm="2" class="d-flex justify-center">
       <v-card-subtitle class="semibold">
-        {{ status === 'closed' ? getTitleCasing(status) : '' }}
+        {{ status === 'closed' ? getTitleCasing() : '' }}
       </v-card-subtitle>
     </v-col>
     <v-col sm="1" class="d-flex justify-center">
@@ -39,14 +39,14 @@
         <v-list>
           <v-list-item link @click="openEditModal" disabled>
             <v-list-item-icon><v-icon>mdi-pencil</v-icon></v-list-item-icon>
-            <v-list-item-title>Edit topic</v-list-item-title>
+            <v-list-item-title>{{ $setContent('EDIT_TOPIC') }}</v-list-item-title>
           </v-list-item>
           <v-list-item link @click="deleteTopic" disabled>
             <v-list-item-icon
               ><v-icon color="">mdi-delete</v-icon></v-list-item-icon
             >
             <v-list-item-title :style="{color: ''}"
-              >Delete topic</v-list-item-title
+              >{{ $setContent('DELETE_TOPIC') }}</v-list-item-title
             >
           </v-list-item>
         </v-list>
@@ -69,7 +69,8 @@ import {Vue, Component} from 'vue-property-decorator';
   },
 })
 export default class MeetingItem extends Vue {
-  getTitleCasing(str: string) {
+  getTitleCasing() {
+    const str = this.$setContent('CLOSED');
     return str[0].toUpperCase() + str.slice(1).toLowerCase();
   }
 

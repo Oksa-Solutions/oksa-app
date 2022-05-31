@@ -43,6 +43,7 @@ interface LanguagePack extends Record<string, string> {
   INVITE_COLLAB: string;
   BY_EMAIL_OR_NAME: string;
   ACTIVE: string;
+  CLOSED: string;
   ROWS_PER_PAGE: string;
   DISPLAYED_TOPICS: string;
   SELECTED_TOPICS: string;
@@ -79,10 +80,15 @@ interface LanguagePack extends Record<string, string> {
   TOPIC_SETTINGS: string;
   TOPIC: string;
   NO_TOPICS: string;
+  NO_TOPICS_FOUND: string;
+  NO_TOPICS_RESULTS: string;
   CREATE_TOPIC: string;
   TOPIC_PASSWORD: string;
+  TOPIC_UPDATE_SUCCESS: string;
+  TOPIC_UPDATE_FAILED: string;
   DARK_MODE_TOGGLE: string;
   CLOSE_TOPIC: string;
+  EDIT_TOPIC: string;
   DELETE_TOPIC: string;
   PROFILE: string;
   MY_TOPICS: string;
@@ -135,6 +141,7 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     INVITE_COLLAB: 'Invite a collaborator',
     BY_EMAIL_OR_NAME: 'By email or name',
     ACTIVE: 'Active',
+    CLOSED: 'Closed',
     ROWS_PER_PAGE: 'Rows per page',
     DISPLAYED_TOPICS: 'Displayed topics',
     SELECTED_TOPICS: 'Selected topics',
@@ -172,10 +179,15 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     TOPIC_SETTINGS: 'Topic settings',
     TOPIC: 'Topic',
     NO_TOPICS: 'You have no topics yet',
+    NO_TOPICS_FOUND: 'No topics found',
+    NO_TOPICS_RESULTS: 'No topics found with your search query',
     CREATE_TOPIC: 'Create a new topic',
     TOPIC_PASSWORD: 'Topic password',
+    TOPIC_UPDATE_SUCCESS: 'Updating topic succeeded',
+    TOPIC_UPDATE_FAILED: 'Updating topic failed. Try again',
     DARK_MODE_TOGGLE: 'Dark mode on / off',
     CLOSE_TOPIC: 'Close topic',
+    EDIT_TOPIC: 'Edit topic',
     DELETE_TOPIC: 'Delete topic',
     PROFILE: 'Profile',
     MY_TOPICS: 'My topics',
@@ -226,6 +238,7 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     INVITE_COLLAB: 'Lisää käyttäjä',
     BY_EMAIL_OR_NAME: 'Lisää sähköpostilla',
     ACTIVE: 'Aktiivinen ideaseinä',
+    CLOSED: 'Suljettu',
     ROWS_PER_PAGE: 'Rivejä per sivu',
     DISPLAYED_TOPICS: 'Näkyvien seinien valinta',
     SELECTED_TOPICS: 'Valitse näkyvät ideaseinät',
@@ -263,10 +276,15 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     TOPIC_SETTINGS: 'Seinän asetukset',
     TOPIC: 'Ideaseinän nimi',
     NO_TOPICS: 'Sinulla ei ole vielä yhtään ideaseinää',
+    NO_TOPICS_FOUND: 'Ideaseiniä ei löytynyt',
+    NO_TOPICS_RESULTS: 'Haullasi ei löytynyt ideaseiniä',
     CREATE_TOPIC: 'Luo uusi ideaseinä',
     TOPIC_PASSWORD: 'Ideaseinän salasana',
+    TOPIC_UPDATE_SUCCESS: 'Ideaseinän päivitys onnistui',
+    TOPIC_UPDATE_FAILED: 'Ideaseinän päivitys epäonnistui. Yritä uudeestaan',
     DARK_MODE_TOGGLE: 'Tumma tila',
     CLOSE_TOPIC: 'Sulje ideaseinä',
+    EDIT_TOPIC: 'Muokkaa ideaseinää',
     DELETE_TOPIC: 'Poista ideaseinä',
     PROFILE: 'Yhteenveto',
     MY_TOPICS: 'Ideaseinät',
