@@ -7,7 +7,7 @@
     >
       <div class="d-flex flex-row mx-6">
         <v-icon color="black">mdi-account-plus</v-icon>
-        <v-card-title class="bold"> Invite a collaborator </v-card-title>
+        <v-card-title class="bold">{{ $setContent('INVITE_COLLAB') }}</v-card-title>
       </div>
 
       <v-card
@@ -28,13 +28,13 @@
         </v-col>
       </v-card>
 
-      <v-card-title class="bold"> By email </v-card-title>
+      <v-card-title class="bold">{{ $setContent('BY_EMAIL_OR_NAME') }}</v-card-title>
 
-      <v-card-text> Add an email or search by name or email </v-card-text>
+      <v-card-text>{{ $setContent('ADD_AN_EMAIL') }}</v-card-text>
 
       <v-autocomplete
         v-model="selectedProfiles"
-        label="Name or email"
+        :label="$setContent('BY_EMAIL_OR_NAME')"
         class="px-6 pt-0 pb-4 flex-grow-1 flex-shrink-0"
         item-text="name"
         item-value="email"
@@ -94,10 +94,10 @@
 
       <v-card-actions>
         <v-spacer />
-        <CancelButton @cancel="cancel" v-bind="{label: 'Cancel'}" />
+        <CancelButton @cancel="cancel" v-bind="{label: $setContent('CANCEL')}" />
         <SubmitButton
           @done="submit"
-          v-bind="{label: 'Send', disabled: selectedProfiles.length < 1}"
+          v-bind="{label: $setContent('SEND'), disabled: selectedProfiles.length < 1}"
         />
       </v-card-actions>
     </v-card>
@@ -141,8 +141,7 @@ export default class AddTeamMemberModal extends Vue {
       this.existingUsers = this.team.users.map((u: ProfileInterface) => u.uuid);
     } catch (err) {
       this.$notifier.showMessage({
-        content:
-          'Failed to get organisation members, check your Internet connection and try again.',
+        content: this.$setContent('FAILED_TO_GET_ORG_MEMBERS'),
         color: 'error',
       });
     }
@@ -202,8 +201,8 @@ export default class AddTeamMemberModal extends Vue {
     });
     this.$notifier.showMessage({
       content: success
-        ? 'Collaborators invited'
-        : 'Inviting collaborators failed. Try again',
+        ? this.$setContent('COLLABS_INVITED')
+        : this.$setContent('COLLAB_INVITE_FAILED'),
       color: success ? 'success' : 'error',
     });
     if (success) {
