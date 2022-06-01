@@ -76,11 +76,11 @@
         <v-card-actions class="pa-6 pt-0">
           <v-spacer></v-spacer>
           <template>
-            <CancelButton @cancel="cancel" v-bind="{label: 'Cancel'}" />
+            <CancelButton @cancel="cancel" v-bind="{label: $setContent('CANCEL')}" />
             <SubmitButton
               @done="submit"
               v-bind="{
-                label: 'Save',
+                label: $setContent('SAVE'),
                 disabled: !(valid && selectedProfiles.length > 0),
               }"
             />
@@ -169,9 +169,9 @@ export default class AddOrganisation extends Vue {
     );
 
     this.$notifier.showMessage({
-      content: success
-        ? 'Added new organisation'
-        : 'Adding organisation failed. Try again',
+      content: this.$setContent(success
+        ? 'ORGANISATION_ADDED'
+        : 'ORGANISATION_ADD_FAILED'),
       color: success ? 'success' : 'error',
     });
 

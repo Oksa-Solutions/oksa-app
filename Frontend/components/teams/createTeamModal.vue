@@ -1,7 +1,7 @@
 <template>
   <v-dialog value="true" max-width="400px" persistent>
     <v-card>
-      <v-card-title>Create a new team</v-card-title>
+      <v-card-title>{{ $setContent('CREATE_TEAM') }}</v-card-title>
       <!-- Team name -->
       <v-text-field
         v-model="name"
@@ -23,7 +23,7 @@
       >
         <template v-slot:activator="{on, attrs}">
           <v-btn color="primary" v-bind="attrs" v-on="on" class="mx-6">
-            Admins
+            {{ $setContent('ADMINS') }}
           </v-btn>
         </template>
         <v-list>
@@ -55,7 +55,7 @@
       >
         <template v-slot:activator="{on, attrs}">
           <v-btn color="primary" v-bind="attrs" v-on="on" class="mx-6">
-            Users
+            {{ $setContent('USERS') }}
           </v-btn>
         </template>
         <v-list>
@@ -78,8 +78,8 @@
 
       <v-card-actions>
         <v-spacer />
-        <CancelButton @cancel="cancel" v-bind="{label: 'Cancel'}" />
-        <SubmitButton @done="submit" v-bind="{label: 'Submit'}" />
+        <CancelButton @cancel="cancel" v-bind="{label: $setContent('CANCEL')}" />
+        <SubmitButton @done="submit" v-bind="{label: $setContent('SUBMIT')}" />
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -173,9 +173,9 @@ export default class CreateTeamModal extends Vue {
     });
 
     this.$notifier.showMessage({
-      content: success
-        ? 'New team created!'
-        : 'Creating team failed. Try again',
+      content: this.$setContent(success
+        ? 'TEAM_CREATED'
+        : 'TEAM_CREATION_FAILED'),
       color: success ? 'success' : 'error',
     });
     if (success) {

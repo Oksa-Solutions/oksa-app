@@ -169,11 +169,10 @@ import {ProfileInterface} from '~/store/modules/profile';
 import {TeamInterface} from '~/store/modules/team';
 import {CardInterface} from '~/store/modules/cards';
 import {MeetingInterface} from '~/store/modules/meeting';
-import LanguageSelection from '../../components/common/languageSelection.vue';
 
 @Component({
   head() {
-    return {title: 'Dashboard'};
+    return {title: this.$setContent('DASHBOARD')};
   },
   middleware: ['auth'],
   layout: 'dashboard',

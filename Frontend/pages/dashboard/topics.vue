@@ -32,10 +32,10 @@ export default class Topics extends Vue {
   searchText: string = '';
 
   tableHeaders = [
-    {text: 'Name', sortable: true, value: 'name'},
+    {text: this.$setContent('NAME'), sortable: true, value: 'name'},
     {text: 'ID', sortable: false, value: 'id'},
-    // {text: 'Admin', sortable: true, value: 'isAdmin', width: '150px'},
-    // {text: 'Edit', sortable: false, value: 'editIcon', width: '100px'},
+    // {text: this.$setContent('ADMIN'), sortable: true, value: 'isAdmin', width: '150px'},
+    // {text: this.$setContent('EDIT'), sortable: false, value: 'editIcon', width: '100px'},
   ];
 
   mounted() {
@@ -49,7 +49,7 @@ export default class Topics extends Vue {
     console.log('Delete topics');
     // const success = await this.$store.dispatch('modules/team/removeTeamMembers', {uuid: this.team.uuid, name: this.team.name, organisation: this.currentOrg, users: this.deletableMembers});
     // this.$notifier.showMessage({
-    //   content: success ? 'Topics removed' : 'Removing topics failed. Try again',
+    //   content: this.$setContent(success ? 'TOPICS_REMOVED' : 'TOPIC_REMOVE_FAILED'),
     //   color: success ? 'success' : 'error',
     // });
     // this.deletableTopics = [];

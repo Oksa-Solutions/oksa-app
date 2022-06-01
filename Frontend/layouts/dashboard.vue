@@ -301,7 +301,7 @@ export default class Dashboard extends Vue {
     // },
     // {
     //   icon: 'mdi-cog',
-    //   title: 'Account settings',
+    //   title: this.$setContent('ACCOUNT_SETTINGS'),
     //   link: '/dashboard',
     // },
     {

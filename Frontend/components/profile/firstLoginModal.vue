@@ -12,7 +12,7 @@
       />
       <v-row class="mx-4">
         <v-icon>$vuetify.icons.oksa-gradient</v-icon>
-        <v-card-title class="">Great to have you here!</v-card-title>
+        <v-card-title class="">{{ $setContent('GREAT_TO_HAVE_YOU') }}</v-card-title>
       </v-row>
       <v-form ref="ref" v-model="formValid">
         <v-text-field
@@ -36,8 +36,7 @@
         /> -->
       </v-form>
       <v-row class="mx-4 pb-4 info-text">
-        Your email and phone number are needed for login. We can use your phone
-        number and email to alert you of unordinary login behaviour.
+        {{ $setContent('INFO_IS_NEEDED') }}
       </v-row>
       <!-- <v-row class="mx-4 pb-8 info-text">
         We will keep your information between us and we will not spam you.
@@ -52,7 +51,7 @@
         <template>
           <CancelButton
             @cancel="submit"
-            v-bind="{label: 'Done', disabled: !(formValid && valid)}"
+            v-bind="{label: $setContent('DONE'), disabled: !(formValid && valid)}"
           />
         </template>
       </v-card-actions>
@@ -128,8 +127,8 @@ export default class FirstLoginModal extends Vue {
     const success = await this.$store.dispatch('modules/profile/update', data);
     this.$notifier.showMessage({
       content: success
-        ? 'Profile updated successfully'
-        : 'There was a network error. Try again.',
+        ? this.$setContent('PROFILE_UPDATED')
+        : this.$setContent('PROFILE_UPDATE_FAILED'),
       color: success ? 'success' : 'error',
     });
   }

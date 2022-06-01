@@ -16,20 +16,20 @@
                     id="fab-new-card"
                   >
                     <v-card-subtitle class="subheader pb-0">
-                      Welcome to make
+                      {{ $setContent('WELCOME_TO_MAKE') }}
                     </v-card-subtitle>
                     <v-card-title class="text-h4 pt-0">
-                      decisions!
+                      {{ $setContent('DECISIONS') }}
                     </v-card-title>
                   </div>
                   <v-card-text class="">
-                    How will you name your topic?
+                    {{ $setContent('NAME_YOUR_TOPIC') }}
                   </v-card-text>
                   <v-text-field
                     v-model="name"
                     maxLength="30"
                     counter="30"
-                    label="Set a topic"
+                    :label="$setContent('ADD_TOPIC')"
                     outlined
                     required
                     :rules="[rules.required, rules.name]"
@@ -39,7 +39,7 @@
                   <v-card-actions class="px-4 py-4">
                     <SubmitButton
                       @done="creationStepper += 1"
-                      v-bind="{label: 'Next', disabled: name.length < 2}"
+                      v-bind="{label: $setContent('NEXT'), disabled: name.length < 2}"
                     />
                   </v-card-actions>
                 </v-card>
@@ -52,21 +52,21 @@
                     id="fab-new-card"
                   >
                     <v-card-subtitle class="subheader pb-0"
-                      >Okay, this is</v-card-subtitle
+                      >{{ $setContent('OKAY_THIS_IS') }}</v-card-subtitle
                     >
                     <v-card-title class="text-h4 pt-0 word-break"
                       >{{ name }}!</v-card-title
                     >
                   </div>
                   <v-card-text class="">
-                    Here is a password for your topic. Change it if you want.
+                    {{ $setContent('HERE_IS_PW') }}
                   </v-card-text>
                   <v-text-field
                     v-model="password"
                     :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
                     :type="show ? 'text' : 'password'"
                     maxLength="20"
-                    label="Topic password"
+                    :label="$setContent('TOPIC_PASSWORD')"
                     outlined
                     required
                     autocomplete="off"
@@ -79,11 +79,11 @@
                   </v-text-field>
                   <v-card-actions class="px-4 py-4">
                     <v-btn text color="gray" @click="creationStepper -= 1">
-                      Back
+                      {{ $setContent('BACK') }}
                     </v-btn>
                     <SubmitButton
                       @done="creationStepper += 1"
-                      v-bind="{label: 'Next', disabled: !password}"
+                      v-bind="{label: $setContent('NEXT'), disabled: !password}"
                     />
                   </v-card-actions>
                 </v-card>
@@ -95,20 +95,19 @@
                     class="category-container px-6 py-3 round-top-8"
                     id="fab-new-card"
                   >
-                    <v-card-title class="text-h4">One last thing</v-card-title>
+                    <v-card-title class="text-h4">{{ $setContent('ONE_LAST_THING') }}</v-card-title>
                   </div>
                   <v-card-text class=""
-                    >We just need your name and email.</v-card-text
+                    >{{ $setContent('NAME_AND_EMAIL') }}</v-card-text
                   >
                   <v-text-field
                     v-model="creatorName"
-                    label="Your name"
+                    :label="$setContent('NAME')"
                     outlined
                     required
                     maxLength="30"
                     :rules="[rules.name]"
                     :value="creatorName"
-                    hint="It will only be visible by participants in this topic."
                     persistent-hint
                     class="mb-4 px-4"
                   ></v-text-field>
@@ -116,19 +115,19 @@
                     outlined
                     required
                     v-model="creatorEmail"
-                    label="Your email"
-                    hint="You will receive infos about this topic only. We will never spam you. No worries."
+                    :label="$setContent('EMAIL')"
+                    :hint="$setContent('NO_SPAM')"
                     persistent-hint
                     class="mb-4 px-4"
                     :rules="[rules.email]"
                   ></v-text-field>
                   <v-card-actions class="px-4 py-4">
                     <v-btn text color="gray" @click="creationStepper -= 1">
-                      Back
+                      {{ $setContent('BACK') }}
                     </v-btn>
                     <SubmitButton
                       @done="submit"
-                      v-bind="{label: 'Submit', disabled: !formValid}"
+                      v-bind="{label: $setContent('SUBMIT'), disabled: !formValid}"
                     />
                   </v-card-actions>
                 </v-card>
@@ -155,7 +154,7 @@ import {TeamInterface} from '~/store/modules/team';
 @Component({
   layout: 'simpleWithFooter',
   head() {
-    return {title: 'New meeting'};
+    return {title: this.$setContent('NEW_TOPIC')};
   },
   computed: mapState({
     team: (state: any) => state?.modules?.team,

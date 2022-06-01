@@ -216,7 +216,7 @@ export default class NoteEdit extends Vue {
     this.formValid = false;
     this.cardTitle = this.card?.title || '';
     this.cardContent = this.card?.content || '';
-    this.cardStatus = this.card?.status || 'Waiting';
+    this.cardStatus = this.card?.status || WAITING;
     this.sortedCategories = [];
     this.$emit('closeModal');
   }

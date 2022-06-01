@@ -17,7 +17,7 @@ import {Vue, Component} from 'vue-property-decorator';
 @Component({
   layout: 'simple',
   head() {
-    return {title: 'Sign in'};
+    return {title: this.$setContent('SIGN_IN')};
   },
 })
 export default class Login extends Vue {

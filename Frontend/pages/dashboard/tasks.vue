@@ -40,7 +40,7 @@ import {TeamInterface} from '~/store/modules/team';
 @Component({
   layout: 'dashboard',
   head() {
-    return {title: 'Tasks'};
+    return {title: this.$setContent('TASKS')};
   },
   middleware: ['auth'],
   computed: mapState({

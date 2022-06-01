@@ -195,7 +195,7 @@ export default class TeamMemberListing extends Vue {
   tableHeaders = [
     {text: this.$setContent('NAME'), sortable: true, value: 'name'},
     {text: this.$setContent('ADMIN'), sortable: true, value: 'isAdmin', width: '150px'},
-    // {text: 'Edit', sortable: false, value: 'editIcon', width: '100px'},
+    // {text: this.$setContent('EDIT'), sortable: false, value: 'editIcon', width: '100px'},
   ];
 
   addTeamMember() {
