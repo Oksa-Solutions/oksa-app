@@ -42,6 +42,9 @@ interface LanguagePack extends Record<string, string> {
   ADD_ORG: string;
   INVITE_COLLAB: string;
   BY_EMAIL_OR_NAME: string;
+  ADD_AN_EMAIL: string;
+  CONFIRMATION: string;
+  UNDOABLE: string;
   ACTIVE: string;
   CLOSED: string;
   ROWS_PER_PAGE: string;
@@ -55,7 +58,9 @@ interface LanguagePack extends Record<string, string> {
   RESET: string;
   CANCEL: string;
   DONE: string;
+  SEND: string;
   CLOSE: string;
+  DELETE: string;
   BACKLOG: string;
   STUCK: string;
   IN_PROGRESS: string;
@@ -110,6 +115,17 @@ interface LanguagePack extends Record<string, string> {
   IDEA_DELETION_FAILED: string;
   STATUS_UPDATED: string;
   STATUS_UPDATE_FAILED: string;
+  COLLABS_INVITED: string;
+  COLLAB_INVITE_FAILED: string;
+  MEMBERS_REMOVED: string;
+  MEMBER_REMOVE_FAILED: string;
+  SELECT_DEL_MEMBER: string;
+  INVITATION_PENDING: string;
+  ABOUT_TO_DELETE: string;
+  FROM_TEAM: string;
+  FROM_ORG: string;
+  UPDATE_ADMINS: string;
+  UPDATE_ADMINS_FAILED: string;
 }
 
 export const LANGUAGES: Record<string, LanguagePack> = {
@@ -157,6 +173,9 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     ADD_ORG: 'Add new organisation',
     INVITE_COLLAB: 'Invite a collaborator',
     BY_EMAIL_OR_NAME: 'By email or name',
+    ADD_AN_EMAIL: 'Add an email or search by name or email',
+    CONFIRMATION: 'Are you sure?',
+    UNDOABLE: 'This cannot be undone',
     ACTIVE: 'Active',
     CLOSED: 'Closed',
     ROWS_PER_PAGE: 'Rows per page',
@@ -171,7 +190,9 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     RESET: 'Reset',
     CANCEL: 'Cancel',
     DONE: 'Done',
+    SEND: 'Send',
     CLOSE: 'Close',
+    DELETE: 'Delete',
     BACKLOG: 'Backlog',
     STUCK: 'Stuck',
     IN_PROGRESS: 'In progress',
@@ -226,6 +247,17 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     IDEA_DELETION_FAILED: 'Deleting idea failed. Try again',
     STATUS_UPDATED: 'Status updated',
     STATUS_UPDATE_FAILED: 'Status update failed. Try again',
+    COLLABS_INVITED: 'Collaborators invited',
+    COLLAB_INVITE_FAILED: 'Inviting collaborators failed. Try again',
+    MEMBERS_REMOVED: 'Members removed',
+    MEMBER_REMOVE_FAILED: 'Removing members failed. Try again',
+    SELECT_DEL_MEMBER: 'Select members to be deleted',
+    INVITATION_PENDING: 'Invitation pending',
+    ABOUT_TO_DELETE: 'You are about to delete',
+    FROM_TEAM: 'member(s) from team',
+    FROM_ORG: 'member(s) from organisation',
+    UPDATE_ADMINS: 'Updating admins succeeded',
+    UPDATE_ADMINS_FAILED: 'Updating admins failed. Try again',
   },
   'FI': {
     SIGN_IN: 'Kirjaudu sisään',
@@ -255,7 +287,7 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     IDEAS_GATHERED: 'Kerätyt ideat',
     DECISIONS_MADE: 'Hyväksytty',
     IDEAS_READY: 'Toteutetut ideat',
-    CONTRIBUTORS: 'Edistäjät',
+    CONTRIBUTORS: 'Osallistujat',
     ADD_TOPIC: 'Luo ideaseinä',
     MANAGE_TOPICS: 'Hallitse ideaseiniä',
     NAME: 'Nimi',
@@ -271,6 +303,9 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     ADD_ORG: 'Luo organisaatio',
     INVITE_COLLAB: 'Lisää käyttäjä',
     BY_EMAIL_OR_NAME: 'Lisää sähköpostilla',
+    ADD_AN_EMAIL: 'Lisää sähköpostilla tai etsi nimellä tai sähköpostilla',
+    CONFIRMATION: 'Oletko varma?',
+    UNDOABLE: 'Tätä ei voi perua',
     ACTIVE: 'Aktiivinen ideaseinä',
     CLOSED: 'Suljettu',
     ROWS_PER_PAGE: 'Rivejä per sivu',
@@ -285,7 +320,9 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     RESET: 'Nollaa',
     CANCEL: 'Peruuta',
     DONE: 'Valmis',
+    SEND: 'Lähetä',
     CLOSE: 'Sulje',
+    DELETE: 'Poista',
     BACKLOG: 'Aloitteet',
     STUCK: 'Jumissa',
     IN_PROGRESS: 'Työn alla',
@@ -340,5 +377,16 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     IDEA_DELETION_FAILED: 'Ideakortin poistaminen epäonnistui. Yritä uudestaan',
     STATUS_UPDATED: 'Kortin tila päivitetty',
     STATUS_UPDATE_FAILED: 'Kortin tilan päivittäminen epäonnistui. Yritä uudestaan',
+    COLLABS_INVITED: 'Käyttäjä lisätty',
+    COLLAB_INVITE_FAILED: 'Käyttäjän lisääminen epäonnistui. Yritä uudestaan',
+    MEMBERS_REMOVED: 'Käyttäjät poistettu',
+    MEMBER_REMOVE_FAILED: 'Käyttäjien poistaminen epäonnistui. Yritä uudestaan',
+    SELECT_DEL_MEMBER: 'Valitse poistettavat käyttäjät',
+    INVITATION_PENDING: 'Odottava kutsu',
+    ABOUT_TO_DELETE: 'Olet poistamassa',
+    FROM_TEAM: 'käyttäjää tiimistä',
+    FROM_ORG: 'käyttäjää organisaatiosta',
+    UPDATE_ADMINS: 'Pääkäyttäjien päivittäminen onnistui',
+    UPDATE_ADMINS_FAILED: 'Pääkäyttäjien päivittäminen epäonnistui. Yritä uudestaan',
   },
 };

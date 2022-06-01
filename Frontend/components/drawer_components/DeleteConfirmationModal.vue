@@ -4,19 +4,19 @@
       <v-card-text>
         <v-card-title class="headline pb-6 realBlack--text">
           <v-icon class="mr-4" color="error">mdi-delete</v-icon>
-          <h4 prepend-icon="mdi-delete">Are you sure?</h4>
+          <h4 prepend-icon="mdi-delete">{{ $setContent('CONFIRMATION') }}</h4>
         </v-card-title>
 
         <v-card-subtitle class="px-6 py-3 rounded-0 semibold realBlack--text">
           {{ content }}
-          <br />This cannot be undone.
+          <br />{{ $setContent('UNDOABLE') }}
         </v-card-subtitle>
       </v-card-text>
 
       <v-card-actions>
         <v-spacer />
-        <CancelButton @cancel="cancel" v-bind="{label: 'Cancel'}" />
-        <v-btn color="error" @click="submit">Delete</v-btn>
+        <CancelButton @cancel="cancel" v-bind="{label: $setContent('CANCEL')}" />
+        <v-btn color="error" @click="submit">{{ $setContent('DELETE') }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

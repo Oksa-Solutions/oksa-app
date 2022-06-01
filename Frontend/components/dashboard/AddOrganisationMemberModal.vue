@@ -7,7 +7,7 @@
     >
       <div class="d-flex flex-row mx-6">
         <v-icon color="black">mdi-account-plus</v-icon>
-        <v-card-title class="bold"> Invite a collaborator </v-card-title>
+        <v-card-title class="bold">{{ $setContent('INVITE_COLLAB') }}</v-card-title>
       </div>
 
       <v-card

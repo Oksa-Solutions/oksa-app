@@ -13,9 +13,7 @@
     <DeleteConfirmationModal
       v-if="showDeleteModal"
       v-bind="{
-        content: `You are about to delete ${deletableMembers.length} member${
-          deletableMembers.length > 1 ? 's' : ''
-        } from team.`,
+        content: `${$setContent('ABOUT_TO_DELETE')} ${deletableMembers.length} ${$setContent('FROM_TEAM')}.`,
       }"
       @delete="confirmDelete"
     />
@@ -74,7 +72,7 @@
       </template>
       <template v-slot:item.name="{item}">
         <i v-if="item.name === 'default'">{{
-          item.email + ' (Invitation pending)'
+          item.email + ' (' + $setContent('INVITATION_PENDING') + ')'
         }}</i>
         <span v-else>{{ item.name }}</span>
       </template>
@@ -220,9 +218,9 @@ export default class TeamMemberListing extends Vue {
         },
       );
       this.$notifier.showMessage({
-        content: success
-          ? 'Members removed'
-          : 'Removing members failed. Try again',
+        content: this.$setContent(success
+          ? 'MEMBERS_REMOVED'
+          : 'MEMBER_REMOVE_FAILED'),
         color: success ? 'success' : 'error',
       });
       this.deletableMembers = [];
@@ -233,7 +231,7 @@ export default class TeamMemberListing extends Vue {
   async deleteMembers() {
     if (this.deletableMembers.length < 1) {
       this.$notifier.showMessage({
-        content: 'Select members to be deleted',
+        content: this.$setContent('SELECT_DEL_MEMBER'),
         color: 'warning',
       });
     } else {
@@ -268,9 +266,9 @@ export default class TeamMemberListing extends Vue {
       admins,
     });
     this.$notifier.showMessage({
-      content: success
-        ? 'Updating admins succeeded'
-        : 'Updating admins failed. Try again',
+      content: this.$setContent(success
+        ? 'UPDATE_ADMINS'
+        : 'UPDATE_ADMINS_FAILED'),
       color: success ? 'success' : 'error',
     });
     if (!success) {
