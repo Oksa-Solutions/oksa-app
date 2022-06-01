@@ -135,6 +135,11 @@ interface LanguagePack extends Record<string, string> {
   BRAND_NEW_TOPIC: string;
   LETS_START: string;
   NETWORK_ERROR: string;
+  COPY_CARD: string;
+  EDIT_CARD: string;
+  DELETE_CARD: string;
+  ABOUT_TO_DELETE_CATEGORY: string;
+  BACK: string;
 }
 
 export const LANGUAGES: Record<string, LanguagePack> = {
@@ -219,7 +224,7 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     IDEA_TITLE: 'Idea title',
     WRITE_YOUR_IDEA: 'Write your idea',
     SET_STATUS: 'Set status',
-    ADD_DATES: 'Add dates',
+    ADD_DATE: 'Add dates',
     SEARCH_TOPIC: 'Search in this topic',
     SHARE_TOPIC: 'Share topic',
     BY_CODE: 'By code',
@@ -233,7 +238,7 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     ARCHIVED: 'Archived',
     CATEGORIES: 'Categories',
     EDIT: 'Edit',
-    CREATE_CATEGORY: 'Create category',
+    CREATE_CATEGORY: 'Create a category',
     CREDITS: 'Credits',
     TOPIC_SETTINGS: 'Topic settings',
     TOPIC: 'Topic',
@@ -276,6 +281,11 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     BRAND_NEW_TOPIC: 'Brand new topic!',
     LETS_START: 'Let\'s get started!',
     NETWORK_ERROR: 'There was a network error. Try again.',
+    COPY_CARD: 'Copy card',
+    EDIT_CARD: 'Edit card',
+    DELETE_CARD: 'Delete card',
+    ABOUT_TO_DELETE_CATEGORY: 'You are about to delete category',
+    BACK: 'BACK',
   },
   'FI': {
     SIGN_IN: 'Kirjaudu sisään',
@@ -415,5 +425,10 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     BRAND_NEW_TOPIC: 'Ideaseinällesi!',
     LETS_START: 'Aloitetaan ideoimaan!',
     NETWORK_ERROR: 'Tapahtui verkkovirhe. Yritä uudestaan',
+    COPY_CARD: 'Kopioi kortti',
+    EDIT_CARD: 'Muokkaa korttia',
+    DELETE_CARD: 'Poista kortti',
+    ABOUT_TO_DELETE_CATEGORY: 'Olet poistamassa kateogrian',
+    BACK: 'TAKAISIN',
   },
 };

@@ -3,7 +3,7 @@
     <DeleteConfirmationModal
       v-if="showDelModal"
       v-bind="{
-        content: `You are about to delete category ${selectedCategory.name}.`,
+        content: `${$setContent('ABOUT_TO_DELETE_CATEGORY')} ${selectedCategory.name}.`,
       }"
       :categoryName="selectedCategory.name"
       @delete="reallyDelete"
@@ -54,7 +54,7 @@
         <v-list-item-action>
           <v-icon>mdi-plus</v-icon>
         </v-list-item-action>
-        <v-list-item-content>Create new category</v-list-item-content>
+        <v-list-item-content>{{ $setContent('CREATE_CATEGORY') }}</v-list-item-content>
       </v-list-item>
       <CreateCategoryModal
         v-if="editCategoryModal || newCategory"

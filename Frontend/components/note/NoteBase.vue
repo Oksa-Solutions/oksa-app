@@ -79,7 +79,7 @@
               <v-icon>{{ statusIcon }}</v-icon>
             </v-avatar>
 
-            <span v-else>{{ card.status }}</span>
+            <span v-else>{{ setStatusText(card.status) }}</span>
           </v-chip>
         </template>
 
@@ -93,7 +93,7 @@
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item-title>{{ setStatusText(item.title) }}</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -110,18 +110,18 @@
             <v-list-item-icon
               ><v-icon>mdi-content-copy</v-icon></v-list-item-icon
             >
-            <v-list-item-title>Copy card</v-list-item-title>
+            <v-list-item-title>{{ $setContent('COPY_CARD') }}</v-list-item-title>
           </v-list-item>
           <v-list-item link @click="openEditModal">
             <v-list-item-icon><v-icon>mdi-pencil</v-icon></v-list-item-icon>
-            <v-list-item-title>Edit card</v-list-item-title>
+            <v-list-item-title>{{ $setContent('EDIT_CARD') }}</v-list-item-title>
           </v-list-item>
           <v-list-item link @click="deleteCard">
             <v-list-item-icon
               ><v-icon color="red">mdi-delete</v-icon></v-list-item-icon
             >
             <v-list-item-title :style="{color: 'red'}"
-              >Delete card</v-list-item-title
+              >{{ $setContent('DELETE_CARD')}}</v-list-item-title
             >
           </v-list-item>
         </v-list>
@@ -275,6 +275,19 @@ export default class NoteBase extends Vue {
       color: success ? 'success' : 'error',
     });
     this.updateStatus(status);
+  }
+
+  setStatusText(status: string) {
+    switch (status) {
+      case APPROVED:
+        return this.$setContent('APPROVED');
+      case WAITING:
+        return this.$setContent('WAITING');
+      case ARCHIVED:
+        return this.$setContent('ARCHIVED');
+      default:
+        return '';
+    }
   }
 
   updateStatus(status: string) {

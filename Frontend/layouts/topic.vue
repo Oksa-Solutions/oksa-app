@@ -54,7 +54,7 @@
                 </v-list-item-action>
                 <v-list-item-content>
                   <v-list-item-title
-                    v-text="'Share topic'"
+                    v-text="$setContent('SHARE_TOPIC')"
                     class="semibold"
                   ></v-list-item-title>
                 </v-list-item-content>
@@ -68,14 +68,14 @@
         <v-divider></v-divider>
 
         <v-subheader v-if="!miniVariant" class="subheader semibold">
-          Status
+          {{ $setContent('STATUS') }}
         </v-subheader>
         <StatusListing />
 
         <v-divider></v-divider>
 
         <v-subheader v-if="!miniVariant" class="subheader semibold">
-          Categories
+          {{ $setContent('CATEGORIES') }}
           <v-spacer></v-spacer>
           <v-btn v-if="editCategories" icon @click="this.toggleTrashBinIcon">
             <v-icon color="var(--v-primary-base)">{{
@@ -89,7 +89,7 @@
             color="var(--v-primary-base)"
             @click="closeCategoryEditing"
           >
-            BACK
+            {{ $setContent('BACK') }}
           </v-btn>
           <v-btn
             v-if="!editCategories"
@@ -97,7 +97,7 @@
             color="var(--v-primary-base)"
             @click="startCategoryEditing"
           >
-            EDIT
+            {{ $setContent('EDIT') }}
           </v-btn>
         </v-subheader>
         <CategoriesListing
@@ -118,7 +118,7 @@
                   </v-list-item-action>
                   <v-list-item-content>
                     <v-list-item-title
-                      v-text="'Credits'"
+                      v-text="$setContent('CREDITS')"
                       class="semibold"
                     ></v-list-item-title>
                   </v-list-item-content>
@@ -136,7 +136,7 @@
                   </v-list-item-action>
                   <v-list-item-content>
                     <v-list-item-title
-                      v-text="'Settings'"
+                      v-text="$setContent('TOPIC_SETTINGS')"
                       class="semibold"
                     ></v-list-item-title>
                   </v-list-item-content>
@@ -167,7 +167,7 @@
                 flat
                 solo
                 prepend-inner-icon="mdi-magnify"
-                label="Search in this topic"
+                :label="$setContent('SEARCH_TOPIC')"
                 cols="1"
                 class="mb-0 flex-grow-1 flex-shrink-0"
                 :value="searchText"
