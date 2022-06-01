@@ -68,7 +68,7 @@
       <v-card-actions class="pa-6 pt-0">
         <v-spacer></v-spacer>
         <template>
-          <CancelButton @cancel="done" v-bind="{label: 'Done'}" />
+          <CancelButton @cancel="done" v-bind="{label: $setContent('DONE')}" />
         </template>
       </v-card-actions>
     </v-card>

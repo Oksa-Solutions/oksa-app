@@ -280,8 +280,7 @@ export default class ID extends Vue {
       if (this.es?.readyState === EventSource.CLOSED) {
         console.log('Event Stream was closed');
         this.$notifier.showMessage({
-          content:
-            'Application offline, if you wish to continue editing refresh the page',
+          content: this.$setContent('APP_OFFLINE'),
           color: 'warning',
         });
         this.es?.close();
