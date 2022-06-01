@@ -59,8 +59,10 @@ interface LanguagePack extends Record<string, string> {
   CANCEL: string;
   DONE: string;
   SEND: string;
+  SAVE: string;
   CLOSE: string;
   DELETE: string;
+  DISCARD: string;
   BACKLOG: string;
   STUCK: string;
   IN_PROGRESS: string;
@@ -75,6 +77,8 @@ interface LanguagePack extends Record<string, string> {
   SET_CATEGORY: string;
   IDEA_TITLE: string;
   WRITE_YOUR_IDEA: string;
+  SET_STATUS: string;
+  ADD_DATE: string;
   SEARCH_TOPIC: string;
   SHARE_TOPIC: string;
   BY_CODE: string;
@@ -126,6 +130,11 @@ interface LanguagePack extends Record<string, string> {
   FROM_ORG: string;
   UPDATE_ADMINS: string;
   UPDATE_ADMINS_FAILED: string;
+  APP_OFFLINE: string;
+  WELCOME_TO: string;
+  BRAND_NEW_TOPIC: string;
+  LETS_START: string;
+  NETWORK_ERROR: string;
 }
 
 export const LANGUAGES: Record<string, LanguagePack> = {
@@ -191,8 +200,10 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     CANCEL: 'Cancel',
     DONE: 'Done',
     SEND: 'Send',
+    SAVE: 'Save',
     CLOSE: 'Close',
     DELETE: 'Delete',
+    DISCARD: 'Discard',
     BACKLOG: 'Backlog',
     STUCK: 'Stuck',
     IN_PROGRESS: 'In progress',
@@ -207,6 +218,8 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     SET_CATEGORY: 'Set category',
     IDEA_TITLE: 'Idea title',
     WRITE_YOUR_IDEA: 'Write your idea',
+    SET_STATUS: 'Set status',
+    ADD_DATES: 'Add dates',
     SEARCH_TOPIC: 'Search in this topic',
     SHARE_TOPIC: 'Share topic',
     BY_CODE: 'By code',
@@ -258,6 +271,11 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     FROM_ORG: 'member(s) from organisation',
     UPDATE_ADMINS: 'Updating admins succeeded',
     UPDATE_ADMINS_FAILED: 'Updating admins failed. Try again',
+    APP_OFFLINE: 'Application offline, refresh the page if you wish to continue editing',
+    WELCOME_TO: 'Welcome to your',
+    BRAND_NEW_TOPIC: 'Brand new topic!',
+    LETS_START: 'Let\'s get started!',
+    NETWORK_ERROR: 'There was a network error. Try again.',
   },
   'FI': {
     SIGN_IN: 'Kirjaudu sisään',
@@ -321,8 +339,10 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     CANCEL: 'Peruuta',
     DONE: 'Valmis',
     SEND: 'Lähetä',
+    SAVE: 'Tallenna',
     CLOSE: 'Sulje',
     DELETE: 'Poista',
+    DISCARD: 'Hylkää',
     BACKLOG: 'Aloitteet',
     STUCK: 'Jumissa',
     IN_PROGRESS: 'Työn alla',
@@ -337,6 +357,8 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     SET_CATEGORY: 'Luo kategoria',
     IDEA_TITLE: 'Idean otsikko',
     WRITE_YOUR_IDEA: 'Kuvaile ideaa',
+    SET_STATUS: 'Lisää tila',
+    ADD_DATE: 'Lisää määräpäivä',
     SEARCH_TOPIC: 'Hae kortti hakusanalla',
     SHARE_TOPIC: 'Jaa ideaseinä',
     BY_CODE: 'Ideaseinän koodilla',
@@ -388,5 +410,10 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     FROM_ORG: 'käyttäjää organisaatiosta',
     UPDATE_ADMINS: 'Pääkäyttäjien päivittäminen onnistui',
     UPDATE_ADMINS_FAILED: 'Pääkäyttäjien päivittäminen epäonnistui. Yritä uudestaan',
+    APP_OFFLINE: 'Sovellus on offline, päivitä sivu jos haluat jatkaa muokkaamista',
+    WELCOME_TO: 'Tervetuloa tuliterälle',
+    BRAND_NEW_TOPIC: 'Ideaseinällesi!',
+    LETS_START: 'Aloitetaan ideoimaan!',
+    NETWORK_ERROR: 'Tapahtui verkkovirhe. Yritä uudestaan',
   },
 };

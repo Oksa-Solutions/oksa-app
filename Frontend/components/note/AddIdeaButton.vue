@@ -8,7 +8,7 @@
     class="rounded-pill justify-center"
   >
     <v-icon left>$vuetify.icons.oksa-mini</v-icon>
-    Add an idea
+    {{ $setContent('ADD_IDEA') }}
     <NoteEdit v-if="showEditModal" @closeModal="closeModal" />
   </v-btn>
 </template>

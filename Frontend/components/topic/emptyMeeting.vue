@@ -5,12 +5,12 @@
     </v-row>
     <v-row class="mt-8">
       <p class="mb-1 text-h5 welcomeTopic">
-        <span class="welcomeTo">Welcome to your</span>
+        <span class="welcomeTo">{{ $setContent('WELCOME_TO') }}</span>
         <br />
-        <span class="brandNewTopic">Brand new topic!</span>
+        <span class="brandNewTopic">{{ $setContent('BRAND_NEW_TOPIC') }}</span>
       </p>
     </v-row>
-    <v-row class="py-2 semibold"> Let's get started! </v-row>
+    <v-row class="py-2 semibold">{{ $setContent('LETS_START') }}</v-row>
     <v-row class="py-8">
       <AddIdeaButton v-bind="{emptyMeeting: true}" />
     </v-row>

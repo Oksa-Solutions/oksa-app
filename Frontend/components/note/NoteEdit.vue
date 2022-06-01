@@ -26,7 +26,7 @@
                   {{
                     sortedCategories.length > 0
                       ? sortedCategories.map((c) => c.name).join(', ')
-                      : 'Set category...'
+                      : $setContent('SET_CATEGORY')+'...'
                   }}
                 </div>
               </div>
@@ -71,7 +71,7 @@
             dense
             class="rounded-0 headline"
             background-color="transparent"
-            placeholder="Idea title"
+            :placeholder="$setContent('IDEA_TITLE')"
           ></v-text-field>
         </v-card-title>
 
@@ -86,14 +86,14 @@
             rows="3"
             auto-grow
             background-color="transparent"
-            placeholder="Write your idea..."
+            :placeholder="$setContent('WRITE_YOUR_IDEA')+'...'"
           ></v-textarea>
           <v-item-group class="mt-6 px-3" style="visibility: hidden">
             <v-btn text outlined disabled class="">
-              <v-icon left>mdi-clock-outline</v-icon>Add dates
+              <v-icon left>mdi-clock-outline</v-icon>{{ $setContent('ADD_DATE') }}
             </v-btn>
             <v-btn text outlined disabled>
-              <v-icon left>mdi-plus</v-icon>Set status
+              <v-icon left>mdi-plus</v-icon>{{ $setContent('SET_STATUS') }}
             </v-btn>
           </v-item-group>
         </v-card-text>
@@ -103,12 +103,12 @@
         <v-spacer />
         <CancelButton
           @cancel="cancel"
-          v-bind="{label: editCard ? 'Cancel' : 'Discard'}"
+          v-bind="{label: $setContent(editCard ? 'CANCEL' : 'DISCARD')}"
         />
         <SubmitButton
           @done="submit"
           v-bind="{
-            label: editCard ? 'Save' : 'Add',
+            label: $setContent(editCard ? 'SAVE' : 'ADD'),
             disabled: !titleOrContentNotEmpty(),
           }"
         />
@@ -206,7 +206,7 @@ export default class NoteEdit extends Vue {
     success
       ? this.cancel()
       : this.$notifier.showMessage({
-          content: 'There was a network error. Try again.',
+          content: this.$setContent('NETWORK_ERROR'),
           color: 'error',
         });
   }
