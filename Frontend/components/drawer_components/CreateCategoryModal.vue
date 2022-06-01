@@ -13,7 +13,7 @@
         class="py-0 px-6 text-h5 card-title"
         style="font-weight: 700"
       >
-        {{ newCategory ? 'Create a' : 'Edit the' }} category
+        {{ newCategory ? $setContent('CREATE_CATEGORY') : $setContent('EDIT_CATEGORY') }}
       </v-card-title>
 
       <v-form ref="form" v-model="formValid">
@@ -24,7 +24,7 @@
             single-line
             flat
             dense
-            placeholder="Category name..."
+            :placeholder="$setContent('CATEGORY_NAME')+'...'"
             background-color="transparent"
             :rules="[rules.categoryName, rules.uniqueCategoryName]"
           />
@@ -38,12 +38,12 @@
           <v-spacer />
           <CancelButton
             @cancel="cancel"
-            v-bind="{label: newCategory ? 'Discard' : 'Cancel'}"
+            v-bind="{label: newCategory ? $setContent('DISCARD') : $setContent('CANCEL')}"
           />
           <SubmitButton
             @done="submit"
             v-bind="{
-              label: newCategory ? 'Add' : 'Save',
+              label: newCategory ? $setContent('ADD') : $setContent('SAVE'),
               disabled: !formValid,
             }"
           />

@@ -81,6 +81,7 @@ interface LanguagePack extends Record<string, string> {
   ADD_DATE: string;
   SEARCH_TOPIC: string;
   SHARE_TOPIC: string;
+  COPY_LINK: string;
   BY_CODE: string;
   TOPIC_ID: string;
   PASSWORD: string;
@@ -93,6 +94,7 @@ interface LanguagePack extends Record<string, string> {
   CATEGORIES: string;
   EDIT: string;
   CREATE_CATEGORY: string;
+  EDIT_CATEGORY: string;
   CREDITS: string;
   TOPIC_SETTINGS: string;
   TOPIC: string;
@@ -140,6 +142,8 @@ interface LanguagePack extends Record<string, string> {
   DELETE_CARD: string;
   ABOUT_TO_DELETE_CATEGORY: string;
   BACK: string;
+  CATEGORY_NAME: string;
+  REQUIRED_CATEGORY_NAME: string;
 }
 
 export const LANGUAGES: Record<string, LanguagePack> = {
@@ -227,6 +231,7 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     ADD_DATE: 'Add dates',
     SEARCH_TOPIC: 'Search in this topic',
     SHARE_TOPIC: 'Share topic',
+    COPY_LINK: 'Copy link',
     BY_CODE: 'By code',
     TOPIC_ID: 'Topic ID',
     PASSWORD: 'Password',
@@ -239,6 +244,7 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     CATEGORIES: 'Categories',
     EDIT: 'Edit',
     CREATE_CATEGORY: 'Create a category',
+    EDIT_CATEGORY: 'Edit the category',
     CREDITS: 'Credits',
     TOPIC_SETTINGS: 'Topic settings',
     TOPIC: 'Topic',
@@ -286,6 +292,8 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     DELETE_CARD: 'Delete card',
     ABOUT_TO_DELETE_CATEGORY: 'You are about to delete category',
     BACK: 'BACK',
+    CATEGORY_NAME: 'Category name',
+    REQUIRED_CATEGORY_NAME: 'Category name is required',
   },
   'FI': {
     SIGN_IN: 'Kirjaudu sisään',
@@ -371,6 +379,7 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     ADD_DATE: 'Lisää määräpäivä',
     SEARCH_TOPIC: 'Hae kortti hakusanalla',
     SHARE_TOPIC: 'Jaa ideaseinä',
+    COPY_LINK: 'Kopioi linkki',
     BY_CODE: 'Ideaseinän koodilla',
     TOPIC_ID: 'Ideaseinän tunnus',
     PASSWORD: 'Salasana',
@@ -378,11 +387,12 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     JOIN_TOPIC_ALERT: 'Kuka tahansa tällä linkillä voi käyttää ideaseinää',
     STATUS: 'Kortin tila',
     APPROVED: 'Hyväksytty',
-    WAITING: 'Odottaa päätöstä',
+    WAITING: 'Odottaa',
     ARCHIVED: 'Arkistoitu',
     CATEGORIES: 'Kategoriat',
     EDIT: 'Muokkaa',
     CREATE_CATEGORY: 'Luo kategoria',
+    EDIT_CATEGORY: 'Muokkaa kategoriaa',
     CREDITS: 'Tekijät',
     TOPIC_SETTINGS: 'Seinän asetukset',
     TOPIC: 'Ideaseinän nimi',
@@ -430,5 +440,7 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     DELETE_CARD: 'Poista kortti',
     ABOUT_TO_DELETE_CATEGORY: 'Olet poistamassa kateogrian',
     BACK: 'TAKAISIN',
+    CATEGORY_NAME: 'Kategorian nimi',
+    REQUIRED_CATEGORY_NAME: 'Kategorian nimi on pakollinen',
   },
 };

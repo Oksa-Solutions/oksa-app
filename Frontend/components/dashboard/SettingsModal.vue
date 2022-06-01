@@ -2,11 +2,11 @@
   <v-card class="rounded-lg">
     <v-card-title class="headline pb-6">
       <v-icon class="mr-4 realBlack--text">mdi-cog</v-icon>
-      <h4 prepend-icon="mdi-cog">Topic settings</h4>
+      <h4 prepend-icon="mdi-cog">{{ $setContent('TOPIC_SETTINGS') }}</h4>
     </v-card-title>
 
     <v-card-text>
-      <p>Topic</p>
+      <p>{{ $setContent('TOPIC') }}</p>
       <v-text-field
         v-model="meetingName"
         outlined
@@ -16,7 +16,7 @@
         :label="this.$store.state.modules.meeting.name"
       ></v-text-field>
 
-      <p>Topic password</p>
+      <p>{{ $setContent('TOPIC_PASSWORD') }}</p>
       <v-text-field
         v-model="meetingPassword"
         outlined
@@ -28,25 +28,25 @@
 
       <v-switch
         v-model="$vuetify.theme.dark"
-        label="Dark mode on/off"
+        :label="$setContent('DARK_MODE_TOGGLE')"
         color="primary"
         @change="toggleDarkMode()"
       ></v-switch>
       <v-switch
         v-model="closeTopic"
-        label="Close topic"
+        :label="$setContent('CLOSE_TOPIC')"
         color="primary"
         disabled
       ></v-switch>
       <v-btn text disabled color="error" class="delete">
         <v-icon>mdi-delete</v-icon>
-        <span class="pl-2">Delete topic</span>
+        <span class="pl-2">{{ $setContent('DELETE_TOPIC') }}</span>
       </v-btn>
     </v-card-text>
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <CancelButton @cancel="closeModal" v-bind="{label: 'Done'}" />
+      <CancelButton @cancel="closeModal" v-bind="{label: $setContent('DONE')}" />
     </v-card-actions>
   </v-card>
 </template>
