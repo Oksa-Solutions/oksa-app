@@ -150,7 +150,7 @@ import {TeamInterface} from '~/store/modules/team';
 @Component({
   layout: 'dashboard',
   head() {
-    return {title: 'Overview'};
+    return {title: this.$setContent('OVERVIEW')};
   },
   middleware: ['auth', 'team'],
   computed: mapState({

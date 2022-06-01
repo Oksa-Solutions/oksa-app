@@ -29,7 +29,7 @@ export default class MeetingLink extends Vue {
     textToCopy.select();
     document.execCommand('copy');
     this.$notifier.showMessage({
-      content: 'Link copied',
+      content: this.$setContent('LINK_COPIED'),
       color: 'success',
     });
   }

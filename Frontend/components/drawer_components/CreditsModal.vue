@@ -52,7 +52,7 @@
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <CancelButton @cancel="closeModal" v-bind="{label: 'Done'}" />
+      <CancelButton @cancel="closeModal" v-bind="{label: $setContent('DONE')}" />
     </v-card-actions>
   </v-card>
 </template>

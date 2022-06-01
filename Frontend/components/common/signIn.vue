@@ -227,7 +227,7 @@ export default class SignIn extends Vue {
         console.warn('Forbidden');
       } else if (err?.response?.status === 404) {
         this.$notifier.showMessage({
-          content: 'No premium subscription',
+          content: this.$setContent('NO_PREMIUM'),
           color: 'error',
         });
         console.warn('Faced error during authentication');

@@ -13,19 +13,17 @@
       <v-col md="6" sm="12" class="d-flex flex-column">
         <v-row class="d-flex flex-column" style="z-index: 1">
           <h3 class="slogan">
-            Molding your ideas into diamonds is a team effort.
+            {{ $setContent('HOME_HEADER') }}
           </h3>
           <p class="pitch">
-            Write, vote and allocate. Oksa is an application for all of you who
-            need to get a team to row in the same direction. We have been there
-            - trying to get all those good ideas work and people behind them.
+            {{ $setContent('HOME_INGRESS') }}
           </p>
         </v-row>
 
         <v-row class="mt-8 flex-column">
           <v-btn nuxt to="/new/" color="primary" large>
             <v-icon left>$vuetify.icons.oksa-mini</v-icon>
-            <span class="createButton"> Set a topic </span>
+            <span class="createButton">{{ $setContent('CREATE_TOPIC') }}</span>
           </v-btn>
           <v-divider class="mt-8 mb-6" />
           <v-form
@@ -42,7 +40,7 @@
               class="shrink"
               prepend-inner-icon="mdi-keyboard"
               :rules="[rules.required, rules.id]"
-              label="Enter topic code"
+              :label="$setContent('ENTER_TOPIC_CODE' )"
               v-mask="'NNN-NNN-NNN'"
             />
             <v-text-field
@@ -54,11 +52,11 @@
               class="shrink"
               prepend-inner-icon="mdi-lock"
               :rules="[rules.required, rules.password]"
-              label="Enter password"
+              :label="$setContent('ENTER_PASSWORD')"
             />
             <SubmitButton
               @done="submit"
-              v-bind="{label: 'Join', disabled: !valid}"
+              v-bind="{label: $setContent('JOIN'), disabled: !valid}"
             />
           </v-form>
         </v-row>
@@ -77,7 +75,7 @@ import {AUTH_MEETING, SET_USER_AUTHENTICATED} from '../store/mutationTypes';
 @Component({
   layout: 'simple',
   head() {
-    return {title: 'Home'};
+    return {title: this.$setContent('HOME')};
   },
 })
 export default class PagesIndex extends Vue {
@@ -121,7 +119,7 @@ export default class PagesIndex extends Vue {
     } else {
       // IF error: show Snackbar error
       this.$notifier.showMessage({
-        content: 'Invalid meeting code or password. Try again.',
+        content: this.$setContent('INVALID_CODE_OR_PW'),
         color: 'error',
       });
     }

@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="d-flex flex-column pa-0" style="height: 100vh">
     <span>
-      <v-card-title class="pt-4 px-8 elevation-3 bold"> Tasks </v-card-title>
+      <v-card-title class="pt-4 px-8 elevation-3 bold">{{ $setContent('TASKS') }}</v-card-title>
     </span>
 
     <div @click="openTopicFilter" class="px-4 pointer-cursor">
@@ -12,7 +12,7 @@
       />
       <v-card-text class="topic-selection">
         <v-icon color="primary">mdi-playlist-check</v-icon>
-        {{ selectedTopics.length }}/{{ meetings.length }} displayed topics
+        {{ selectedTopics.length }}/{{ meetings.length }} {{ $setContent('DISPLAYED_TOPICS') }}
       </v-card-text>
     </div>
 
@@ -32,7 +32,7 @@ import {TeamInterface} from '~/store/modules/team';
 @Component({
   layout: 'dashboard',
   head() {
-    return {title: 'Tasks'};
+    return {title: this.$setContent('TASKS')};
   },
   middleware: ['auth', 'team'],
   computed: mapState({

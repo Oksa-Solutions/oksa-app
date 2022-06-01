@@ -106,7 +106,7 @@ export default class SignInComponent extends Vue {
     },
   ];
   listItemsThree = [
-    // {icon: 'mdi-cog', title: 'Account settings', action: this.openSettings},
+    // {icon: 'mdi-cog', title: this.$setContent('ACCOUNT_SETTINGS'), action: this.openSettings},
     {icon: 'mdi-logout', title: this.$setContent('SIGN_OUT'), action: this.signOut},
   ];
   window = {

@@ -68,7 +68,7 @@ export default class KanbanColumn extends Vue {
       taskStatus: card.taskStatus,
     });
     this.$notifier.showMessage({
-      content: success ? 'Status updated' : 'Status update failed. Try again',
+      content: this.$setContent(success ? 'STATUS_UPDATED' : 'STATUS_UPDATE_FAILED'),
       color: success ? 'success' : 'error',
     });
     if (success) {

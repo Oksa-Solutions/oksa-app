@@ -3,17 +3,17 @@
     <v-card class="rounded-lg">
       <v-card-title class="headline pb-6">
         <v-icon class="mr-4 realBlack--text">mdi-link</v-icon>
-        <h4>You're all set!</h4>
+        <h4>{{ $setContent('ALL_SET') }}!</h4>
       </v-card-title>
 
       <v-card-text>
-        <p>Share this link with pepole you want in the topic</p>
+        <p>{{ $setContent('SHARE_THIS_LINK') }}</p>
         <MeetingLink />
       </v-card-text>
 
       <v-card-actions class="pb-6 pr-6">
         <v-spacer></v-spacer>
-        <SubmitButton @done="moveToMeeting" v-bind="{label: 'Done'}" />
+        <SubmitButton @done="moveToMeeting" v-bind="{label: $setContent('DONE')}" />
       </v-card-actions>
     </v-card>
   </v-dialog>

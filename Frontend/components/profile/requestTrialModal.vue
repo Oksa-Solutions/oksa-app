@@ -2,14 +2,13 @@
   <v-dialog value="true" max-width="400px" persistent>
     <v-card>
       <v-form ref="form" v-model="valid" @submit.prevent="() => false">
-        <v-card-title class="bold pb-6"> Request for trial </v-card-title>
+        <v-card-title class="bold pb-6">{{ $setContent('REQUEST_TRIAL') }}</v-card-title>
         <v-card-subtitle>
-          We'll get in touch with you about your trial. You can leave your phone
-          number if you want us to call to you
+          {{ $setContent('TRIAL_INGRESS') }}
         </v-card-subtitle>
         <v-text-field
           v-model="name"
-          label="Name"
+          :label="$setContent('NAME')"
           outlined
           required
           maxLength="30"
@@ -20,7 +19,7 @@
 
         <v-text-field
           v-model="email"
-          label="Email"
+          :label="$setContent('EMAIL')"
           outlined
           required
           maxLength="30"
@@ -31,7 +30,7 @@
 
         <v-text-field
           v-model="phoneNumber"
-          label="Phone number"
+          :label="$setContent('PHONE')"
           outlined
           maxLength="30"
           :value="phoneNumber"
@@ -40,10 +39,10 @@
 
         <v-card-actions>
           <v-spacer />
-          <CancelButton @cancel="closeModal" v-bind="{label: 'Cancel'}" />
+          <CancelButton @cancel="closeModal" v-bind="{label: $setContent('CANCEL')}" />
           <SubmitButton
             @done="submit"
-            v-bind="{label: 'Request', disabled: !valid}"
+            v-bind="{label: $setContent('REQUEST'), disabled: !valid}"
           />
         </v-card-actions>
       </v-form>
@@ -76,14 +75,14 @@ export default class RequestTrialModal extends Vue {
         email: this.email,
         phoneNumber: this.phoneNumber,
       });
-      msg = "Thank you for contacting us. We'll get in touch with you!";
+      msg = this.$setContent('THANK_YOU_FOR_CONTACTING');
     } catch (err) {
       if (err.response.status === 400) {
         msg = 'Missing key(s) in body';
       } else if (err.response.status === 404) {
-        msg = 'Sending request failed, Try again.';
+        msg = 'Sending request failed. Try again.';
       } else {
-        msg = 'There was a network error. Try again.';
+        msg = this.$setContent('NETWORK_ERROR');
       }
     }
 

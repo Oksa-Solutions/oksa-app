@@ -200,9 +200,9 @@ export default class AddTeamMemberModal extends Vue {
       users: newUsers,
     });
     this.$notifier.showMessage({
-      content: success
-        ? this.$setContent('COLLABS_INVITED')
-        : this.$setContent('COLLAB_INVITE_FAILED'),
+      content: this.$setContent(success
+        ? 'COLLABS_INVITED'
+        : 'COLLAB_INVITE_FAILED'),
       color: success ? 'success' : 'error',
     });
     if (success) {
