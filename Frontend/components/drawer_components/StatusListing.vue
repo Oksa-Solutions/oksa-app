@@ -13,7 +13,7 @@
           <v-icon :color="item.color">{{ item.icon }}</v-icon>
         </v-list-item-action>
         <v-list-item-content>
-          <v-list-item-title v-text="item.title" class="semibold" />
+          <v-list-item-title v-text="setStatus(item.title)" class="semibold" />
         </v-list-item-content>
       </v-list-item>
     </v-list-item-group>
@@ -34,21 +34,31 @@ export default class StatusListing extends Vue {
       icon: 'mdi-checkbox-marked-circle',
       color: 'ok',
       title: APPROVED,
-      to: '/',
     },
     {
       icon: 'mdi-clock-outline',
       color: 'wait',
       title: WAITING,
-      to: '/',
     },
     {
       icon: 'mdi-archive-arrow-down',
       color: 'archived',
       title: ARCHIVED,
-      to: '/',
     },
   ];
+
+  setStatus(status: string) {
+    switch (status) {
+      case APPROVED:
+        return this.$setContent('APPROVED');
+      case WAITING:
+        return this.$setContent('WAITING');
+      case ARCHIVED:
+        return this.$setContent('ARCHIVED');
+      default:
+        return '';
+    }
+  }
 
   activeStatusColor(status: string) {
     return this.$store.state.modules.filters.filteredStatus.includes(status)

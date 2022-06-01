@@ -121,6 +121,7 @@
 //import Vue from 'vue';
 //import Component from 'vue-class-component';
 import {Vue, Component, Prop} from 'vue-property-decorator';
+import { WAITING } from '~/assets/constants';
 import {CardInterface, CategoryInterface} from '../../store/modules/cards';
 
 @Component({
@@ -140,7 +141,7 @@ export default class NoteEdit extends Vue {
     : [];
   cardTitle: string = this.card?.title || '';
   cardContent: string = this.card?.content || '';
-  cardStatus: string = this.card?.status || 'Waiting';
+  cardStatus: string = this.card?.status || WAITING;
 
   titleOrContentNotEmpty() {
     return this.cardTitle.length > 0 || this.cardContent.length > 0;
