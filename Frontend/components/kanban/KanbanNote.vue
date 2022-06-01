@@ -37,7 +37,7 @@
 
       <div class="px-6 mb-3 showMore" v-if="card.content.length > maxLength">
         <a @click.stop.capture="toggleAllContent(!showAll)">
-          {{ showAll ? 'Show less' : 'Show more' }}
+          {{ showAll ? $setContent('SHOW_LESS') : $setContent('SHOW_MORE') }}
         </a>
       </div>
 

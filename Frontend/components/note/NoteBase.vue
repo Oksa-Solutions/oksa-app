@@ -243,7 +243,7 @@ export default class NoteBase extends Vue {
 
     const res = await this.$store.dispatch('modules/cards/copyCard', newCard);
     this.$notifier.showMessage({
-      content: res.success ? 'Card copied' : 'Copying card failed. Try again.',
+      content: this.$setContent(res.success ? 'CARD_COPIED' : 'CARD_COPY_FAILED'),
       color: res.success ? 'success' : 'error',
     });
     if (res.success) {
@@ -258,7 +258,7 @@ export default class NoteBase extends Vue {
       remover: this.$store.state.modules.user.uuid,
     });
     this.$notifier.showMessage({
-      content: success ? 'Idea deleted' : 'Deletion failed. Try again.',
+      content: this.$setContent(success ? 'IDEA_DELETED' : 'IDEA_DELETION_FAILED'),
       color: success ? 'success' : 'error',
     });
   }
@@ -271,7 +271,7 @@ export default class NoteBase extends Vue {
       status,
     });
     this.$notifier.showMessage({
-      content: success ? 'Status updated' : 'Status update failed. Try again',
+      content: this.$setContent(success ? 'STATUS_UPDATED' : 'STATUS_UPDATE_FAILED'),
       color: success ? 'success' : 'error',
     });
     this.updateStatus(status);

@@ -2,6 +2,7 @@
   <div class="d-flex overflow-x-auto kanban-wrapper" style="height: 100%">
     <KanbanColumn
       v-bind="{
+        columnTitle: $setContent('BACKLOG'),
         title: 'Backlog',
         cards: cards
           .filter(
@@ -24,6 +25,7 @@
       v-for="title in taskStatusArr"
       :key="title"
       v-bind="{
+        columnTitle: getTitle(title),
         title,
         cards: cards
           .filter(
@@ -63,6 +65,19 @@ import {MeetingInterface} from '~/store/modules/meeting';
 export default class KanbanView extends Vue {
   taskStatusArr: string[] = [STUCK, IN_PROGRESS, DONE];
   APPROVED: string = APPROVED;
+
+  getTitle(title: string) {
+    switch(title) {
+      case STUCK:
+        return this.$setContent('STUCK');
+      case IN_PROGRESS:
+        return this.$setContent('IN_PROGRESS');
+      case DONE:
+        return this.$setContent('DONE');
+      default:
+        return '';
+    }
+  }
 }
 </script>
 

@@ -28,13 +28,13 @@
       :min="new Date().toISOString().substr(0, 10)"
       year-icon="mdi-calendar-blank"
     >
-      <CancelButton @cancel="resetDate" v-bind="{label: 'Reset', text: true}" />
+      <CancelButton @cancel="setDate(null)" v-bind="{label: $setContent('RESET'), text: true}" />
       <v-spacer />
       <CancelButton
         @cancel="closeCalendar"
-        v-bind="{label: 'Cancel', text: true}"
+        v-bind="{label: $setContent('CANCEL'), text: true}"
       />
-      <CancelButton @cancel="setDate(endDate)" v-bind="{label: 'done'}" />
+      <CancelButton @cancel="setDate(endDate)" v-bind="{label: $setContent('DONE')}" />
     </v-date-picker>
   </v-menu>
 </template>
@@ -65,36 +65,46 @@ export default class CardCalendar extends Vue {
     this.currentDateSelection();
   }
 
+  getLanguageCode(lang: string) {
+    switch (lang) {
+      case 'FI':
+        return 'fi';
+      default:
+        return 'en';
+    }
+  }
+
   formatDate(disabled: boolean) {
+    const lang = this.getLanguageCode(this.$store.state.modules.base.language);
     if (!this.card?.dates?.endDate) {
       if (disabled) {
-        return 'No date';
+        return this.$setContent('NO_DATE');
       } else {
-        return 'Set date';
+        return this.$setContent('SET_DATE');
       }
     }
     const today = new Date(Date.now());
-    const thisYear = new Intl.DateTimeFormat('en', {year: 'numeric'}).format(
+    const thisYear = new Intl.DateTimeFormat(lang, {year: 'numeric'}).format(
       today,
     );
 
     const date = new Date(this.card.dates.endDate);
-    const year = new Intl.DateTimeFormat('en', {year: 'numeric'}).format(date);
-    const month = new Intl.DateTimeFormat('en', {
+    const year = new Intl.DateTimeFormat(lang, {year: 'numeric'}).format(date);
+    const month = new Intl.DateTimeFormat(lang, {
       month: year === thisYear ? 'short' : 'long',
     }).format(date);
-    const day = new Intl.DateTimeFormat('en', {day: '2-digit'}).format(date);
-    const weekday = new Intl.DateTimeFormat('en', {weekday: 'short'}).format(
+    const day = new Intl.DateTimeFormat(lang, {day: '2-digit'}).format(date);
+    const weekday = new Intl.DateTimeFormat(lang, {weekday: 'short'}).format(
       date,
     );
 
     const dateDiff: number = this.getDateDiff(today, date);
     if (dateDiff >= -1 && dateDiff < 0) {
-      return 'Yesterday';
+      return this.$setContent('YESTERDAY');
     } else if (dateDiff >= 0 && dateDiff < 1) {
-      return 'Today';
+      return this.$setContent('TODAY');
     } else if (dateDiff >= 1 && dateDiff < 2) {
-      return 'Tomorrow';
+      return this.$setContent('TOMORROW');
     } else {
       return year === thisYear
         ? `${weekday}, ${day} ${month}`
@@ -147,22 +157,7 @@ export default class CardCalendar extends Vue {
     this.showDatePicker = false;
   }
 
-  async resetDate() {
-    const card: Partial<CardInterface> = {
-      uuid: this.card.uuid,
-      meeting: this.card.meeting,
-      dates: {...this.card.dates, endDate: null},
-    };
-
-    const success = await this.$store.dispatch(
-      'modules/cards/updateCard',
-      card,
-    );
-    this.closeCalendar();
-  }
-
-  async setDate() {
-    const newDate: Date = new Date(this.endDate);
+  async setDate(newDate: Date|null) {
     const card: Partial<CardInterface> = {
       ...this.card,
       meeting: this.card.meeting,
@@ -175,8 +170,8 @@ export default class CardCalendar extends Vue {
     );
     this.$notifier.showMessage({
       content: success
-        ? 'Due date updated'
-        : 'Due date update failed. Try again',
+        ? this.$setContent('DUE_DATE_UPDATED')
+        : this.$setContent('DUE_DATE_UPDATE_FAILED'),
       color: success ? 'success' : 'error',
     });
     this.closeCalendar();
