@@ -2,7 +2,7 @@
   <v-container fluid class="d-flex flex-column pa-0" style="height: 100vh">
     <v-container fluid class="px-6 pt-6 pb-0">
       <v-toolbar class="elevation-3 rounded-lg">
-        <v-toolbar-title class="pl-2 text-h5">My tasks</v-toolbar-title>
+        <v-toolbar-title class="pl-2 text-h5">{{ $setContent('MY_TASKS') }}</v-toolbar-title>
 
         <v-spacer></v-spacer>
 
@@ -19,7 +19,7 @@
         />
         <v-btn text @click="openTopicFilter" class="topic-selection">
           <v-icon color="primary">mdi-playlist-check</v-icon>
-          {{ selectedTopics.length }}/{{ meetings.length }} displayed topics
+          {{ selectedTopics.length }}/{{ meetings.length }} {{ $setContent('DISPLAYED_TOPICS') }}
         </v-btn>
       </div>
     </v-container>

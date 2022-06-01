@@ -45,17 +45,25 @@ interface LanguagePack extends Record<string, string> {
   ACTIVE: string;
   CLOSED: string;
   ROWS_PER_PAGE: string;
+  MY_TASKS: string;
   DISPLAYED_TOPICS: string;
   SELECTED_TOPICS: string;
   EVERY_APPROVED_IDEA: string;
+  YESTERDAY: string;
+  TODAY: string;
+  TOMORROW: string;
+  RESET: string;
   CANCEL: string;
   DONE: string;
+  CLOSE: string;
   BACKLOG: string;
   STUCK: string;
   IN_PROGRESS: string;
   SHOW_MORE: string;
+  SHOW_LESS: string;
   IN_TOPIC: string;
   DATE: string;
+  NO_DATE: string;
   SET_DATE: string;
   VOTES: string;
   ADD_IDEA: string;
@@ -93,6 +101,15 @@ interface LanguagePack extends Record<string, string> {
   PROFILE: string;
   MY_TOPICS: string;
   TO_KANBAN: string;
+  FILTER: string;
+  DUE_DATE_UPDATED: string;
+  DUE_DATE_UPDATE_FAILED: string;
+  CARD_COPIED: string;
+  CARD_COPY_FAILED: string;
+  IDEA_DELETED: string;
+  IDEA_DELETION_FAILED: string;
+  STATUS_UPDATED: string;
+  STATUS_UPDATE_FAILED: string;
 }
 
 export const LANGUAGES: Record<string, LanguagePack> = {
@@ -143,18 +160,26 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     ACTIVE: 'Active',
     CLOSED: 'Closed',
     ROWS_PER_PAGE: 'Rows per page',
+    MY_TASKS: 'My tasks',
     DISPLAYED_TOPICS: 'Displayed topics',
     SELECTED_TOPICS: 'Selected topics',
     EVERY_APPROVED_IDEA:
       'Every approved idea of selected topic will be added to this kanban',
+    YESTERDAY: 'Yesterday',
+    TODAY: 'Today',
+    TOMORROW: 'Tomorrow',
+    RESET: 'Reset',
     CANCEL: 'Cancel',
     DONE: 'Done',
+    CLOSE: 'Close',
     BACKLOG: 'Backlog',
     STUCK: 'Stuck',
     IN_PROGRESS: 'In progress',
     SHOW_MORE: 'Show more',
+    SHOW_LESS: 'Show less',
     IN_TOPIC: 'In topic',
     DATE: 'Date',
+    NO_DATE: 'No date',
     SET_DATE: 'Set date',
     VOTES: 'Votes',
     ADD_IDEA: 'Add an idea',
@@ -192,6 +217,15 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     PROFILE: 'Profile',
     MY_TOPICS: 'My topics',
     TO_KANBAN: 'Move to kanban',
+    FILTER: 'Filter',
+    DUE_DATE_UPDATED: 'Due date updated',
+    DUE_DATE_UPDATE_FAILED: 'Due date update failed. Try again',
+    CARD_COPIED: 'Card copied',
+    CARD_COPY_FAILED: 'Copying card failed. Try again.',
+    IDEA_DELETED: 'Idea deleted',
+    IDEA_DELETION_FAILED: 'Deleting idea failed. Try again',
+    STATUS_UPDATED: 'Status updated',
+    STATUS_UPDATE_FAILED: 'Status update failed. Try again',
   },
   'FI': {
     SIGN_IN: 'Kirjaudu sisään',
@@ -240,18 +274,26 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     ACTIVE: 'Aktiivinen ideaseinä',
     CLOSED: 'Suljettu',
     ROWS_PER_PAGE: 'Rivejä per sivu',
-    DISPLAYED_TOPICS: 'Näkyvien seinien valinta',
+    MY_TASKS: 'Tehtäväni',
+    DISPLAYED_TOPICS: 'Ideaseinää näkyvissä',
     SELECTED_TOPICS: 'Valitse näkyvät ideaseinät',
     EVERY_APPROVED_IDEA:
       'Alta valitsemiesi ideaseinien kortit näkyvät kanbanissa',
+    YESTERDAY: 'Eilen',
+    TODAY: 'Tänään',
+    TOMORROW: 'Huomenna',
+    RESET: 'Nollaa',
     CANCEL: 'Peruuta',
     DONE: 'Valmis',
+    CLOSE: 'Sulje',
     BACKLOG: 'Aloitteet',
     STUCK: 'Jumissa',
     IN_PROGRESS: 'Työn alla',
     SHOW_MORE: 'Näytä koko teksti',
+    SHOW_LESS: 'Näytä vähemmän',
     IN_TOPIC: 'Kortin ideaseinä',
     DATE: 'Päivämäärä',
+    NO_DATE: 'Ei päivämäärää',
     SET_DATE: 'Aseta päivämäärä',
     VOTES: 'Peukutukset',
     ADD_IDEA: 'Lisää idea',
@@ -288,6 +330,15 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     DELETE_TOPIC: 'Poista ideaseinä',
     PROFILE: 'Yhteenveto',
     MY_TOPICS: 'Ideaseinät',
-    TO_KANBAN: 'Kanbaniin'
+    TO_KANBAN: 'Kanbaniin',
+    FILTER: 'Suodatus',
+    DUE_DATE_UPDATED: 'Määräpäivä päivitetty',
+    DUE_DATE_UPDATE_FAILED: 'Määräpäivän päivitys epäonnistui. Yritä uudestaan.',
+    CARD_COPIED: 'Kortti kopioitu',
+    CARD_COPY_FAILED: 'Kortin kopioiminen epäonnistui. Yritä uudestaan',
+    IDEA_DELETED: 'Ideakortti poistettu',
+    IDEA_DELETION_FAILED: 'Ideakortin poistaminen epäonnistui. Yritä uudestaan',
+    STATUS_UPDATED: 'Kortin tila päivitetty',
+    STATUS_UPDATE_FAILED: 'Kortin tilan päivittäminen epäonnistui. Yritä uudestaan',
   },
 };

@@ -3,13 +3,12 @@
     <v-card class="rounded-lg">
       <v-card-title class="headline pb-6">
         <v-icon class="mr-4 realBlack--text">mdi-playlist-check</v-icon>
-        <h4>Selected topics</h4>
+        <h4>{{ $setContent('SELECTED_TOPICS') }}</h4>
       </v-card-title>
 
       <v-card-text>
         <p>
-          Every approved idea of the selected topics will be added to this
-          topic.
+          {{ $setContent('EVERY_APPROVED_IDEA') }}
         </p>
       </v-card-text>
 
@@ -17,7 +16,7 @@
         hide-details
         single-line
         append-icon="mdi-magnify"
-        label="Filter"
+        :label="$setContent('FILTER')"
         cols="1"
         class="px-6 pt-0 pb-4 flex-grow-1 flex-shrink-0"
         :value="searchText"
@@ -46,8 +45,8 @@
 
       <v-card-actions class="px-6 pt-2 pb-4">
         <v-spacer />
-        <CancelButton @cancel="closeModal(true)" v-bind="{label: 'Cancel'}" />
-        <SubmitButton @done="closeModal(false)" v-bind="{label: 'Done'}" />
+        <CancelButton @cancel="closeModal(true)" v-bind="{label: $setContent('CANCEL')}" />
+        <SubmitButton @done="closeModal(false)" v-bind="{label: $setContent('DONE')}" />
       </v-card-actions>
     </v-card>
   </v-dialog>

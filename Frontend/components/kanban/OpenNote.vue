@@ -25,28 +25,28 @@
         </v-card-text>
         <span class="px-6" v-if="card.content.length > maxLength">
           <a @click.stop.capture="toggleAllContent(!showAll)">
-            {{ showAll ? 'Show less' : 'Show more' }}
+            {{ showAll ? $setContent('SHOW_LESS') : $setContent('SHOW_MORE') }}
           </a>
         </span>
       </div>
 
       <v-container fluid class="pl-6 pr-8 justify-space-between">
         <v-row class="d-flex align-center">
-          <v-card-subtitle style="width: 120px"> In Topic </v-card-subtitle>
+          <v-card-subtitle style="width: 120px"> {{ $setContent('IN_TOPIC') }} </v-card-subtitle>
           <TopicItem
             v-bind="{topic: topics.find((m) => m.uuid === card.meeting.uuid)}"
           />
         </v-row>
 
         <v-row class="d-flex align-center">
-          <v-card-subtitle style="width: 120px"> Date </v-card-subtitle>
+          <v-card-subtitle style="width: 120px"> {{ $setContent('DATE') }} </v-card-subtitle>
           <CardCalendar
             v-bind="{card, regularCard: false, disabledChip: false}"
           />
         </v-row>
 
         <v-row>
-          <v-card-subtitle style="width: 120px"> Votes </v-card-subtitle>
+          <v-card-subtitle style="width: 120px"> {{ $setContent('VOTES') }} </v-card-subtitle>
           <v-col class="d-flex align-center pa-0">
             <div class="pa-1 pr-2 align-center">
               <v-icon>mdi-thumb-up-outline</v-icon>
@@ -62,7 +62,7 @@
 
       <v-card-actions class="px-4 pt-2 pb-4">
         <v-spacer />
-        <SubmitButton @done="closeModal" v-bind="{label: 'Close'}" />
+        <SubmitButton @done="closeModal" v-bind="{label: $setContent('CLOSE')}" />
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -148,52 +148,6 @@ export default class OpenNote extends Vue {
 
   toggleAllContent(showAll: boolean) {
     this.showAll = showAll;
-  }
-
-  async copyCard() {
-    const newCard: createCardDto = {
-      meeting: this.$store.state.modules.meeting,
-      author: this.$store.state.modules.user,
-      title: this.card.title,
-      content: this.card.content,
-      categories: this.card.categories,
-      dates: this.card.dates,
-    };
-
-    const res = await this.$store.dispatch('modules/cards/copyCard', newCard);
-    this.$notifier.showMessage({
-      content: res.success ? 'Card copied' : 'Copying card failed. Try again.',
-      color: res.success ? 'success' : 'error',
-    });
-    if (res.success) {
-      this.$emit('copied', res.data);
-    }
-  }
-
-  async deleteCard() {
-    const success = await this.$store.dispatch('modules/cards/deleteCard', {
-      uuid: this.card.uuid,
-      meeting: this.$store.state.modules.meeting,
-      remover: this.$store.state.modules.user.uuid,
-    });
-    this.$notifier.showMessage({
-      content: success ? 'Idea deleted' : 'Deletion failed. Try again.',
-      color: success ? 'success' : 'error',
-    });
-  }
-
-  async setStatus(status: string) {
-    const success = await this.$store.dispatch('modules/cards/updateCard', {
-      uuid: this.card.uuid,
-      meeting: this.$store.state.modules.meeting,
-      lastModifiedBy: this.$store.state.modules.user.uuid,
-      status,
-    });
-    this.$notifier.showMessage({
-      content: success ? 'Status updated' : 'Status update failed. Try again',
-      color: success ? 'success' : 'error',
-    });
-    this.updateStatus(status);
   }
 
   updateStatus(status: string) {

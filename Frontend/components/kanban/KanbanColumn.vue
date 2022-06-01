@@ -12,7 +12,7 @@
         class="d-flex flex-row align-center content-aware-text text-h5 pa-0"
       >
         <!-- <v-icon></v-icon> -->
-        {{ title }}
+        {{ columnTitle }}
         <span class="ma-0 px-4 text-body-1 text-caption text--lighten-2">
           {{ cards.length }}
         </span>
@@ -35,10 +35,12 @@ import {UPDATE_CARD_DATA} from '../../store/mutationTypes';
   props: {
     title: {type: String, required: true},
     cards: {type: Array as () => CardInterface[], required: true},
+    columnTitle: {type: String, required: true},
   },
 })
 export default class KanbanColumn extends Vue {
   @Prop() title!: string;
+  @Prop() columnTitle!: string;
   @Prop() cards!: CardInterface[];
   $store: any;
   $notifier: any;
