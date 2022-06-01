@@ -10,7 +10,7 @@
       class="elevation-0 link"
       color="primary"
     ></v-text-field>
-    <CancelButton @cancel="copyText" v-bind="{label: 'Copy link'}" />
+    <CancelButton @cancel="copyText" v-bind="{label: $setContent('COPY_LINK')}" />
   </v-container>
 </template>
 <script lang="ts">

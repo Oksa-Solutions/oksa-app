@@ -89,25 +89,25 @@ export default class SignInComponent extends Vue {
   listItemsOne = [
     {
       icon: 'mdi-view-dashboard',
-      title: 'Dashboard',
+      title: this.$setContent('DASHBOARD'),
       action: this.openDashboard,
     },
   ];
   listItemsTwo = [
     {
       icon: 'mdi-checkbox-marked-circle-outline',
-      title: 'My tasks',
+      title: this.$setContent('MY_TASKS'),
       action: this.openTasks,
     },
     {
       icon: '$vuetify.icons.oksa-nofill',
-      title: 'My topics',
+      title: this.$setContent('MY_TOPICS'),
       action: this.openTopics,
     },
   ];
   listItemsThree = [
     // {icon: 'mdi-cog', title: 'Account settings', action: this.openSettings},
-    {icon: 'mdi-logout', title: 'Sign out', action: this.signOut},
+    {icon: 'mdi-logout', title: this.$setContent('SIGN_OUT'), action: this.signOut},
   ];
   window = {
     width: 0,
