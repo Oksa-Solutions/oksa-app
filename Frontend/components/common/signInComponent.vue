@@ -1,74 +1,75 @@
 <template>
-  <span>
+  <v-row v-if="!loggedIn" class="main-div align-center">
     <SubmitButton
-      v-if="!loggedIn"
       @done="signIn"
       v-bind="{label: $setContent('SIGN_IN')}"
-      class="signInBtn elevation-3 py-2 px4"
+      class="elevation-3 pa-4 mx-1"
       style="z-index: 10"
     />
-    <v-row v-else class="mainDiv align-center">
-      <NotificationIcon />
-      <v-menu>
-        <template v-slot:activator="{on, attrs}">
-          <div v-bind="attrs" v-on="on" class="px-1">
-            <InitialsCircle
-              :name="name"
-              width="40px"
-              height="40px"
-              cursor="pointer"
-            />
-          </div>
-        </template>
-        <v-card>
-          <v-list dense flat>
-            <v-list-item
-              v-for="(item, i) in listItemsOne"
-              :key="i"
-              link
-              @click="item.action"
-            >
-              <v-list-item-icon class="semibold">
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-icon>
-              <v-list-item-title v-text="item.title" class="semibold" />
-              <v-spacer v-if="i % 2 === 0"></v-spacer>
-            </v-list-item>
-          </v-list>
-          <v-divider></v-divider>
-          <v-list dense flat>
-            <v-list-item
-              v-for="(item, i) in listItemsTwo"
-              :key="i"
-              link
-              @click="item.action"
-            >
-              <v-list-item-icon class="semibold">
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-icon>
-              <v-list-item-title v-text="item.title" class="semibold" />
-              <v-spacer v-if="i % 2 === 0"></v-spacer>
-            </v-list-item>
-          </v-list>
-          <v-divider></v-divider>
-          <v-list dense flat>
-            <v-list-item
-              v-for="(item, i) in listItemsThree"
-              :key="i"
-              link
-              @click="item.action"
-            >
-              <v-list-item-icon class="semibold">
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-icon>
-              <v-list-item-title v-text="item.title" class="semibold" />
-              <v-spacer v-if="i % 2 === 0"></v-spacer>
-            </v-list-item>
-          </v-list>
-        </v-card>
-      </v-menu>
-    </v-row>
-  </span>
+    <LanguageSelection />
+  </v-row>
+  <v-row v-else class="main-div align-center">
+    <NotificationIcon />
+    <v-menu>
+      <template v-slot:activator="{on, attrs}">
+        <div v-bind="attrs" v-on="on" class="px-1">
+          <InitialsCircle
+            :name="name"
+            width="40px"
+            height="40px"
+            cursor="pointer"
+          />
+        </div>
+      </template>
+      <v-card>
+        <v-list dense flat>
+          <v-list-item
+            v-for="(item, i) in listItemsOne"
+            :key="i"
+            link
+            @click="item.action"
+          >
+            <v-list-item-icon class="semibold">
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title v-text="item.title" class="semibold" />
+            <v-spacer v-if="i % 2 === 0"></v-spacer>
+          </v-list-item>
+        </v-list>
+        <v-divider></v-divider>
+        <v-list dense flat>
+          <v-list-item
+            v-for="(item, i) in listItemsTwo"
+            :key="i"
+            link
+            @click="item.action"
+          >
+            <v-list-item-icon class="semibold">
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title v-text="item.title" class="semibold" />
+            <v-spacer v-if="i % 2 === 0"></v-spacer>
+          </v-list-item>
+        </v-list>
+        <v-divider></v-divider>
+        <v-list dense flat>
+          <v-list-item
+            v-for="(item, i) in listItemsThree"
+            :key="i"
+            link
+            @click="item.action"
+          >
+            <v-list-item-icon class="semibold">
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title v-text="item.title" class="semibold" />
+            <v-spacer v-if="i % 2 === 0"></v-spacer>
+          </v-list-item>
+        </v-list>
+      </v-card>
+    </v-menu>
+    <LanguageSelection />
+  </v-row>
 </template>
 
 <script lang="ts">
@@ -156,8 +157,8 @@ export default class SignInComponent extends Vue {
 </script>
 
 <style scoped>
-.mainDiv {
-  width: 100px;
+.main-div {
+  width: 160px;
   height: 40px;
   position: fixed;
   top: 32px;
