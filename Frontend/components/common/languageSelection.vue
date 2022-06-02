@@ -1,7 +1,7 @@
 <template>
   <v-menu offset-y transition="scale-transition">
     <template v-slot:activator="{on, attrs}">
-      <div v-bind="attrs" v-on="on" class="elevation-0 px-2 rounded-lg">
+      <div v-bind="attrs" v-on="on" class="elevation-3 rounded-circle pa-2 justify-center align-center flag-div">
         <Flag :code="lang" hasDropShadow />
       </div>
     </template>
@@ -38,3 +38,12 @@ export default class LanguageSelection extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.flag-div {
+  width: 40px;
+  height: 40px;
+  background: white;
+  display: flex;
+}
+</style>

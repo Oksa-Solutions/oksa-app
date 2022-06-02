@@ -1,6 +1,9 @@
 <template>
   <v-app Dark>
     <CreateTeamModal v-if="showTeamModal" @closed="closeTeamModal" />
+    <div style="position: absolute; top: 10px; right: 10px; z-index: 10;">
+      <LanguageSelection />
+    </div>
 
     <!----- DRAWER TOGGLE FOR MOBILE ----->
     <v-btn
@@ -63,7 +66,7 @@
 
             <div v-if="!miniVariant" class="d-flex justify-center flex-column">
               <v-card-subtitle class="mb-n8 d-flex justify-center">
-                Welcome back,
+                {{ $setContent('WELCOME_BACK') }},
               </v-card-subtitle>
               <v-card-title class="d-flex justify-center text-h6 bold">
                 {{ makeTitleName(profile.name) }}
@@ -142,7 +145,7 @@
 
       <template v-if="!miniVariant && currentOrg.name !== noOrg">
         <v-subheader v-if="!miniVariant" class="semibold text-uppercase">
-          TEAMS
+          {{ $setContent('TEAMS') }}
           <v-spacer></v-spacer>
           <v-btn icon>
             <v-icon

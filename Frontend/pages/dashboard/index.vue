@@ -49,7 +49,6 @@
               v-bind="{label: $setContent('REQUEST')}"
               class="px-6 mx-2"
             />
-            <LanguageSelection />
           </v-card-actions>
         </v-card>
         <v-card

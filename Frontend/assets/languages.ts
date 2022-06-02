@@ -374,7 +374,7 @@ export const LANGUAGES: Record<string, LanguagePack> = {
     NEW_TOPIC: 'New topic',
   },
   'FI': {
-    SIGN_IN: 'Kirjaudu sisään',
+    SIGN_IN: 'Kirjaudu',
     EMAIL: 'Sähköposti',
     PHONE: 'Puhelinnumero',
     SEND_CODE: 'Lähetä koodi',
